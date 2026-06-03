@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramapp Solutions — AI-Powered Consulting</title>
+  <meta name="description" content="We build AI-powered tools and automation software that give businesses a real edge. Custom solutions. Fast delivery. Results that move the needle." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Ramapp Solutions — AI-Powered Consulting" />
+  <meta property="og:description" content="Custom AI tools and automation systems. Built fast, deployed right, owned by you." />
+  <meta property="og:image"       content="https://ramappsolutions.com/assets/og-image.png" />
+  <meta property="og:url"         content="https://ramappsolutions.com" />
+  <meta property="og:type"        content="website" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Calendly widget -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+
+  <!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body data-page="home">
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <defs>
+            <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00c896"/>
+            </linearGradient>
+            <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00ff9d"/>
+            </linearGradient>
+          </defs>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(0,224,255,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(0,224,255,0.05)"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
+          <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
+          <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f1f5f9" letter-spacing="-0.3">Ramapp</text>
+          <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#64748b" letter-spacing="3">SOLUTIONS</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="services.html"  data-nav="services">Services</a></li>
+        <li><a href="work.html"      data-nav="work">Work</a></li>
+        <li><a href="pricing.html"   data-nav="pricing">Pricing</a></li>
+        <li><a href="blog.html"      data-nav="blog">Blog</a></li>
+        <li><a href="contact.html"   class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__grid-bg"></div>
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+    <div class="container hero__inner">
+
+      <div class="hero__copy">
+        <div class="hero__badge">
+          <span class="badge__dot"></span>
+          <span class="badge__text">AI-Powered Consulting</span>
+        </div>
+        <h1 class="hero__title">
+          Build smarter.<br />
+          <span class="gradient-text">Automate faster.</span><br />
+          Scale without limits.
+        </h1>
+        <p class="hero__sub">
+          We engineer AI-powered tools and automation systems that eliminate bottlenecks,
+          unlock insights, and let your business run at machine speed.
+        </p>
+        <div class="hero__actions">
+          <a href="contact.html" class="btn btn--primary">Start a Project</a>
+          <a href="#" class="btn btn--ghost btn--calendly" onclick="openCalendly(event)">Book a Free Call</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat">
+            <span class="stat__num">10x</span>
+            <span class="stat__label">Faster workflows</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <span class="stat__num">100%</span>
+            <span class="stat__label">Custom-built</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <span class="stat__num">24/7</span>
+            <span class="stat__label">Always running</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="dash-card dash-card--main">
+          <div class="dash-card__header">
+            <span class="dash-dot dash-dot--green"></span>
+            <span class="dash-title">AI System Monitor</span>
+            <span class="dash-badge">LIVE</span>
+          </div>
+          <div class="dash-metrics">
+            <div class="dash-metric">
+              <span class="dash-metric__label">Automations Active</span>
+              <span class="dash-metric__val cyan">14</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__label">Tasks Completed</span>
+              <span class="dash-metric__val green">2,847</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__label">Efficiency Gain</span>
+              <span class="dash-metric__val cyan">+91%</span>
+            </div>
+          </div>
+          <div class="dash-chart">
+            <div class="dash-chart__label">Activity (7d)</div>
+            <div class="dash-bars">
+              <div class="dash-bar" style="--h:40%"></div>
+              <div class="dash-bar" style="--h:65%"></div>
+              <div class="dash-bar" style="--h:50%"></div>
+              <div class="dash-bar" style="--h:80%"></div>
+              <div class="dash-bar" style="--h:70%"></div>
+              <div class="dash-bar" style="--h:95%"></div>
+              <div class="dash-bar dash-bar--today" style="--h:88%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card dash-card--float dash-card--float-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e0ff" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          <div><div class="float-val">↑ 3.2x</div><div class="float-label">ROI this month</div></div>
+        </div>
+        <div class="dash-card dash-card--float dash-card--float-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><div class="float-val green">99.9%</div><div class="float-label">Uptime</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__photo">
+          <img
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=680&q=85&fit=crop"
+            alt="Code on a dark screen — the kind of work we do"
+          />
+        </div>
+        <div class="about__content reveal">
+          <span class="section-tag">About</span>
+          <h2 class="section-title" style="text-align:left;">Built by a developer who <span class="gradient-text">actually ships.</span></h2>
+          <div class="about__bio-wrap">
+            <p class="about__body" id="bio1" contenteditable="false">I'm Nick Ramos — a developer obsessed with making things work smarter. I've spent years building real systems: algorithmic trading bots, live market scanners, automated reporting pipelines. Not prototypes. Production tools that run while you sleep.</p>
+            <p class="about__body" id="bio2" contenteditable="false">I started Ramapp Solutions because most businesses are sitting on a mountain of repetitive work that software could handle — they just don't have someone to build it. That's where I come in. No fluff, no bloated proposals. Just practical AI and automation that moves the needle.</p>
+            <div class="bio-edit-controls">
+              <button class="bio-edit-btn" id="bioEditBtn" onclick="toggleBioEdit()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Edit Bio
+              </button>
+              <button class="bio-save-btn" id="bioSaveBtn" onclick="saveBio()" style="display:none">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Save
+              </button>
+            </div>
+          </div>
+          <div class="about__chips">
+            <span class="about__chip">Python &amp; AI</span>
+            <span class="about__chip">Automation Systems</span>
+            <span class="about__chip">Full-Stack Dev</span>
+          </div>
+          <a href="contact.html" class="btn btn--primary">Work With Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <section class="photo-strip">
+    <div class="container">
+      <div class="photo-strip__grid">
+        <div class="photo-strip__item reveal">
+          <img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=85&fit=crop"
+            alt="Circuit board — infrastructure that powers automation"
+          />
+          <div class="photo-strip__overlay">
+            <span>Built to last</span>
+          </div>
+        </div>
+        <div class="photo-strip__item reveal">
+          <img
+            src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=85&fit=crop"
+            alt="AI data visualization"
+          />
+          <div class="photo-strip__overlay">
+            <span>AI at the core</span>
+          </div>
+        </div>
+        <div class="photo-strip__item reveal">
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=85&fit=crop"
+            alt="Analytics dashboard on screen"
+          />
+          <div class="photo-strip__overlay">
+            <span>Insights on demand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials__header reveal">
+        <span class="section-tag">What Clients Say</span>
+        <h2 class="section-title">Trusted by teams that <span class="gradient-text">move fast.</span></h2>
+      </div>
+      <div class="testimonials__single">
+        <div class="testimonial-card testimonial-card--solo reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">VolleyCenter completely changed how we manage our club. Scheduling, rosters, player tracking — everything is in one place and actually works. Our coaches stopped chasing spreadsheets and our parents finally know what's going on. Nick built exactly what we needed without overcomplicating it.</p>
+          <div class="testimonial-card__author">
+            <span class="testimonial-card__name">Club 1 Volleyball</span>
+            <span class="testimonial-card__role">VolleyCenter — Club Management App</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="cta-band__glow"></div>
+    <div class="container cta-band__inner">
+      <div class="cta-band__terminal">
+        <div class="terminal__bar">
+          <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+          <span class="terminal__title">ramapp_solutions.sh</span>
+        </div>
+        <div class="terminal__body">
+          <p><span class="t-dim">$</span> <span class="t-cmd">analyze</span> --target <span class="t-str">your-workflow</span></p>
+          <p><span class="t-dim">→</span> <span class="t-out">Bottlenecks found: 7</span></p>
+          <p><span class="t-dim">→</span> <span class="t-out">Automation potential: <span class="t-hi">HIGH</span></span></p>
+          <p><span class="t-dim">$</span> <span class="t-cmd">build</span> --mode <span class="t-str">ai-powered</span> --deploy <span class="t-str">production</span></p>
+          <p><span class="t-dim">→</span> <span class="t-out">System online. <span class="t-hi">Running 24/7.</span> ✓</span></p>
+          <p class="terminal__cursor"><span class="t-dim">$</span> <span class="cursor-blink">█</span></p>
+        </div>
+      </div>
+      <div class="cta-band__copy">
+        <h2>Ready to automate the work that's holding you back?</h2>
+        <p>The first call is always free. You'll leave with clarity on what's possible — no commitment required.</p>
+        <a href="#" class="btn btn--primary btn--lg btn--calendly" onclick="openCalendly(event)">Book a Free Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00c896"/>
+              </linearGradient>
+              <linearGradient id="rGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00ff9d"/>
+              </linearGradient>
+            </defs>
+            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(0,224,255,0.07)"/>
+            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(0,224,255,0.05)"/>
+            <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad2)">R</text>
+            <circle cx="60" cy="26" r="3" fill="url(#hexGrad2)"/>
+            <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f1f5f9" letter-spacing="-0.3">Ramapp</text>
+            <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#64748b" letter-spacing="3">SOLUTIONS</text>
+          </svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+        <div class="footer__social">
+          <!-- Replace href with your real LinkedIn URL -->
+          <a href="https://linkedin.com/in/nickramos" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:nick@ramappsolutions.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="services.html">Services</a>
+        <a href="work.html">Work</a>
+        <a href="process.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

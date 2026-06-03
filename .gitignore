@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+*.log
+.env
+app.py
+start.sh
+templates/
+__pycache__/
+*.pyc
+static/

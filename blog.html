@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Ramapp Solutions</title>
+  <meta name="description" content="Practical writing on building smarter systems with AI and automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Blog grid ── */
+    .blog-section {
+      padding: 80px 0 120px;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Post card base ── */
+    .post-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.25s, transform 0.25s;
+      text-decoration: none;
+    }
+    .post-card:hover {
+      border-color: rgba(0,224,255,0.25);
+      transform: translateY(-3px);
+    }
+
+    /* ── Featured card (real post) ── */
+    .post-card--featured {
+      border-top: 3px solid #00e0ff;
+      grid-column: 1 / -1;
+      flex-direction: row;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    @media (max-width: 768px) {
+      .post-card--featured { flex-direction: column; grid-column: auto; }
+    }
+    .post-card--featured .post-card__body {
+      flex: 1;
+    }
+    .post-card--featured .post-card__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #00e0ff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .post-card--featured .post-card__title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.3;
+      margin: 8px 0 12px;
+    }
+    .post-card--featured .post-card__excerpt {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .post-card--featured .post-card__meta {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .post-card--featured .post-card__meta span {
+      color: #00ff9d;
+    }
+    .post-card--featured .post-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #00e0ff;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: gap 0.2s;
+    }
+    .post-card--featured .post-card__cta:hover { gap: 12px; }
+    .post-card--featured .post-card__cta svg { flex-shrink: 0; }
+
+    /* Featured side badge */
+    .post-card__badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,224,255,0.06);
+      border: 1px solid rgba(0,224,255,0.15);
+      border-radius: 12px;
+      padding: 24px 20px;
+      min-width: 120px;
+      text-align: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .post-card__badge-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .post-card__badge-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #00e0ff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .post-card__badge-read {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* ── Placeholder cards ── */
+    .post-card--placeholder {
+      border: 1px dashed rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.015);
+      opacity: 0.7;
+      cursor: default;
+    }
+    .post-card--placeholder:hover {
+      transform: none;
+      border-color: rgba(255,255,255,0.1);
+    }
+    .post-card__coming-soon {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #64748b;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 3px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .post-card__placeholder-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #475569;
+      line-height: 1.4;
+    }
+    .post-card__placeholder-line {
+      height: 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+    .post-card__placeholder-line:nth-child(2) { width: 100%; }
+    .post-card__placeholder-line:nth-child(3) { width: 75%; }
+  </style>
+</head>
+<body data-page="blog">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <defs>
+            <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00c896"/>
+            </linearGradient>
+            <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00ff9d"/>
+            </linearGradient>
+          </defs>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(0,224,255,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(0,224,255,0.05)"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
+          <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
+          <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f1f5f9" letter-spacing="-0.3">Ramapp</text>
+          <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#64748b" letter-spacing="3">SOLUTIONS</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="services.html" data-nav="services">Services</a></li>
+        <li><a href="work.html" data-nav="work">Work</a></li>
+        <li><a href="process.html" data-nav="process">How It Works</a></li>
+        <li><a href="pricing.html" data-nav="pricing">Pricing</a></li>
+        <li><a href="blog.html" data-nav="blog">Blog</a></li>
+        <li><a href="contact.html" class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="process.html">How It Works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero__grid-bg"></div>
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="container page-hero__inner">
+      <div class="hero__badge">
+        <span class="badge__dot"></span>
+        <span class="badge__text">Blog</span>
+      </div>
+      <h1 class="page-hero__title">Insights on <span class="gradient-text">AI &amp; Automation</span></h1>
+      <p class="page-hero__sub">Practical writing on building smarter systems.</p>
+    </div>
+  </section>
+
+  <!-- BLOG GRID -->
+  <section class="blog-section">
+    <div class="container">
+      <div class="blog-grid reveal">
+
+        <!-- REAL POST: Featured -->
+        <a href="blog/trading-automation.html" class="post-card post-card--featured">
+          <div class="post-card__badge">
+            <div class="post-card__badge-icon">&#x26A1;</div>
+            <div class="post-card__badge-tag">AI + Automation</div>
+            <div class="post-card__badge-read">8 min read</div>
+          </div>
+          <div class="post-card__body">
+            <div class="post-card__label">AI + Automation &nbsp;&bull;&nbsp; June 2026</div>
+            <h2 class="post-card__title">How I Built an Autonomous Trading Bot That Runs 24/7</h2>
+            <p class="post-card__excerpt">Most traders watch screens. I built a system that watches for me — scanning markets, evaluating signals, and executing trades around the clock. Here's exactly how it works.</p>
+            <div class="post-card__meta">
+              <span>June 2026</span>
+              <span style="color:#64748b">&bull;</span>
+              <span style="color:#64748b">8 min read</span>
+            </div>
+            <span class="post-card__cta">
+              Read the article
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- PLACEHOLDER 1 -->
+        <div class="post-card post-card--placeholder">
+          <span class="post-card__coming-soon">Coming Soon</span>
+          <h3 class="post-card__placeholder-title">5 Automation Wins for Small Businesses</h3>
+          <div class="post-card__placeholder-line"></div>
+          <div class="post-card__placeholder-line"></div>
+        </div>
+
+        <!-- PLACEHOLDER 2 -->
+        <div class="post-card post-card--placeholder">
+          <span class="post-card__coming-soon">Coming Soon</span>
+          <h3 class="post-card__placeholder-title">What Most Developers Get Wrong About AI Tools</h3>
+          <div class="post-card__placeholder-line"></div>
+          <div class="post-card__placeholder-line"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00c896"/>
+              </linearGradient>
+              <linearGradient id="rGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00ff9d"/>
+              </linearGradient>
+            </defs>
+            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(0,224,255,0.07)"/>
+            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(0,224,255,0.05)"/>
+            <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad2)">R</text>
+            <circle cx="60" cy="26" r="3" fill="url(#hexGrad2)"/>
+            <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f1f5f9" letter-spacing="-0.3">Ramapp</text>
+            <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#64748b" letter-spacing="3">SOLUTIONS</text>
+          </svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="services.html">Services</a>
+        <a href="process.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
