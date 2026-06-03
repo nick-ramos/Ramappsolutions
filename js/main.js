@@ -189,3 +189,60 @@ function openCalendly(e) {
 document.querySelectorAll('.btn--calendly').forEach(btn => {
   btn.addEventListener('click', openCalendly);
 });
+
+// ---------- FLOATING BOOK-A-CALL BUTTON ----------
+(function initFloatingCTA() {
+  const btn = document.createElement('div');
+  btn.className = 'floating-cta';
+  btn.innerHTML = `
+    <button class="floating-cta__btn btn--calendly" aria-label="Book a free call">
+      <span class="floating-cta__pulse"></span>
+      Book a Free 30-Min Call
+    </button>`;
+  document.body.appendChild(btn);
+
+  // Show after scrolling past 400px, hide near footer
+  const footer = document.querySelector('.footer');
+  window.addEventListener('scroll', () => {
+    const scrolled   = window.scrollY > 400;
+    const nearFooter = footer && window.scrollY + window.innerHeight >= footer.offsetTop - 60;
+    btn.classList.toggle('visible', scrolled && !nearFooter);
+  }, { passive: true });
+
+  btn.querySelector('button').addEventListener('click', openCalendly);
+})();
+
+// ---------- ANIMATED STAT COUNTERS ----------
+(function initCountUp() {
+  const els = document.querySelectorAll('.count-up');
+  if (!els.length) return;
+
+  const countEl = (el) => {
+    const target   = parseFloat(el.dataset.count);
+    const suffix   = el.dataset.suffix || '';
+    const prefix   = el.dataset.prefix || '';
+    const decimals = (el.dataset.count.includes('.')) ? 1 : 0;
+    const duration = 1400;
+    const start    = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease     = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const val      = (target * ease).toFixed(decimals);
+      el.textContent = prefix + val + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        countEl(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  els.forEach(el => obs.observe(el));
+})();
