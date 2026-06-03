@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ramapp-preview",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["/Users/nickramos/ramappsolutions/serve.sh"],
+      "port": 5002
+    }
+  ]
+}
