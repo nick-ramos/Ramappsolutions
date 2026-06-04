@@ -133,46 +133,6 @@ if (form) {
   });
 }
 
-// ---------- EDITABLE BIO ----------
-// Load saved bio from localStorage on page load
-(function loadBio() {
-  const b1 = localStorage.getItem('bio1');
-  const b2 = localStorage.getItem('bio2');
-  if (b1) { const el = document.getElementById('bio1'); if (el) el.textContent = b1; }
-  if (b2) { const el = document.getElementById('bio2'); if (el) el.textContent = b2; }
-})();
-
-function toggleBioEdit() {
-  const fields  = ['bio1','bio2'].map(id => document.getElementById(id)).filter(Boolean);
-  const editBtn = document.getElementById('bioEditBtn');
-  const saveBtn = document.getElementById('bioSaveBtn');
-  const isEditing = fields[0]?.getAttribute('contenteditable') === 'true';
-
-  if (!isEditing) {
-    fields.forEach(f => { f.setAttribute('contenteditable', 'true'); f.focus(); });
-    editBtn.style.display = 'none';
-    saveBtn.style.display = 'inline-flex';
-  } else {
-    saveBio();
-  }
-}
-
-function saveBio() {
-  const fields  = ['bio1','bio2'].map(id => document.getElementById(id)).filter(Boolean);
-  const editBtn = document.getElementById('bioEditBtn');
-  const saveBtn = document.getElementById('bioSaveBtn');
-
-  fields.forEach(f => {
-    localStorage.setItem(f.id, f.textContent);
-    f.setAttribute('contenteditable', 'false');
-  });
-  editBtn.style.display = 'inline-flex';
-  saveBtn.style.display = 'none';
-
-  // Flash confirmation
-  editBtn.textContent = '✓ Saved';
-  setTimeout(() => { editBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Edit Bio'; }, 2000);
-}
 
 // ---------- CALENDLY ----------
 // Replace the URL below with your Calendly link after signing up at calendly.com

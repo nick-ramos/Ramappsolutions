@@ -23,6 +23,37 @@
   <!-- Calendly widget -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
 
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ramapp Solutions",
+    "url": "https://ramappsolutions.com",
+    "logo": "https://ramappsolutions.com/assets/favicon.svg",
+    "image": "https://ramappsolutions.com/assets/og-image.svg",
+    "description": "AI-powered tools and automation systems built for businesses that move fast. Custom solutions, fast delivery, results that move the needle.",
+    "founder": {
+      "@type": "Person",
+      "name": "Nick Ramos",
+      "jobTitle": "Founder & Developer",
+      "url": "https://ramappsolutions.com"
+    },
+    "serviceType": ["AI Development", "Automation Systems", "Software Consulting"],
+    "areaServed": "Worldwide",
+    "priceRange": "$$",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "nramos@ramappsolutions.com",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "sameAs": [
+      "https://linkedin.com/in/nickramos"
+    ]
+  }
+  </script>
+
   <!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -212,16 +243,6 @@
           <div class="about__bio-wrap">
             <p class="about__body" id="bio1" contenteditable="false">I'm Nick Ramos — Risk Analyst, Club Director, and Varsity Coach. Juggling multiple roles taught me one thing fast: if you don't build systems to protect your time, your time disappears. That constant pressure to do more with less is what pushed me to start automating, building, and optimizing — until it became second nature.</p>
             <p class="about__body" id="bio2" contenteditable="false">I started Ramapp Solutions to turn that mindset into a service. Whether you're a freelancer wearing every hat or a growing company drowning in manual work, there's something you could be doing smarter — and it's my job to build that for you. No idea is too ambitious. Perseverance isn't just a value here; it's the whole model.</p>
-            <div class="bio-edit-controls">
-              <button class="bio-edit-btn" id="bioEditBtn" onclick="toggleBioEdit()">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                Edit Bio
-              </button>
-              <button class="bio-save-btn" id="bioSaveBtn" onclick="saveBio()" style="display:none">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Save
-              </button>
-            </div>
           </div>
           <div class="about__chips">
             <span class="about__chip">Python &amp; AI</span>
@@ -358,6 +379,7 @@
         <a href="pricing.html">Pricing</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
+              <a href="privacy.html">Privacy Policy</a>
       </div>
       <div class="footer__copy">
         <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
