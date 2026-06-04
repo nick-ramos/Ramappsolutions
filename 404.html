@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — Ramapp Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-page__glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(212,175,55,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .error-page__code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(5rem, 15vw, 9rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #d4af37 0%, #f0c84a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .error-page__title {
+      font-size: clamp(1.2rem, 3vw, 1.75rem);
+      font-weight: 700;
+      color: #f5f0e8;
+      margin-bottom: 12px;
+    }
+    .error-page__sub {
+      color: #6b6456;
+      font-size: 1rem;
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .error-page__terminal {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #6b6456;
+      background: rgba(212,175,55,0.04);
+      border: 1px solid rgba(212,175,55,0.1);
+      border-radius: 10px;
+      padding: 16px 24px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    .error-page__terminal .t-hi { color: #d4af37; }
+    .error-page__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body data-page="404">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <defs>
+            <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+            </linearGradient>
+            <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+            </linearGradient>
+          </defs>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
+          <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
+          <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+          <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="services.html" data-nav="services">Services</a></li>
+        <li><a href="process.html"  data-nav="process">How It Works</a></li>
+        <li><a href="work.html"     data-nav="work">Work</a></li>
+        <li><a href="pricing.html"  data-nav="pricing">Pricing</a></li>
+        <li><a href="blog.html"     data-nav="blog">Blog</a></li>
+        <li><a href="contact.html"  class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="services.html">Services</a>
+      <a href="process.html">How It Works</a>
+      <a href="work.html">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ERROR CONTENT -->
+  <main class="error-page">
+    <div class="error-page__glow"></div>
+    <div class="error-page__code">404</div>
+    <h1 class="error-page__title">This page doesn't exist.</h1>
+    <p class="error-page__sub">Looks like this URL went offline — or never existed. Head back and let's find what you're looking for.</p>
+    <div class="error-page__terminal">
+      <span class="t-hi">$</span> fetch <span class="t-hi">"{{ requested_url }}"</span><br/>
+      <span style="color:#3d3830;">→</span> Error: 404 — Resource not found<br/>
+      <span style="color:#3d3830;">→</span> Suggestion: <span class="t-hi">return to homepage</span>
+    </div>
+    <div class="error-page__actions">
+      <a href="index.html" class="btn btn--primary">Back to Home</a>
+      <a href="contact.html" class="btn btn--ghost">Contact Us</a>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
