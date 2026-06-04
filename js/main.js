@@ -138,7 +138,7 @@ if (form) {
 // Replace the URL below with your Calendly link after signing up at calendly.com
 function openCalendly(e) {
   e && e.preventDefault();
-  const url = 'https://calendly.com/ramappsolutions'; // ← update this
+  const url = 'https://calendly.com/nramos-ramappsolutions/30min';
   if (window.Calendly) {
     Calendly.initPopupWidget({ url });
   } else {
