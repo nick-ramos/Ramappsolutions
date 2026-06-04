@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VolleyCenter — Club Management Platform — Ramapp Solutions</title>
+  <meta name="description" content="Case study: VolleyCenter — an all-in-one volleyball club management platform with AI-generated practice plans, scheduling, rosters, and parent communications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+</head>
+<body data-page="work">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <defs>
+            <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+            </linearGradient>
+            <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+            </linearGradient>
+          </defs>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
+          <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
+          <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+          <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../services.html" data-nav="services">Services</a></li>
+        <li><a href="../process.html"  data-nav="process">How It Works</a></li>
+        <li><a href="../work.html"     data-nav="work">Work</a></li>
+        <li><a href="../pricing.html"  data-nav="pricing">Pricing</a></li>
+        <li><a href="../blog.html"     data-nav="blog">Blog</a></li>
+        <li><a href="../contact.html"  class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="../services.html">Services</a>
+      <a href="../process.html">How It Works</a>
+      <a href="../work.html">Work</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- BACK LINK -->
+  <div style="padding: 100px 0 0;">
+    <div class="container">
+      <a href="../work.html" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #6b6456;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      " onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6b6456'">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Our Work
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="padding: 48px 0 72px; position: relative; overflow: hidden;">
+    <div class="hero__glow hero__glow--1" style="top: -100px; right: 10%;"></div>
+    <div class="container">
+
+      <!-- Tags -->
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px;">
+        <span style="padding: 5px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.78rem; color: #6b6456; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Full-Stack App</span>
+        <span style="padding: 5px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.78rem; color: #6b6456; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">AI</span>
+        <span style="padding: 5px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.78rem; color: #6b6456; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Club Management</span>
+      </div>
+
+      <h1 style="font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; color: #f5f0e8; line-height: 1.1; letter-spacing: -0.03em; max-width: 800px; margin-bottom: 24px;">
+        VolleyCenter —<br><span class="gradient-text">Club Management Platform</span>
+      </h1>
+
+      <p style="font-size: 1.15rem; color: #a89880; max-width: 640px; line-height: 1.75; margin-bottom: 32px;">
+        An all-in-one volleyball club platform that consolidates rosters, schedules, payments, practice planning, and communications — with AI doing the heavy lifting on practice design.
+      </p>
+
+      <!-- Live Demo Link -->
+      <a href="https://ramos-volleyball-app.netlify.app" target="_blank" rel="noopener" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: rgba(212,175,55,0.1);
+        border: 1px solid rgba(212,175,55,0.3);
+        border-radius: 8px;
+        color: #d4af37;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background 0.2s;
+      " onmouseover="this.style.background='rgba(212,175,55,0.18)'" onmouseout="this.style.background='rgba(212,175,55,0.1)'">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7 1c0 0-3 2-3 6s3 6 3 6M7 1c0 0 3 2 3 6s-3 6-3 6M1 7h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        View Live Demo
+      </a>
+
+    </div>
+  </section>
+
+  <!-- OVERVIEW STATS -->
+  <section style="padding: 0 0 72px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 860px;">
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 28px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">4</p>
+          <p style="color: #6b6456; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">User Roles</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 28px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">10+</p>
+          <p style="color: #6b6456; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Live Modules</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 28px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">AI</p>
+          <p style="color: #6b6456; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Practice Plans</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 28px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">Live</p>
+          <p style="color: #6b6456; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Production App</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">The Problem</h2>
+      </div>
+      <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 16px; padding: 40px 44px; line-height: 1.8; color: #a89880;">
+        <p style="margin-bottom: 16px;">Volleyball clubs — even mid-sized ones — were drowning in administrative overhead. Coaches were managing rosters in Google Sheets, schedules in one app, payments in another, and parent communication across three different group chats. There was no single source of truth, and everyone was constantly out of sync.</p>
+        <ul style="margin: 0 0 16px 20px; list-style: disc;">
+          <li style="margin-bottom:10px;">Coaches wasting hours each week on admin tasks instead of coaching</li>
+          <li style="margin-bottom:10px;">Parents out of the loop on schedules, tournament details, and team updates</li>
+          <li style="margin-bottom:10px;">No structured way to plan and document practices or build a drill library</li>
+          <li style="margin-bottom:10px;">Payment collection scattered across Venmo, email, and paper forms</li>
+          <li style="margin-bottom:10px;">Zero visibility into facility availability, staff hours, or club-wide expenses</li>
+        </ul>
+        <p style="margin: 0;">The clubs we studied were using 5+ separate tools. Every handoff between those tools was a gap where things fell through.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SOLUTION -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">The Solution</h2>
+      </div>
+      <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 16px; padding: 40px 44px; line-height: 1.8; color: #a89880;">
+        <p style="margin-bottom: 16px;">VolleyCenter consolidates everything into a single platform with role-based access for four user types: <strong style="color:#f5f0e8;">Admins, Coaches, Players, and Parents</strong>. Each role sees exactly what they need — nothing more, nothing less.</p>
+        <p style="margin-bottom: 16px;">Admins manage the club at the macro level: finances, rosters, staff, facility reservations, and registration events with payment collection. Coaches have dedicated tools for building practice plans, scheduling, designing plays, and communicating with their teams. Players access their schedules and resources. Parents stay informed without being overwhelmed.</p>
+        <p style="margin: 0;">The platform is built for real clubs with real complexity — not a generic sports app with a volleyball logo slapped on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI HIGHLIGHT -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="
+        background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.03) 100%);
+        border: 1px solid rgba(212,175,55,0.25);
+        border-radius: 20px;
+        padding: 48px 48px;
+        position: relative;
+        overflow: hidden;
+      ">
+        <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);"></div>
+
+        <div style="display: flex; align-items: flex-start; gap: 20px;">
+          <div style="
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: rgba(212,175,55,0.15);
+            border: 1px solid rgba(212,175,55,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+          ">🧠</div>
+          <div>
+            <p style="font-size: 0.75rem; font-weight: 700; color: #d4af37; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px;">AI Feature Highlight</p>
+            <h3 style="font-size: 1.3rem; font-weight: 800; color: #f5f0e8; margin-bottom: 14px;">AI-Generated Practice Plans</h3>
+            <p style="color: #a89880; line-height: 1.8; margin: 0;">A coach inputs the team's age group, the focus area for the session (serving, passing, game situations, etc.), and the practice duration. VolleyCenter's AI engine builds a complete, time-blocked practice plan — drill by drill — with descriptions, coaching cues, and timing for each segment. What used to take 30–45 minutes of planning takes under a minute. Plans can be saved to the library and reused or modified for future sessions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 980px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">Platform Modules</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px;">
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">🏐</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Court Tool</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Interactive court diagram for designing plays, drills, and rotations. Coaches can draw, annotate, and save formations for their library.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">🏟️</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Court Availability</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Facility reservation system that lets admins manage court availability and coaches book court time — no more double-bookings or email chains.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">📚</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Drill &amp; Resource Library</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">A searchable library of drills, videos, and coaching resources that coaches can build over time and reference when planning sessions.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">📅</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Schedule</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Full club calendar covering practices, tournaments, and events — with location details, team filters, and visibility by role.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">👥</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Teams &amp; Rosters</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Manage multiple teams with assigned players, coaches, and age groups. Roster changes propagate across the platform automatically.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">🙋</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">People Management</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">A unified directory for players, parents, coaches, and staff — with contact info, linked accounts, and permission management.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">🧠</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">AI Practice Plans</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Coaches input age group, focus area, and duration — the AI builds a complete time-blocked practice plan with drill descriptions and coaching cues.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">💬</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Staff Chat &amp; Messaging</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Separate messaging channels for staff/coaches and for player/parent communications — so important updates don't get buried in noise.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">📋</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Registration &amp; Events</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Tryout and event registration with integrated payment collection — replaces spreadsheets, paper forms, and scattered Venmo requests.</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 24px 24px 24px 20px;">
+          <div style="font-size: 1.3rem; margin-bottom: 10px;">💰</div>
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Expense &amp; Hour Reporting</h3>
+          <p style="color: #a89880; font-size: 0.88rem; line-height: 1.65; margin: 0;">Admins track staff hours and club expenses in one place, with reporting views to understand where time and money are going.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">Tech Stack</h2>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">React</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Netlify</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Modern Full-Stack DB</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">AI API Integration</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Role-Based Auth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 0 0 100px;">
+    <div class="container">
+      <div style="
+        max-width: 700px;
+        margin: 0 auto;
+        background: #14120d;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 20px;
+        padding: 56px 48px;
+        text-align: center;
+      ">
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: #f5f0e8; margin-bottom: 16px;">Want something like this?</h2>
+        <p style="color: #a89880; font-size: 1rem; line-height: 1.7; margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto;">Whether it's a club management platform, member portal, or complex multi-role application — we design and build it from the ground up.</p>
+        <a href="../contact.html" style="
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 36px;
+          background: #d4af37;
+          color: #0c0b09;
+          font-weight: 700;
+          font-size: 1rem;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: background 0.2s;
+        " onmouseover="this.style.background='#e8c84a'" onmouseout="this.style.background='#d4af37'">
+          Start a Project
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+              </linearGradient>
+              <linearGradient id="rGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+              </linearGradient>
+            </defs>
+            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+            <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad2)">R</text>
+            <circle cx="60" cy="26" r="3" fill="url(#hexGrad2)"/>
+            <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+            <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+          </svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="../services.html">Services</a>
+        <a href="../process.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

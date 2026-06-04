@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomous Trading Bot &amp; Market Scanner — Ramapp Solutions</title>
+  <meta name="description" content="Case study: A fully autonomous Python trading system with live market scanner, backtesting engine, and 24/7 automated execution." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+</head>
+<body data-page="work">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <defs>
+            <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+            </linearGradient>
+            <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+            </linearGradient>
+          </defs>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
+          <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
+          <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+          <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../services.html" data-nav="services">Services</a></li>
+        <li><a href="../process.html"  data-nav="process">How It Works</a></li>
+        <li><a href="../work.html"     data-nav="work">Work</a></li>
+        <li><a href="../pricing.html"  data-nav="pricing">Pricing</a></li>
+        <li><a href="../blog.html"     data-nav="blog">Blog</a></li>
+        <li><a href="../contact.html"  class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="../services.html">Services</a>
+      <a href="../process.html">How It Works</a>
+      <a href="../work.html">Work</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- BACK LINK -->
+  <div style="padding: 100px 0 0;">
+    <div class="container">
+      <a href="../work.html" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #6b6456;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      " onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6b6456'">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Our Work
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="padding: 48px 0 72px; position: relative; overflow: hidden;">
+    <div class="hero__glow hero__glow--1" style="top: -100px; left: 10%;"></div>
+    <div class="container">
+
+      <!-- Tags -->
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; align-items: center;">
+        <span style="
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 5px 14px;
+          background: rgba(212,175,55,0.15);
+          border: 1px solid rgba(212,175,55,0.4);
+          border-radius: 100px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #d4af37;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+        ">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="#d4af37"><circle cx="5" cy="5" r="5"/></svg>
+          Founding Project
+        </span>
+        <span style="padding: 5px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.78rem; color: #6b6456; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Python</span>
+        <span style="padding: 5px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; font-size: 0.78rem; color: #6b6456; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">AI + Automation</span>
+      </div>
+
+      <h1 style="font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; color: #f5f0e8; line-height: 1.1; letter-spacing: -0.03em; max-width: 800px; margin-bottom: 24px;">
+        Autonomous Trading Bot<br><span class="gradient-text">&amp; Market Scanner</span>
+      </h1>
+
+      <p style="font-size: 1.15rem; color: #a89880; max-width: 600px; line-height: 1.75;">
+        A fully autonomous Python trading system that monitors live markets, backtests strategies, and executes trades around the clock — without human intervention.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section style="padding: 0 0 72px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px;">
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 32px 36px;">
+          <p style="font-size: 0.75rem; font-weight: 700; color: #6b6456; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">Project Type</p>
+          <p style="color: #f5f0e8; font-weight: 600; margin: 0;">Internal / Personal Trading System</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 32px 36px;">
+          <p style="font-size: 0.75rem; font-weight: 700; color: #6b6456; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">Category</p>
+          <p style="color: #f5f0e8; font-weight: 600; margin: 0;">Python Automation &amp; AI</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">The Problem</h2>
+      </div>
+      <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 16px; padding: 40px 44px; line-height: 1.8; color: #a89880;">
+        <p style="margin-bottom: 16px;">Modern markets generate enormous amounts of data across hundreds of tickers simultaneously. Manually monitoring even a handful of signals across different timeframes is impractical — by the time a human spots an opportunity, the window has often already closed.</p>
+        <p style="margin-bottom: 16px;">The core challenge was multifaceted:</p>
+        <ul style="margin: 0 0 16px 20px; list-style: disc;">
+          <li style="margin-bottom: 10px;">Monitoring dozens of market signals simultaneously across multiple instruments</li>
+          <li style="margin-bottom: 10px;">Executing trades automatically based on complex, rule-driven strategy logic</li>
+          <li style="margin-bottom: 10px;">Backtesting strategies against historical data before deploying real capital</li>
+          <li style="margin-bottom: 10px;">Running continuously 24/7 without requiring manual oversight or intervention</li>
+          <li style="margin-bottom: 10px;">Maintaining a performance record and risk controls to prevent catastrophic loss</li>
+        </ul>
+        <p style="margin: 0;">Off-the-shelf trading platforms lacked the flexibility for truly custom strategy logic. A bespoke system was needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SOLUTION -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">The Solution</h2>
+      </div>
+      <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 16px; padding: 40px 44px; line-height: 1.8; color: #a89880;">
+        <p style="margin-bottom: 16px;">We built a fully autonomous Python system from the ground up — designed to operate independently as a self-sustaining trading engine. The architecture separates concerns cleanly: market data ingestion, strategy evaluation, order execution, and performance reporting each live in their own module.</p>
+        <p style="margin-bottom: 16px;">The system connects to live market data via the Alpaca API, continuously scans configured instruments, and evaluates each against a library of pluggable strategies. When a signal fires, the execution engine submits the appropriate order automatically and logs the result.</p>
+        <p style="margin: 0;">Before any strategy touches live capital, it runs through the backtesting engine against historical price data — giving a clear statistical picture of expected win rate, drawdown, and return characteristics. Scheduled via cron for fully hands-off operation, with a performance dashboard for monitoring without needing to touch the code.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 980px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">Key Features</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+
+        <!-- Feature 1 -->
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 28px 28px 28px 24px;">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">📡</div>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 8px;">Live Market Scanner</h3>
+          <p style="color: #a89880; font-size: 0.9rem; line-height: 1.7; margin: 0;">Continuously polls live price data across configured tickers, evaluating technical indicators and signal conditions in real time.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 28px 28px 28px 24px;">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">📊</div>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 8px;">Backtesting Engine</h3>
+          <p style="color: #a89880; font-size: 0.9rem; line-height: 1.7; margin: 0;">Runs any strategy against years of historical OHLCV data to produce win rate, max drawdown, Sharpe ratio, and cumulative return metrics before going live.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 28px 28px 28px 24px;">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🧠</div>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 8px;">Strategy Manager</h3>
+          <p style="color: #a89880; font-size: 0.9rem; line-height: 1.7; margin: 0;">Pluggable strategy architecture supports momentum, mean reversion, breakout, and custom logic. Strategies can be toggled, adjusted, and added without touching the core engine.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 28px 28px 28px 24px;">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">⚡</div>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 8px;">Automated Execution</h3>
+          <p style="color: #a89880; font-size: 0.9rem; line-height: 1.7; margin: 0;">When a strategy fires a signal, the execution engine submits market or limit orders via the Alpaca API automatically — no human action required.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 28px 28px 28px 24px;">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">📈</div>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 8px;">Performance Dashboard</h3>
+          <p style="color: #a89880; font-size: 0.9rem; line-height: 1.7; margin: 0;">Matplotlib-powered charts and an SQLite trade log provide a full picture of P&amp;L, trade history, and strategy performance over any time period.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-left: 3px solid #d4af37; border-radius: 12px; padding: 28px 28px 28px 24px;">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🛡️</div>
+          <h3 style="font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 8px;">Risk Controls</h3>
+          <p style="color: #a89880; font-size: 0.9rem; line-height: 1.7; margin: 0;">Configurable position sizing, max daily loss limits, and stop-loss logic prevent runaway losses. The system halts trading automatically if risk thresholds are breached.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">Tech Stack</h2>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Python</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Pandas</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">NumPy</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Alpaca API</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Matplotlib</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">SQLite</span>
+        <span style="padding: 8px 20px; background: #14120d; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; color: #d4af37; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500;">Cron</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section style="padding: 0 0 96px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px;">
+        <div style="width: 3px; height: 32px; background: #d4af37; border-radius: 2px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #f5f0e8; margin: 0;">Results</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 32px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">24/7</p>
+          <p style="color: #6b6456; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Continuous Operation</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 32px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">15+</p>
+          <p style="color: #6b6456; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Strategies Backtested</p>
+        </div>
+
+        <div style="background: #14120d; border: 1px solid rgba(212,175,55,0.12); border-radius: 14px; padding: 32px; text-align: center;">
+          <p style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace;">100%</p>
+          <p style="color: #6b6456; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Automated Execution</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 0 0 100px;">
+    <div class="container">
+      <div style="
+        max-width: 700px;
+        margin: 0 auto;
+        background: #14120d;
+        border: 1px solid rgba(212,175,55,0.2);
+        border-radius: 20px;
+        padding: 56px 48px;
+        text-align: center;
+      ">
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: #f5f0e8; margin-bottom: 16px;">Have a similar project?</h2>
+        <p style="color: #a89880; font-size: 1rem; line-height: 1.7; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto;">Whether you need a trading system, data pipeline, or any kind of automation — we build it right and make it last.</p>
+        <a href="../contact.html" style="
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 36px;
+          background: #d4af37;
+          color: #0c0b09;
+          font-weight: 700;
+          font-size: 1rem;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: background 0.2s;
+        " onmouseover="this.style.background='#e8c84a'" onmouseout="this.style.background='#d4af37'">
+          Let's Talk
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+              </linearGradient>
+              <linearGradient id="rGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+              </linearGradient>
+            </defs>
+            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+            <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad2)">R</text>
+            <circle cx="60" cy="26" r="3" fill="url(#hexGrad2)"/>
+            <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+            <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+          </svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="../services.html">Services</a>
+        <a href="../process.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
