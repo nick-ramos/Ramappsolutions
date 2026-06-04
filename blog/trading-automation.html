@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/style.min.css" />
   <style>
     /* ── Article layout ── */
     .article {
@@ -26,7 +26,7 @@
     .article__label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: #00e0ff;
+      color: #d4af37;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       display: flex;
@@ -39,7 +39,7 @@
       display: inline-block;
       width: 24px;
       height: 2px;
-      background: #00e0ff;
+      background: #d4af37;
     }
     .article__title {
       font-size: clamp(1.75rem, 4vw, 2.6rem);
@@ -67,7 +67,7 @@
     .article__divider {
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, rgba(0,224,255,0.3), transparent);
+      background: linear-gradient(90deg, rgba(212,175,55,0.3), transparent);
       margin-top: 28px;
     }
 
@@ -98,13 +98,13 @@
       font-weight: 600;
     }
     .article__body a {
-      color: #00e0ff;
+      color: #d4af37;
       text-decoration: none;
-      border-bottom: 1px solid rgba(0,224,255,0.3);
+      border-bottom: 1px solid rgba(212,175,55,0.3);
       transition: border-color 0.2s;
     }
     .article__body a:hover {
-      border-color: #00e0ff;
+      border-color: #d4af37;
     }
     .article__body ul {
       list-style: none;
@@ -119,15 +119,15 @@
       content: '→';
       position: absolute;
       left: 0;
-      color: #00e0ff;
+      color: #d4af37;
       font-size: 0.85em;
     }
 
     /* ── Code callout box ── */
     .code-block {
-      background: #050810;
-      border: 1px solid rgba(0,224,255,0.15);
-      border-left: 3px solid #00e0ff;
+      background: #0c0b09;
+      border: 1px solid rgba(212,175,55,0.15);
+      border-left: 3px solid #d4af37;
       border-radius: 0 10px 10px 0;
       padding: 24px 28px;
       margin: 32px 0;
@@ -136,7 +136,7 @@
     .code-block__label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
-      color: #00ff9d;
+      color: #c9a227;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 14px;
@@ -145,7 +145,7 @@
     .code-block pre {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.82rem;
-      color: #00e0ff;
+      color: #d4af37;
       line-height: 1.7;
       margin: 0;
       white-space: pre;
@@ -154,7 +154,7 @@
       color: #334155;
     }
     .code-block pre .keyword {
-      color: #00ff9d;
+      color: #c9a227;
     }
     .code-block pre .string {
       color: #94e4b0;
@@ -170,13 +170,13 @@
       gap: 4px;
     }
     .arch-flow__node {
-      background: rgba(0,224,255,0.06);
-      border: 1px solid rgba(0,224,255,0.2);
+      background: rgba(212,175,55,0.06);
+      border: 1px solid rgba(212,175,55,0.2);
       border-radius: 8px;
       padding: 12px 18px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
-      color: #00e0ff;
+      color: #d4af37;
       text-align: center;
       flex: 1;
       min-width: 130px;
@@ -198,8 +198,8 @@
 
     /* ── CTA box ── */
     .article__cta {
-      background: rgba(0,224,255,0.05);
-      border: 1px solid rgba(0,224,255,0.2);
+      background: rgba(212,175,55,0.05);
+      border: 1px solid rgba(212,175,55,0.2);
       border-radius: 16px;
       padding: 40px 44px;
       margin-top: 72px;
@@ -208,7 +208,7 @@
     .article__cta-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: #00ff9d;
+      color: #c9a227;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 14px;
@@ -241,7 +241,7 @@
       margin-bottom: 48px;
       transition: color 0.2s;
     }
-    .article__back:hover { color: #00e0ff; }
+    .article__back:hover { color: #d4af37; }
   </style>
 </head>
 <body data-page="blog">
@@ -253,14 +253,14 @@
         <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
           <defs>
             <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00c896"/>
+              <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#00c896"/>
             </linearGradient>
             <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00ff9d"/>
+              <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#c9a227"/>
             </linearGradient>
           </defs>
-          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(0,224,255,0.07)"/>
-          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(0,224,255,0.05)"/>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
           <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
           <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
           <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f1f5f9" letter-spacing="-0.3">Ramapp</text>
@@ -365,7 +365,7 @@
 
           <h3>Layer 2: Strategy Engine</h3>
 
-          <p>After each scan cycle, the strategy engine reads the freshest candles and runs them through the signal logic. In my case this is a trend-following system: a combination of EMA crossover, RSI filter, and ATR-based volatility gate. The engine outputs a signal object — <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#00e0ff;background:rgba(0,224,255,0.08);padding:2px 6px;border-radius:4px;">BUY</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#00e0ff;background:rgba(0,224,255,0.08);padding:2px 6px;border-radius:4px;">SELL</code>, or <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#00e0ff;background:rgba(0,224,255,0.08);padding:2px 6px;border-radius:4px;">HOLD</code> — with an attached confidence score and position sizing recommendation.</p>
+          <p>After each scan cycle, the strategy engine reads the freshest candles and runs them through the signal logic. In my case this is a trend-following system: a combination of EMA crossover, RSI filter, and ATR-based volatility gate. The engine outputs a signal object — <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#d4af37;background:rgba(212,175,55,0.08);padding:2px 6px;border-radius:4px;">BUY</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#d4af37;background:rgba(212,175,55,0.08);padding:2px 6px;border-radius:4px;">SELL</code>, or <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#d4af37;background:rgba(212,175,55,0.08);padding:2px 6px;border-radius:4px;">HOLD</code> — with an attached confidence score and position sizing recommendation.</p>
 
           <p>The strategy layer is pure functions — no side effects, no database writes, no API calls. This makes it trivially testable. I can replay any historical period and verify the signal output before running it live. That feedback loop is what makes strategy iteration fast.</p>
 
@@ -404,7 +404,7 @@
             <li><strong>Idempotent order logic.</strong> Every execution step checks state before acting. If the bot restarts mid-trade, it reconciles with the broker before doing anything new.</li>
             <li><strong>Structured logging everywhere.</strong> Not print statements — structured JSON logs with timestamps, symbol, signal type, and order IDs. When something goes wrong, the timeline is immediately reconstructable.</li>
             <li><strong>Graceful error handling, not silent failures.</strong> Every API call is wrapped in a try/except with explicit retry logic and exponential backoff. Errors are logged with full context, never swallowed.</li>
-            <li><strong>A kill switch.</strong> A single environment variable — <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#00e0ff;background:rgba(0,224,255,0.08);padding:2px 6px;border-radius:4px;">TRADING_ENABLED=false</code> — halts all order execution without stopping the scanner or logging. I can pause trading without losing visibility.</li>
+            <li><strong>A kill switch.</strong> A single environment variable — <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:#d4af37;background:rgba(212,175,55,0.08);padding:2px 6px;border-radius:4px;">TRADING_ENABLED=false</code> — halts all order execution without stopping the scanner or logging. I can pause trading without losing visibility.</li>
           </ul>
 
           <div class="code-block">
@@ -455,14 +455,14 @@ scheduler.start()  <span class="comment"># runs until killed — deployed on a V
           <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00c896"/>
+                <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#00c896"/>
               </linearGradient>
               <linearGradient id="rGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00e0ff"/><stop offset="100%" stop-color="#00ff9d"/>
+                <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#c9a227"/>
               </linearGradient>
             </defs>
-            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(0,224,255,0.07)"/>
-            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(0,224,255,0.05)"/>
+            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
             <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad2)">R</text>
             <circle cx="60" cy="26" r="3" fill="url(#hexGrad2)"/>
             <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f1f5f9" letter-spacing="-0.3">Ramapp</text>
