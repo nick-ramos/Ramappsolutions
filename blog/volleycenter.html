@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How We Built an All-in-One Club Management App for Volleyball — Ramapp Solutions</title>
+  <meta name="description" content="VolleyCenter started as a single problem: too many apps, too much chaos. Here's how we built a full platform for admins, coaches, players, and parents — with AI built in." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <meta property="og:title" content="How We Built an All-in-One Club Management App for Volleyball" />
+  <meta property="og:description" content="VolleyCenter started as a single problem: too many apps, too much chaos. Here's the full story." />
+  <meta property="og:image" content="https://ramappsolutions.com/assets/og-image.svg" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-64ZTD1V2W8');</script>
+  <style>
+    .article { padding: 80px 0 120px; }
+    .article__inner { max-width: 760px; margin: 0 auto; }
+
+    .article__header { margin-bottom: 56px; }
+    .article__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .article__label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: #d4af37;
+    }
+    .article__title {
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: #f5f0e8;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .article__meta {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #6b6456;
+      flex-wrap: wrap;
+    }
+    .article__meta-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: #3d3830;
+    }
+    .article__divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.3), transparent);
+      margin-top: 28px;
+    }
+
+    .article__body {
+      color: #a89880;
+      font-size: 1.0rem;
+      line-height: 1.85;
+    }
+    .article__body h2 {
+      font-size: 1.4rem; font-weight: 700;
+      color: #f5f0e8;
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .article__body h3 {
+      font-size: 1.1rem; font-weight: 600;
+      color: #d4c5a9;
+      margin: 32px 0 12px;
+    }
+    .article__body p { margin-bottom: 20px; }
+    .article__body strong { color: #f5f0e8; font-weight: 600; }
+    .article__body a {
+      color: #d4af37;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+      transition: border-color 0.2s;
+    }
+    .article__body a:hover { border-color: #d4af37; }
+    .article__body ul {
+      list-style: none; padding: 0; margin: 0 0 20px;
+    }
+    .article__body ul li {
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+    .article__body ul li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: #d4af37;
+      font-size: 0.85em;
+    }
+
+    .callout {
+      background: #14120d;
+      border: 1px solid rgba(212,175,55,0.12);
+      border-left: 3px solid #d4af37;
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .callout__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+    .callout p { color: #a89880; margin: 0; font-size: 0.95rem; line-height: 1.7; }
+    .callout strong { color: #f5f0e8; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(212,175,55,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 36px 0;
+    }
+    .stat-row__item {
+      background: #0c0b09;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .stat-row__num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem; font-weight: 900;
+      color: #d4af37; line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-row__label { font-size: 0.8rem; color: #6b6456; font-weight: 500; }
+
+    .article__cta {
+      margin-top: 64px;
+      background: #14120d;
+      border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 14px;
+      padding: 40px;
+      text-align: center;
+    }
+    .article__cta h3 {
+      font-size: 1.25rem; font-weight: 800;
+      color: #f5f0e8; margin-bottom: 10px;
+    }
+    .article__cta p {
+      font-size: 0.95rem; color: #6b6456;
+      margin-bottom: 24px; line-height: 1.7;
+    }
+  </style>
+</head>
+<body data-page="blog">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <defs>
+            <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+            </linearGradient>
+            <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+            </linearGradient>
+          </defs>
+          <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+          <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad)">R</text>
+          <circle cx="60" cy="26" r="3" fill="url(#hexGrad)"/>
+          <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+          <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../services.html" data-nav="services">Services</a></li>
+        <li><a href="../process.html"  data-nav="process">How It Works</a></li>
+        <li><a href="../work.html"     data-nav="work">Work</a></li>
+        <li><a href="../pricing.html"  data-nav="pricing">Pricing</a></li>
+        <li><a href="../blog.html"     data-nav="blog">Blog</a></li>
+        <li><a href="../contact.html"  class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="../services.html">Services</a>
+      <a href="../process.html">How It Works</a>
+      <a href="../work.html">Work</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE -->
+  <section class="article">
+    <div class="container">
+      <div class="article__inner">
+
+        <!-- Back link -->
+        <a href="../blog.html" style="display:inline-flex;align-items:center;gap:8px;color:#6b6456;font-size:0.85rem;text-decoration:none;margin-bottom:48px;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Blog
+        </a>
+
+        <!-- Header -->
+        <div class="article__header">
+          <div class="article__label">Club Management &nbsp;&bull;&nbsp; AI &nbsp;&bull;&nbsp; June 2026</div>
+          <h1 class="article__title">How We Built an All-in-One Club Management App for Volleyball</h1>
+          <p style="color:#a89880; font-size:1.05rem; line-height:1.75; margin-bottom:24px;">
+            VolleyCenter started with a simple frustration: volleyball clubs are complex operations being run on a patchwork of apps, spreadsheets, and group chats. We built one platform to replace all of it — with AI built in.
+          </p>
+          <div class="article__meta">
+            <span>Nick Ramos</span>
+            <div class="article__meta-dot"></div>
+            <span>June 2026</span>
+            <div class="article__meta-dot"></div>
+            <span>7 min read</span>
+          </div>
+          <div class="article__divider"></div>
+        </div>
+
+        <!-- Body -->
+        <div class="article__body">
+
+          <h2>The Problem Nobody Talks About</h2>
+          <p>Run a volleyball club for more than five minutes and you'll see it: a Google Sheet for rosters, GroupMe for parent communication, a paper sign-in sheet at practice, Venmo for payment collection, a whiteboard for the schedule, and a coach's notes app for practice plans. None of it talks to each other. Nothing is in one place. And when something falls through the cracks — a parent who didn't get the tournament time, a player whose dues aren't tracked, a coach who can't find last week's practice plan — it lands on the director.</p>
+
+          <p>I've lived in the volleyball world as a coach and club director. I know the problem from the inside. When I started Ramapp Solutions, it was one of the first things I wanted to fix.</p>
+
+          <div class="callout">
+            <div class="callout__label">The Core Insight</div>
+            <p>The problem wasn't that clubs lacked tools. The problem was that they had <strong>too many disconnected ones</strong>. The solution wasn't another app — it was one platform that replaced them all.</p>
+          </div>
+
+          <h2>What VolleyCenter Actually Does</h2>
+          <p>VolleyCenter is a role-based club management platform. When you log in, you see a completely different experience depending on who you are: admin, coach, player, or parent. Every role gets exactly what they need — and nothing they don't.</p>
+
+          <h3>For Admins</h3>
+          <p>The admin dashboard is the command center. From here, club directors manage everything: team rosters, court reservations, registration events (tryouts, clinics, tournaments), invoicing, and expense tracking. Registration events have built-in payment collection — families register and pay in one flow, no Venmo required. Expense and hour reporting gives the director a real financial picture of the club.</p>
+
+          <h3>For Coaches</h3>
+          <p>Coaches get access to their team's roster, a practice plan builder, the drill library, and the schedule. The practice plan builder is where it gets interesting — coaches can build time-blocked plans from scratch, linking drills directly from the library. Or they can use the AI generator.</p>
+
+          <div class="callout">
+            <div class="callout__label">The AI Feature</div>
+            <p>A coach inputs the team's age group, practice duration, and focus area — serve-receive, out-of-system offense, defensive positioning. The AI generates a complete time-blocked practice plan with drill descriptions, progressions, and timing. A plan that used to take 30 minutes now takes 30 seconds. Coaches can edit any slot, reorder segments, and save plans to reuse later.</p>
+          </div>
+
+          <h3>For Players & Parents</h3>
+          <p>Players can view their schedule, access the library, and see their practice plans. Parents get their own message channel with the coaching staff — separate from the players' channel, which matters more than it sounds. Coaches don't have to send the same message twice, and parents stop texting coaches' personal phones at 10pm.</p>
+
+          <h2>The Modules — All Live</h2>
+          <ul>
+            <li><strong>Court Tool</strong> — Interactive court for designing plays, drills, and rotations</li>
+            <li><strong>Court Availability</strong> — View facility courts, submit reservation requests</li>
+            <li><strong>Library</strong> — Drill database with videos, diagrams, and descriptions</li>
+            <li><strong>Schedule</strong> — Practices, tournaments, locations, divisions — all in one view</li>
+            <li><strong>Teams & Rosters</strong> — Player management, coach assignments, parent links</li>
+            <li><strong>People</strong> — Add players/parents, send invite links, track roles</li>
+            <li><strong>Practice Plans</strong> — AI-generated or manual, time-blocked, linked to drills</li>
+            <li><strong>Staff Chat</strong> — Club-wide conversation for all admins and coaches</li>
+            <li><strong>Messages</strong> — Team channels with separate player and parent threads</li>
+            <li><strong>Registration Events</strong> — Tryouts, events, with payment collection and capacity limits</li>
+          </ul>
+
+          <div class="stat-row">
+            <div class="stat-row__item">
+              <div class="stat-row__num">4</div>
+              <div class="stat-row__label">User roles</div>
+            </div>
+            <div class="stat-row__item">
+              <div class="stat-row__num">10+</div>
+              <div class="stat-row__label">Live modules</div>
+            </div>
+            <div class="stat-row__item">
+              <div class="stat-row__num">30s</div>
+              <div class="stat-row__label">AI practice plan</div>
+            </div>
+          </div>
+
+          <h2>What Club 1 Volleyball Said</h2>
+          <p>Club 1 Volleyball was one of the first clubs running VolleyCenter. In their words:</p>
+
+          <div class="callout">
+            <div class="callout__label">Client — Club 1 Volleyball</div>
+            <p><em>"VolleyCenter completely changed how we manage our club. Scheduling, rosters, player tracking — everything is in one place and actually works. Our coaches stopped chasing spreadsheets and our parents finally know what's going on. Nick built exactly what we needed without overcomplicating it."</em></p>
+          </div>
+
+          <p>That last part — <em>without overcomplicating it</em> — is the part I'm most proud of. It would have been easy to build something bloated. The hard work was deciding what not to build.</p>
+
+          <h2>The Lesson That Applies Everywhere</h2>
+          <p>VolleyCenter is a volleyball app, but the problem it solved isn't unique to volleyball. Almost every organization — regardless of industry — is running on a stack of disconnected tools that don't talk to each other. The information lives in five places, the communication happens in three different apps, and the person at the top is manually bridging the gaps.</p>
+
+          <p>The answer is rarely "add another tool." It's usually "replace the five with one that's built for how you actually work." That's what we do at Ramapp Solutions — whether it's a club management platform, a real estate content engine, or an autonomous trading system.</p>
+
+          <p>If you're running an organization and you recognize this problem, <a href="../contact.html">let's talk</a>. The first call is free and you'll leave with a clear picture of what's possible.</p>
+
+          <!-- CTA -->
+          <div class="article__cta">
+            <h3>Running a club or organization?</h3>
+            <p>If your team is juggling five apps to do one job, we should talk. We build systems that actually fit how you work — not the other way around.</p>
+            <a href="../contact.html" class="btn btn--primary">Start a Conversation</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d4af37"/><stop offset="100%" stop-color="#b8942a"/>
+              </linearGradient>
+              <linearGradient id="rGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#d4af37"/>
+              </linearGradient>
+            </defs>
+            <polygon points="26,3 47,15 47,37 26,49 5,37 5,15" stroke="url(#hexGrad2)" stroke-width="2.2" fill="rgba(212,175,55,0.07)"/>
+            <polygon points="26,10 40,18 40,34 26,42 12,34 12,18" fill="rgba(212,175,55,0.05)"/>
+            <text x="18" y="36" font-family="Inter,sans-serif" font-weight="900" font-size="22" fill="url(#rGrad2)">R</text>
+            <circle cx="60" cy="26" r="3" fill="url(#hexGrad2)"/>
+            <text x="70" y="28" font-family="Inter,sans-serif" font-weight="800" font-size="18" fill="#f5f0e8" letter-spacing="-0.3">Ramapp</text>
+            <text x="71" y="42" font-family="Inter,sans-serif" font-weight="500" font-size="9.5" fill="#6b6456" letter-spacing="3">SOLUTIONS</text>
+          </svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="../services.html">Services</a>
+        <a href="../process.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
