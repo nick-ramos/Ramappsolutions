@@ -2076,3 +2076,10 @@ ul { list-style: none; }
   display: inline-block;
   transition: none;
 }
+
+/* =========================================================
+   SUPPORT PLANS — Mobile
+   ========================================================= */
+@media (max-width: 900px) {
+  .support-grid { grid-template-columns: 1fr !important; }
+}
