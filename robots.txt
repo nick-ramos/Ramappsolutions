@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: /themes-preview.html
 
-Sitemap: https://ramappsolutions.netlify.app/sitemap.xml
+Sitemap: https://ramappsolutions.com/sitemap.xml

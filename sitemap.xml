@@ -12,6 +12,16 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://ramappsolutions.com/content-pipeline.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ramappsolutions.com/volleycenter.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://ramappsolutions.com/process.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -47,6 +57,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ramappsolutions.com/blog/trading-automation.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ramappsolutions.com/blog/volleycenter.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ramappsolutions.com/blog/ai-tools-mistakes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ramappsolutions.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -60,22 +85,6 @@
     <loc>https://ramappsolutions.com/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://ramappsolutions.com/volleycenter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://ramappsolutions.com/blog/ai-tools-mistakes.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ramappsolutions.com/content-pipeline.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
   </url>
 
 </urlset>
