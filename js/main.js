@@ -156,8 +156,7 @@ document.querySelectorAll('.btn--calendly').forEach(btn => {
   btn.className = 'floating-cta';
   btn.innerHTML = `
     <button class="floating-cta__btn btn--calendly" aria-label="Book a free call">
-      <span class="floating-cta__pulse"></span>
-      Book a Free 30-Min Call
+      Book a Free Call
     </button>`;
   document.body.appendChild(btn);
 
