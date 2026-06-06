@@ -178,98 +178,207 @@
         <p style="color:#6b6456;max-width:480px;margin:14px auto 0;line-height:1.7;">Productized services with fixed pricing and fast start times — no scoping call required to get started.</p>
       </div>
 
+      <!-- shared card style vars -->
+      <style>
+        .ns-card {
+          background: #14120d;
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 16px;
+          padding: 40px 36px;
+          display: flex;
+          flex-direction: column;
+        }
+        .ns-card--featured {
+          border-color: rgba(212,175,55,0.18);
+          border-top: 3px solid #d4af37;
+        }
+        .ns-label {
+          font-size: 0.68rem;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #6b6456;
+          margin-bottom: 20px;
+        }
+        .ns-label--gold { color: #d4af37; }
+        .ns-price-row-label {
+          font-size: 0.65rem;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #3d3830;
+          margin-bottom: 6px;
+        }
+        .ns-price-num {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 2.4rem;
+          font-weight: 900;
+          color: #f5f0e8;
+          letter-spacing: -1px;
+          line-height: 1;
+        }
+        .ns-price-suffix {
+          font-size: 0.85rem;
+          color: #6b6456;
+          padding-bottom: 5px;
+        }
+        .ns-price-block {
+          margin-bottom: 20px;
+        }
+        .ns-price-row {
+          display: flex;
+          align-items: flex-end;
+          gap: 8px;
+          margin-bottom: 14px;
+        }
+        .ns-price-row:last-of-type { margin-bottom: 0; }
+        .ns-tagline {
+          font-size: 0.78rem;
+          color: #d4af37;
+          margin: 10px 0 0;
+          line-height: 1.5;
+        }
+        .ns-divider {
+          border: none;
+          border-top: 1px solid rgba(255,255,255,0.05);
+          margin: 24px 0;
+        }
+        .ns-desc {
+          color: #6b6456;
+          font-size: 0.875rem;
+          line-height: 1.7;
+          margin: 0 0 24px;
+        }
+        .ns-features {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 32px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          flex: 1;
+        }
+        .ns-features li {
+          display: flex;
+          gap: 12px;
+          align-items: flex-start;
+          font-size: 0.875rem;
+          color: #a89880;
+        }
+        .ns-check {
+          color: #d4af37;
+          font-weight: 700;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+        .ns-badge {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          font-size: 0.65rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #22c55e;
+          background: rgba(34,197,94,0.07);
+          border: 1px solid rgba(34,197,94,0.18);
+          border-radius: 20px;
+          padding: 4px 10px;
+        }
+      </style>
+
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;">
 
-        <!-- Automation Audit — featured -->
-        <div class="reveal" style="background:#14120d;border:1px solid rgba(212,175,55,0.18);border-top:3px solid #d4af37;border-radius:16px;padding:40px 36px;display:flex;flex-direction:column;">
-          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#d4af37;margin-bottom:20px;">Automation Audit</div>
+        <!-- Automation Audit -->
+        <div class="reveal ns-card ns-card--featured">
+          <div class="ns-label ns-label--gold">Automation Audit</div>
 
-          <!-- Price block -->
-          <div style="margin-bottom:24px;">
-            <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3d3830;margin-bottom:8px;">One-time fee</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;line-height:1;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:3rem;font-weight:900;color:#f5f0e8;letter-spacing:-1px;">$497</span>
-              <span style="font-size:0.85rem;color:#6b6456;padding-bottom:6px;">flat</span>
+          <div class="ns-price-block">
+            <div class="ns-price-row-label">One-time fee</div>
+            <div class="ns-price-row">
+              <span class="ns-price-num">$497</span>
+              <span class="ns-price-suffix">flat</span>
             </div>
-            <p style="font-size:0.78rem;color:#d4af37;margin:10px 0 0;line-height:1.5;">100% credited toward any project booked within 30 days.</p>
+            <div class="ns-price-row-label">Monthly</div>
+            <div class="ns-price-row">
+              <span class="ns-price-num" style="color:#3d3830;">—</span>
+              <span class="ns-price-suffix">no recurring fees</span>
+            </div>
+            <p class="ns-tagline">100% credited toward any project booked within 30 days.</p>
           </div>
 
-          <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;margin-bottom:24px;">
-            <p style="color:#6b6456;font-size:0.875rem;line-height:1.7;margin:0;">The fastest way to know exactly where you're leaving money on the table — and what to build first.</p>
-          </div>
+          <hr class="ns-divider">
+          <p class="ns-desc">The fastest way to know exactly where you're leaving money on the table — and what to build first.</p>
 
-          <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px;flex:1;">
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> 2-hour workflow deep-dive</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Top 3 opportunities ranked by ROI</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Written report + cost estimates</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> 30-min follow-up Q&amp;A call</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Full credit toward any build</li>
+          <ul class="ns-features">
+            <li><span class="ns-check">✓</span> 2-hour workflow deep-dive</li>
+            <li><span class="ns-check">✓</span> Top 3 opportunities ranked by ROI</li>
+            <li><span class="ns-check">✓</span> Written report + cost estimates</li>
+            <li><span class="ns-check">✓</span> 30-min follow-up Q&amp;A call</li>
+            <li><span class="ns-check">✓</span> Full credit toward any build</li>
           </ul>
           <a href="contact.html" class="btn btn--primary btn--full">Book Your Audit</a>
         </div>
 
         <!-- AI Content Pipeline -->
-        <div class="reveal" style="background:#14120d;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:40px 36px;display:flex;flex-direction:column;position:relative;">
-          <div style="position:absolute;top:20px;right:20px;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#22c55e;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.18);border-radius:20px;padding:4px 10px;">● Live</div>
-          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b6456;margin-bottom:20px;">AI Content Pipeline</div>
+        <div class="reveal ns-card" style="position:relative;">
+          <div class="ns-badge">● Live</div>
+          <div class="ns-label">AI Content Pipeline</div>
 
-          <!-- Price block: setup + monthly clearly separated -->
-          <div style="margin-bottom:24px;">
-            <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3d3830;margin-bottom:8px;">Setup</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;line-height:1;margin-bottom:16px;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:2.4rem;font-weight:900;color:#f5f0e8;letter-spacing:-1px;">$997</span>
+          <div class="ns-price-block">
+            <div class="ns-price-row-label">Setup</div>
+            <div class="ns-price-row">
+              <span class="ns-price-num">$997</span>
+              <span class="ns-price-suffix">one-time</span>
             </div>
-            <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3d3830;margin-bottom:8px;">Monthly</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;line-height:1;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:2.4rem;font-weight:900;color:#f5f0e8;letter-spacing:-1px;">$500</span>
-              <span style="font-size:0.85rem;color:#6b6456;padding-bottom:6px;">/mo</span>
+            <div class="ns-price-row-label">Monthly</div>
+            <div class="ns-price-row">
+              <span class="ns-price-num">$500</span>
+              <span class="ns-price-suffix">/mo</span>
             </div>
-            <p style="font-size:0.78rem;color:#d4af37;margin:10px 0 0;line-height:1.5;">18+ posts/day across 4 platforms. 5 min/week from you.</p>
+            <p class="ns-tagline">18+ posts/day across 4 platforms. 5 min/week from you.</p>
           </div>
 
-          <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;margin-bottom:24px;">
-            <p style="color:#6b6456;font-size:0.875rem;line-height:1.7;margin:0;">Fully automated short-form video, captions, and scheduling. Set it and forget it.</p>
-          </div>
+          <hr class="ns-divider">
+          <p class="ns-desc">Fully automated short-form video, captions, and scheduling. Set it and forget it.</p>
 
-          <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px;flex:1;">
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> YouTube, Instagram, Facebook, TikTok</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> AI script + video rendering</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Trending topic detection daily</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Weekly performance reports</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Month-to-month, cancel anytime</li>
+          <ul class="ns-features">
+            <li><span class="ns-check">✓</span> YouTube, Instagram, Facebook, TikTok</li>
+            <li><span class="ns-check">✓</span> AI script + video rendering</li>
+            <li><span class="ns-check">✓</span> Trending topic detection daily</li>
+            <li><span class="ns-check">✓</span> Weekly performance reports</li>
+            <li><span class="ns-check">✓</span> Month-to-month, cancel anytime</li>
           </ul>
           <a href="content-pipeline.html" class="btn btn--ghost btn--full">See Full Details</a>
         </div>
 
         <!-- AI Chatbot -->
-        <div class="reveal" style="background:#14120d;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:40px 36px;display:flex;flex-direction:column;">
-          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b6456;margin-bottom:20px;">AI Website Chatbot</div>
+        <div class="reveal ns-card">
+          <div class="ns-label">AI Website Chatbot</div>
 
-          <!-- Price block: setup range + monthly range -->
-          <div style="margin-bottom:24px;">
-            <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3d3830;margin-bottom:8px;">Setup</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;line-height:1;margin-bottom:16px;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:2.4rem;font-weight:900;color:#f5f0e8;letter-spacing:-1px;">$1,500</span>
-              <span style="font-size:0.85rem;color:#6b6456;padding-bottom:6px;">– $3,000</span>
+          <div class="ns-price-block">
+            <div class="ns-price-row-label">Setup</div>
+            <div class="ns-price-row">
+              <span class="ns-price-num">$1,500</span>
+              <span class="ns-price-suffix">– $3,000</span>
             </div>
-            <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3d3830;margin-bottom:8px;">Monthly</div>
-            <div style="display:flex;align-items:flex-end;gap:8px;line-height:1;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:2.4rem;font-weight:900;color:#f5f0e8;letter-spacing:-1px;">$99</span>
-              <span style="font-size:0.85rem;color:#6b6456;padding-bottom:6px;">– $299/mo</span>
+            <div class="ns-price-row-label">Monthly</div>
+            <div class="ns-price-row">
+              <span class="ns-price-num">$99</span>
+              <span class="ns-price-suffix">– $299/mo</span>
             </div>
-            <p style="font-size:0.78rem;color:#d4af37;margin:10px 0 0;line-height:1.5;">Captures leads and books calls while you sleep.</p>
+            <p class="ns-tagline">Captures leads and books calls while you sleep.</p>
           </div>
 
-          <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;margin-bottom:24px;">
-            <p style="color:#6b6456;font-size:0.875rem;line-height:1.7;margin:0;">Custom AI assistant trained on your business — answers questions, qualifies leads, and books appointments 24/7.</p>
-          </div>
+          <hr class="ns-divider">
+          <p class="ns-desc">Custom AI assistant trained on your business — answers questions, qualifies leads, and books appointments 24/7.</p>
 
-          <ul style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px;flex:1;">
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Trained on your services &amp; FAQs</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Qualifies leads before they hit your inbox</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Books Calendly appointments automatically</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Works on any website</li>
-            <li style="display:flex;gap:12px;align-items:flex-start;font-size:0.875rem;color:#a89880;"><span style="color:#d4af37;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span> Setup in 1–2 weeks</li>
+          <ul class="ns-features">
+            <li><span class="ns-check">✓</span> Trained on your services &amp; FAQs</li>
+            <li><span class="ns-check">✓</span> Qualifies leads before they hit your inbox</li>
+            <li><span class="ns-check">✓</span> Books Calendly appointments automatically</li>
+            <li><span class="ns-check">✓</span> Works on any website</li>
+            <li><span class="ns-check">✓</span> Setup in 1–2 weeks</li>
           </ul>
           <a href="contact.html" class="btn btn--ghost btn--full">Get a Quote</a>
         </div>
