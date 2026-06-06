@@ -89,7 +89,7 @@
     style.textContent = `
       #rmp-chat-btn {
         position: fixed;
-        bottom: 28px;
+        bottom: 96px;
         right: 28px;
         z-index: 9999;
         width: 58px;
@@ -113,7 +113,7 @@
 
       #rmp-chat-bubble {
         position: fixed;
-        bottom: 100px;
+        bottom: 168px;
         right: 28px;
         z-index: 9998;
         background: #14120d;
@@ -146,7 +146,7 @@
 
       #rmp-chat-panel {
         position: fixed;
-        bottom: 100px;
+        bottom: 168px;
         right: 28px;
         z-index: 9999;
         width: 360px;
