@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Concepts v3 — Ramapp Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0c0b09;
+      color: #f5f0e8;
+      font-family: 'Inter', sans-serif;
+      padding: 56px 40px 80px;
+    }
+
+    .header {
+      margin-bottom: 52px;
+    }
+    .header__back {
+      font-size: 11px;
+      color: #3d3830;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .header__back:hover { color: #6b6456; }
+    .header__label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: #6b6456;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .header__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f5f0e8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: #111009;
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 16px;
+      padding: 36px 32px;
+    }
+
+    .card__label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #2e2a26;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    .logo-lg {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .nav-wrap {
+      background: #0c0b09;
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .nav-links { display: flex; gap: 18px; }
+    .nav-link { font-size: 10px; color: #3d3830; }
+    .scale-label {
+      font-size: 8.5px;
+      letter-spacing: 2px;
+      color: #2e2a26;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .note {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.03);
+      font-size: 12px;
+      color: #6b6456;
+      line-height: 1.8;
+    }
+    .note strong { color: #a89880; font-weight: 600; }
+
+    /* Cursor blink animation */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1.1s step-start infinite;
+    }
+
+    /* White bg test row */
+    .white-test {
+      background: #f5f0e8;
+      border-radius: 6px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="logo-concepts.html" class="header__back">← v2 concepts</a>
+    <div class="header__label">Logo Concepts v3</div>
+    <h1 class="header__title">Six more — further from the template</h1>
+  </div>
+
+  <div class="grid">
+
+    <!-- ══════════════════════════════════════
+         E: Stacked / Offset — two-line drop
+    ══════════════════════════════════════════ -->
+    <div class="card">
+      <div class="card__label">E — Stacked Offset</div>
+
+      <div class="logo-lg">
+        <svg viewBox="0 0 174 84" width="174" height="84" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left rail -->
+          <rect x="0" y="10" width="2.5" height="68" rx="1.25" fill="#d4af37"/>
+
+          <!-- Ram: first line, white -->
+          <text x="12" y="44"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="38"
+            fill="#f5f0e8"
+            letter-spacing="-1">Ram</text>
+
+          <!-- app: second line, indented to start under 'a' in Ram -->
+          <!-- 'R' in Inter 800 at 38px ≈ 23px, so app starts at x=12+23=35 -->
+          <text x="35" y="80"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="38"
+            fill="#d4af37"
+            letter-spacing="-1">app</text>
+        </svg>
+      </div>
+
+      <div class="scale-label">Nav bar</div>
+      <div class="nav-wrap">
+        <svg viewBox="0 0 174 84" width="87" height="42" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="10" width="2.5" height="68" rx="1.25" fill="#d4af37"/>
+          <text x="12" y="44" font-family="Inter,sans-serif" font-weight="800" font-size="38" fill="#f5f0e8" letter-spacing="-1">Ram</text>
+          <text x="35" y="80" font-family="Inter,sans-serif" font-weight="800" font-size="38" fill="#d4af37" letter-spacing="-1">app</text>
+        </svg>
+        <div class="nav-links">
+          <span class="nav-link">Services</span>
+          <span class="nav-link">Work</span>
+          <span class="nav-link">Pricing</span>
+        </div>
+      </div>
+
+      <div class="note">
+        Two-line drop where "app" steps in to align under the 'a' in "Ram." The left rail pins both lines together. No descriptor needed — it reads whole. Feels like it was drawn, not generated.
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         F: Italic Break — shift mid-word
+    ══════════════════════════════════════════ -->
+    <div class="card">
+      <div class="card__label">F — Italic Break</div>
+
+      <div class="logo-lg">
+        <svg viewBox="0 0 238 60" width="238" height="60" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ram: upright -->
+          <text x="0" y="42"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="40"
+            font-style="normal"
+            fill="#f5f0e8"
+            letter-spacing="-1.5">Ram</text>
+
+          <!-- app: italic, gold. Italic shift mid-word is a typographer's move. -->
+          <!-- "Ram" at 40px, weight 800, -1.5 tracking ≈ 76px wide -->
+          <text x="77" y="42"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="40"
+            font-style="italic"
+            fill="#d4af37"
+            letter-spacing="-1.5">app</text>
+
+          <!-- thin underline, solutions far right -->
+          <text x="0" y="57"
+            font-family="Inter,sans-serif"
+            font-weight="300"
+            font-size="9"
+            fill="#6b6456"
+            letter-spacing="5">solutions</text>
+        </svg>
+      </div>
+
+      <div class="scale-label">Nav bar</div>
+      <div class="nav-wrap">
+        <svg viewBox="0 0 238 60" width="143" height="36" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="42" font-family="Inter,sans-serif" font-weight="800" font-size="40" font-style="normal" fill="#f5f0e8" letter-spacing="-1.5">Ram</text>
+          <text x="77" y="42" font-family="Inter,sans-serif" font-weight="800" font-size="40" font-style="italic" fill="#d4af37" letter-spacing="-1.5">app</text>
+          <text x="0" y="57" font-family="Inter,sans-serif" font-weight="300" font-size="9" fill="#6b6456" letter-spacing="5">solutions</text>
+        </svg>
+        <div class="nav-links">
+          <span class="nav-link">Services</span>
+          <span class="nav-link">Work</span>
+          <span class="nav-link">Pricing</span>
+        </div>
+      </div>
+
+      <div class="note">
+        The italic shift happens <em>inside</em> a single word — no graphic needed. Upright "Ram" into italic <em>app</em>. You feel the lean before you read the word. This is what typographers do when they want emphasis without decoration.
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         G: Left Bar — editorial blockquote
+    ══════════════════════════════════════════ -->
+    <div class="card">
+      <div class="card__label">G — Left Bar</div>
+
+      <div class="logo-lg">
+        <svg viewBox="0 0 210 56" width="210" height="56" xmlns="http://www.w3.org/2000/svg">
+          <!-- Thick gold left bar — blockquote / citation mark -->
+          <rect x="0" y="0" width="5" height="54" rx="2" fill="#d4af37"/>
+
+          <!-- Ramapp: bold, left-offset -->
+          <text x="18" y="36"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="32"
+            fill="#f5f0e8"
+            letter-spacing="-1">Ramapp</text>
+
+          <!-- Solutions: lightweight, below -->
+          <text x="19" y="52"
+            font-family="Inter,sans-serif"
+            font-weight="300"
+            font-size="10"
+            fill="#6b6456"
+            letter-spacing="4">Solutions</text>
+        </svg>
+      </div>
+
+      <div class="scale-label">Nav bar</div>
+      <div class="nav-wrap">
+        <svg viewBox="0 0 210 56" width="126" height="34" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="5" height="54" rx="2" fill="#d4af37"/>
+          <text x="18" y="36" font-family="Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-1">Ramapp</text>
+          <text x="19" y="52" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="4">Solutions</text>
+        </svg>
+        <div class="nav-links">
+          <span class="nav-link">Services</span>
+          <span class="nav-link">Work</span>
+          <span class="nav-link">Pricing</span>
+        </div>
+      </div>
+
+      <div class="note">
+        Borrowed from editorial design — newspapers and magazines use a left bar to signal authority and set a section apart. One thick gold bar does everything a hexagon was trying to do. Clean at all sizes, no mark to overthink.
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         H: Tracked lowercase — precision grid
+    ══════════════════════════════════════════ -->
+    <div class="card">
+      <div class="card__label">H — Tracked Lowercase</div>
+
+      <div class="logo-lg">
+        <svg viewBox="0 0 240 54" width="240" height="54" xmlns="http://www.w3.org/2000/svg">
+          <!-- ramapp: tracked out, medium weight — not all-caps, not casual -->
+          <text x="0" y="28"
+            font-family="Inter,sans-serif"
+            font-weight="700"
+            font-size="22"
+            fill="#f5f0e8"
+            letter-spacing="10">ramapp</text>
+
+          <!-- Gold rule — full span below the word -->
+          <line x1="0" y1="34" x2="236" y2="34"
+            stroke="#d4af37"
+            stroke-width="1.2"/>
+
+          <!-- solutions: tracked gold, thin -->
+          <text x="0" y="50"
+            font-family="Inter,sans-serif"
+            font-weight="300"
+            font-size="9"
+            fill="#d4af37"
+            letter-spacing="10.5">solutions</text>
+        </svg>
+      </div>
+
+      <div class="scale-label">Nav bar</div>
+      <div class="nav-wrap">
+        <svg viewBox="0 0 240 54" width="144" height="32" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="28" font-family="Inter,sans-serif" font-weight="700" font-size="22" fill="#f5f0e8" letter-spacing="10">ramapp</text>
+          <line x1="0" y1="34" x2="236" y2="34" stroke="#d4af37" stroke-width="1.2"/>
+          <text x="0" y="50" font-family="Inter,sans-serif" font-weight="300" font-size="9" fill="#d4af37" letter-spacing="10.5">solutions</text>
+        </svg>
+        <div class="nav-links">
+          <span class="nav-link">Services</span>
+          <span class="nav-link">Work</span>
+          <span class="nav-link">Pricing</span>
+        </div>
+      </div>
+
+      <div class="note">
+        Wide tracking on lowercase reads as considered, not casual — the opposite of how tracking usually gets misused. Two lines of text, one gold rule between them that spans the full block. Both lines of equal visual weight.
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         I: Terminal cursor — Ramapp_
+    ══════════════════════════════════════════ -->
+    <div class="card">
+      <div class="card__label">I — Terminal Cursor</div>
+
+      <div class="logo-lg">
+        <svg viewBox="0 0 256 62" width="256" height="62" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ramapp: white -->
+          <text x="0" y="46"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="44"
+            fill="#f5f0e8"
+            letter-spacing="-1.5">Ramapp</text>
+
+          <!-- Cursor underscore: gold, animated via CSS class -->
+          <!-- "Ramapp" at 44px, 800, -1.5 tracking ≈ 185px -->
+          <rect class="cursor-blink" x="187" y="34" width="26" height="4" rx="2" fill="#d4af37"/>
+
+          <!-- solutions -->
+          <text x="1" y="60"
+            font-family="Inter,sans-serif"
+            font-weight="300"
+            font-size="9"
+            fill="#6b6456"
+            letter-spacing="5.5">solutions</text>
+        </svg>
+      </div>
+
+      <div class="scale-label">Nav bar</div>
+      <div class="nav-wrap">
+        <svg viewBox="0 0 256 62" width="154" height="37" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="46" font-family="Inter,sans-serif" font-weight="800" font-size="44" fill="#f5f0e8" letter-spacing="-1.5">Ramapp</text>
+          <rect class="cursor-blink" x="187" y="34" width="26" height="4" rx="2" fill="#d4af37"/>
+          <text x="1" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="9" fill="#6b6456" letter-spacing="5.5">solutions</text>
+        </svg>
+        <div class="nav-links">
+          <span class="nav-link">Services</span>
+          <span class="nav-link">Work</span>
+          <span class="nav-link">Pricing</span>
+        </div>
+      </div>
+
+      <div class="note">
+        The cursor after your name says: <em>this is a prompt, not a finished product — it's waiting for your problem.</em> It blinks in the actual browser. Doesn't feel AI-generated because it's referencing something real: the terminal, the build process, the human typing.
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         J: Oversized Initial — drop cap R
+    ══════════════════════════════════════════ -->
+    <div class="card">
+      <div class="card__label">J — Oversized Initial</div>
+
+      <div class="logo-lg">
+        <svg viewBox="0 0 230 70" width="230" height="70" xmlns="http://www.w3.org/2000/svg">
+          <!-- Giant R — the initial cap -->
+          <text x="0" y="60"
+            font-family="Inter,sans-serif"
+            font-weight="900"
+            font-size="64"
+            fill="#d4af37"
+            letter-spacing="-3">R</text>
+
+          <!-- "amapp" and "Solutions" stacked to the right of the R -->
+          <!-- R at 64px, 900 ≈ 40px wide -->
+          <text x="44" y="38"
+            font-family="Inter,sans-serif"
+            font-weight="800"
+            font-size="22"
+            fill="#f5f0e8"
+            letter-spacing="-0.5">amapp</text>
+
+          <text x="45" y="56"
+            font-family="Inter,sans-serif"
+            font-weight="300"
+            font-size="10"
+            fill="#6b6456"
+            letter-spacing="3.5">Solutions</text>
+        </svg>
+      </div>
+
+      <div class="scale-label">Nav bar</div>
+      <div class="nav-wrap">
+        <svg viewBox="0 0 230 70" width="138" height="42" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="60" font-family="Inter,sans-serif" font-weight="900" font-size="64" fill="#d4af37" letter-spacing="-3">R</text>
+          <text x="44" y="38" font-family="Inter,sans-serif" font-weight="800" font-size="22" fill="#f5f0e8" letter-spacing="-0.5">amapp</text>
+          <text x="45" y="56" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="3.5">Solutions</text>
+        </svg>
+        <div class="nav-links">
+          <span class="nav-link">Services</span>
+          <span class="nav-link">Work</span>
+          <span class="nav-link">Pricing</span>
+        </div>
+      </div>
+
+      <div class="note">
+        The R is the mark. Drop caps have been used in book design for 500 years because they work — they establish hierarchy instantly. Gold R, then "amapp" finishes the word at a fraction of the scale. Unexpected. Nobody does this in the consulting space.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- White background test -->
+  <div style="max-width:1100px;margin-top:32px;">
+    <div style="font-size:9px;letter-spacing:3px;color:#2e2a26;text-transform:uppercase;margin-bottom:14px;">How they hold on a light background</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;">
+
+      <!-- E on white -->
+      <div class="white-test">
+        <svg viewBox="0 0 174 84" width="70" height="34" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="10" width="2.5" height="68" rx="1.25" fill="#b8942a"/>
+          <text x="12" y="44" font-family="Inter,sans-serif" font-weight="800" font-size="38" fill="#1a1815" letter-spacing="-1">Ram</text>
+          <text x="35" y="80" font-family="Inter,sans-serif" font-weight="800" font-size="38" fill="#b8942a" letter-spacing="-1">app</text>
+        </svg>
+      </div>
+
+      <!-- F on white -->
+      <div class="white-test">
+        <svg viewBox="0 0 238 50" width="96" height="20" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="42" font-family="Inter,sans-serif" font-weight="800" font-size="40" font-style="normal" fill="#1a1815" letter-spacing="-1.5">Ram</text>
+          <text x="77" y="42" font-family="Inter,sans-serif" font-weight="800" font-size="40" font-style="italic" fill="#b8942a" letter-spacing="-1.5">app</text>
+        </svg>
+      </div>
+
+      <!-- G on white -->
+      <div class="white-test">
+        <svg viewBox="0 0 210 46" width="84" height="18" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="5" height="44" rx="2" fill="#b8942a"/>
+          <text x="18" y="30" font-family="Inter,sans-serif" font-weight="800" font-size="32" fill="#1a1815" letter-spacing="-1">Ramapp</text>
+        </svg>
+      </div>
+
+      <!-- H on white -->
+      <div class="white-test">
+        <svg viewBox="0 0 240 38" width="96" height="15" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="22" font-family="Inter,sans-serif" font-weight="700" font-size="22" fill="#1a1815" letter-spacing="10">ramapp</text>
+          <line x1="0" y1="27" x2="236" y2="27" stroke="#b8942a" stroke-width="1.2"/>
+        </svg>
+      </div>
+
+      <!-- I on white -->
+      <div class="white-test">
+        <svg viewBox="0 0 220 50" width="88" height="20" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="42" font-family="Inter,sans-serif" font-weight="800" font-size="44" fill="#1a1815" letter-spacing="-1.5">Ramapp</text>
+          <rect x="187" y="30" width="26" height="4" rx="2" fill="#b8942a"/>
+        </svg>
+      </div>
+
+      <!-- J on white -->
+      <div class="white-test">
+        <svg viewBox="0 0 230 70" width="92" height="28" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="60" font-family="Inter,sans-serif" font-weight="900" font-size="64" fill="#b8942a" letter-spacing="-3">R</text>
+          <text x="44" y="38" font-family="Inter,sans-serif" font-weight="800" font-size="22" fill="#1a1815" letter-spacing="-0.5">amapp</text>
+          <text x="45" y="56" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="3.5">Solutions</text>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="max-width:1100px;margin-top:28px;padding:20px 24px;background:rgba(212,175,55,0.02);border:1px solid rgba(212,175,55,0.06);border-radius:12px;">
+    <p style="font-size:11px;color:#6b6456;line-height:1.9;">
+      <strong style="color:#a89880;">All 10 options across both pages.</strong>
+      A–D in <a href="logo-concepts.html" style="color:#d4af37;text-decoration:none;">v2</a>.
+      E–J above. Say the letter and I'll build it across the whole site — nav, footer, favicon — and push it live.
+    </p>
+  </div>
+
+</body>
+</html>
