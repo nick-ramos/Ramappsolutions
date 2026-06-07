@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automation Template Marketplace — Ramapp Solutions</title>
+  <meta name="description" content="Pre-built Zapier, Make, and Notion automation templates. Download a ready-to-use workflow, import it, and go live in minutes. No coding required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Automation Template Marketplace — Ramapp Solutions" />
+  <meta property="og:description" content="Pre-built Zapier, Make, and Notion templates. Live in minutes, no coding required." />
+  <meta property="og:image"       content="https://ramappsolutions.com/assets/og-image.svg" />
+  <meta property="og:url"         content="https://ramappsolutions.com/template-marketplace.html" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-64ZTD1V2W8');
+  </script>
+
+  <style>
+    /* ── Page-specific styles ── */
+
+    /* Hero */
+    .tm-hero {
+      padding: 140px 0 80px;
+      position: relative;
+    }
+    .tm-hero__inner {
+      max-width: 700px;
+    }
+    .tm-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: #f5f0e8;
+      line-height: 1.1;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+    }
+    .tm-hero__sub {
+      font-size: 1.1rem;
+      color: #6b6456;
+      margin: 0 0 36px;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+    .tm-hero__ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Section headings */
+    .tm-section {
+      padding: 80px 0;
+    }
+    .tm-section + .tm-section {
+      border-top: 1px solid #1e1c17;
+    }
+    .tm-section__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #d4af37;
+      margin: 0 0 12px;
+    }
+    .tm-section__heading {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: #f5f0e8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+    .tm-section__sub {
+      color: #6b6456;
+      font-size: 1rem;
+      margin: 0 0 48px;
+      max-width: 480px;
+    }
+
+    /* Category label */
+    .tm-category-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b6456;
+      margin: 0 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1e1c17;
+    }
+
+    /* Template grid */
+    .tm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+    .tm-card {
+      background: #14120d;
+      border: 1px solid #1e1c17;
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .tm-card:hover {
+      border-color: #2a2720;
+    }
+    .tm-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .tm-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .tm-badge--zapier {
+      background: rgba(255, 74, 0, 0.12);
+      color: #ff7a44;
+    }
+    .tm-badge--make {
+      background: rgba(100, 80, 200, 0.12);
+      color: #a090e0;
+    }
+    .tm-badge--notion {
+      background: rgba(245, 240, 232, 0.07);
+      color: #9e9789;
+    }
+    .tm-card__name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f5f0e8;
+      line-height: 1.3;
+      margin: 0;
+      flex: 1;
+    }
+    .tm-card__desc {
+      font-size: 0.875rem;
+      color: #6b6456;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .tm-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #1e1c17;
+    }
+    .tm-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #d4af37;
+      letter-spacing: -0.02em;
+    }
+    .tm-card__btn {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #f5f0e8;
+      background: transparent;
+      border: 1px solid #2a2720;
+      border-radius: 4px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .tm-card__btn:hover {
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    /* How it works */
+    .tm-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 32px;
+    }
+    .tm-step {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .tm-step__num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #1e1c17;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .tm-step__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f5f0e8;
+      margin: 0;
+    }
+    .tm-step__desc {
+      font-size: 0.875rem;
+      color: #6b6456;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Purchase section */
+    .tm-purchase {
+      background: #14120d;
+      border: 1px solid #1e1c17;
+      border-radius: 6px;
+      padding: 48px;
+    }
+    .tm-purchase__heading {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #f5f0e8;
+      margin: 0 0 6px;
+    }
+    .tm-purchase__sub {
+      color: #6b6456;
+      font-size: 0.9rem;
+      margin: 0 0 32px;
+    }
+    .tm-purchase-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .tm-purchase-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tm-purchase-form .form-group label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #6b6456;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .tm-purchase-form .form-group input,
+    .tm-purchase-form .form-group textarea {
+      background: #0c0b09;
+      border: 1px solid #1e1c17;
+      border-radius: 4px;
+      color: #f5f0e8;
+      font-family: Inter, sans-serif;
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .tm-purchase-form .form-group input:focus,
+    .tm-purchase-form .form-group textarea:focus {
+      border-color: #d4af37;
+    }
+    .tm-purchase-form .form-group--full {
+      grid-column: 1 / -1;
+    }
+    .tm-checkboxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+    }
+    .tm-checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #f5f0e8;
+      cursor: pointer;
+      font-weight: 400 !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+    .tm-checkboxes input[type="checkbox"] {
+      accent-color: #d4af37;
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    .tm-checkboxes-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #6b6456;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    /* Custom template section */
+    .tm-custom {
+      background: #0c0b09;
+      border-top: 1px solid #1e1c17;
+      padding: 80px 0;
+    }
+    .tm-custom__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .tm-custom-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tm-custom-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tm-custom-form label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #6b6456;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .tm-custom-form input,
+    .tm-custom-form select,
+    .tm-custom-form textarea {
+      background: #14120d;
+      border: 1px solid #1e1c17;
+      border-radius: 4px;
+      color: #f5f0e8;
+      font-family: Inter, sans-serif;
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .tm-custom-form select option {
+      background: #14120d;
+    }
+    .tm-custom-form input:focus,
+    .tm-custom-form select:focus,
+    .tm-custom-form textarea:focus {
+      border-color: #d4af37;
+    }
+    .tm-note {
+      font-size: 0.8rem;
+      color: #3a3730;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .tm-purchase {
+        padding: 28px 20px;
+      }
+      .tm-purchase-form {
+        grid-template-columns: 1fr;
+      }
+      .tm-checkboxes {
+        grid-template-columns: 1fr;
+      }
+      .tm-custom__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .tm-hero__ctas {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body data-page="marketplace">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
+          <text x="0" y="40" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f5f0e8" letter-spacing="-1">Ramapp</text>
+          <line x1="0" y1="46" x2="198" y2="46" stroke="#d4af37" stroke-width="1.5"/>
+          <text x="198" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="4" text-anchor="end">Solutions</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="services.html" data-nav="services">Services</a></li>
+        <li><a href="process.html"  data-nav="process">How It Works</a></li>
+        <li><a href="work.html"     data-nav="work">Work</a></li>
+        <li><a href="pricing.html"  data-nav="pricing">Pricing</a></li>
+        <li><a href="blog.html"     data-nav="blog">Blog</a></li>
+        <li><a href="contact.html"  class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="services.html">Services</a>
+      <a href="process.html">How It Works</a>
+      <a href="work.html">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tm-hero">
+    <div class="container tm-hero__inner">
+      <h1>Automations that work.<br/>Ready in minutes.</h1>
+      <p class="tm-hero__sub">Pre-built Zapier, Make, and Notion workflows for the business problems you're dealing with right now. Download, import, done. No coding required.</p>
+      <div class="tm-hero__ctas">
+        <a href="#templates" class="btn btn--primary">Browse Templates</a>
+        <a href="#custom" class="btn btn--ghost">Request a Custom Template</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATE GRID -->
+  <section class="tm-section" id="templates">
+    <div class="container">
+      <p class="tm-section__label">Templates</p>
+      <h2 class="tm-section__heading">Pick your platform. Solve your problem.</h2>
+      <p class="tm-section__sub">Each template is tested, documented, and ready to drop into your existing stack.</p>
+
+      <!-- Zapier -->
+      <p class="tm-category-label">Zapier</p>
+      <div class="tm-grid" style="margin-bottom: 48px;">
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Real Estate Lead Nurture Sequence</p>
+            <span class="tm-badge tm-badge--zapier">Zapier</span>
+          </div>
+          <p class="tm-card__desc">New Zillow or Realtor.com lead triggers a 7-day email + text follow-up sequence automatically — no manual follow-up needed.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$79</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Real Estate Lead Nurture Sequence ($79)">Get This Template</a>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">New Client Onboarding Flow</p>
+            <span class="tm-badge tm-badge--zapier">Zapier</span>
+          </div>
+          <p class="tm-card__desc">Form submission creates a folder, sends a welcome email, schedules a kickoff call, and notifies your team in Slack — all at once.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$49</span>
+            <a href="#purchase" class="tm-card__btn" data-template="New Client Onboarding Flow ($49)">Get This Template</a>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Review Request Automation</p>
+            <span class="tm-badge tm-badge--zapier">Zapier</span>
+          </div>
+          <p class="tm-card__desc">Three days after a job is marked complete, your client automatically receives a text with your Google review link.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$49</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Review Request Automation ($49)">Get This Template</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Make -->
+      <p class="tm-category-label">Make (Integromat)</p>
+      <div class="tm-grid" style="margin-bottom: 48px;">
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Social Media Repurposing Pipeline</p>
+            <span class="tm-badge tm-badge--make">Make</span>
+          </div>
+          <p class="tm-card__desc">Upload one video and the workflow auto-generates captions and schedules posts to Instagram, Facebook, and TikTok.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$99</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Social Media Repurposing Pipeline ($99)">Get This Template</a>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Invoice + Payment Reminder System</p>
+            <span class="tm-badge tm-badge--make">Make</span>
+          </div>
+          <p class="tm-card__desc">New invoice triggers automatic follow-up reminder emails at 7, 14, and 30 days — so you never chase a payment manually again.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$79</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Invoice + Payment Reminder System ($79)">Get This Template</a>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Contractor Proposal Workflow</p>
+            <span class="tm-badge tm-badge--make">Make</span>
+          </div>
+          <p class="tm-card__desc">Fill out a job details form and the workflow auto-populates your proposal template and emails it to the client within seconds.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$99</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Contractor Proposal Workflow ($99)">Get This Template</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Notion/Airtable -->
+      <p class="tm-category-label">Notion / Airtable</p>
+      <div class="tm-grid">
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Client Project Tracker</p>
+            <span class="tm-badge tm-badge--notion">Notion</span>
+          </div>
+          <p class="tm-card__desc">A full CRM and project management database built for freelancers and agencies — clients, projects, tasks, and status all in one place.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$49</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Client Project Tracker ($49)">Get This Template</a>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Content Calendar System</p>
+            <span class="tm-badge tm-badge--notion">Notion</span>
+          </div>
+          <p class="tm-card__desc">Plan, write, schedule, and track content across every platform in one view — no more spreadsheets or scattered docs.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$49</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Content Calendar System ($49)">Get This Template</a>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div class="tm-card__top">
+            <p class="tm-card__name">Business Operations Dashboard</p>
+            <span class="tm-badge tm-badge--notion">Notion</span>
+          </div>
+          <p class="tm-card__desc">KPIs, tasks, revenue tracking, and team assignments all in one Notion workspace — your business at a glance, every day.</p>
+          <div class="tm-card__footer">
+            <span class="tm-price">$79</span>
+            <a href="#purchase" class="tm-card__btn" data-template="Business Operations Dashboard ($79)">Get This Template</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="tm-section">
+    <div class="container">
+      <p class="tm-section__label">How it works</p>
+      <h2 class="tm-section__heading">Three steps, then you're done.</h2>
+      <div class="tm-steps">
+        <div class="tm-step">
+          <div class="tm-step__num">01</div>
+          <p class="tm-step__title">Choose a template</p>
+          <p class="tm-step__desc">Browse the list above and pick the workflow that fits your problem. Each one is built for a specific use case — nothing generic.</p>
+        </div>
+        <div class="tm-step">
+          <div class="tm-step__num">02</div>
+          <p class="tm-step__title">Purchase and get instant delivery</p>
+          <p class="tm-step__desc">Submit your order below. Nick sends the template file and a short setup guide to your inbox — usually within the hour.</p>
+        </div>
+        <div class="tm-step">
+          <div class="tm-step__num">03</div>
+          <p class="tm-step__title">Import and go live in minutes</p>
+          <p class="tm-step__desc">Drop the template into Zapier, Make, or Notion. Connect your accounts. Turn it on. That's it — the automation runs on its own from here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PURCHASE FORM -->
+  <section class="tm-section" id="purchase">
+    <div class="container">
+      <p class="tm-section__label">Purchase</p>
+      <h2 class="tm-section__heading">Get your templates</h2>
+      <p class="tm-section__sub">Select the templates you want below. We'll send an invoice to your email and deliver the files as soon as payment clears.</p>
+
+      <div class="tm-purchase">
+        <p class="tm-purchase__heading">Which templates do you want?</p>
+        <p class="tm-purchase__sub">Check all that apply — we'll bundle and send everything together.</p>
+
+        <form action="https://formspree.io/f/mrevbgdg" method="POST" id="purchaseForm">
+          <input type="hidden" name="_subject" value="Template Purchase Request" />
+          <input type="hidden" name="_next" value="https://ramappsolutions.com/thankyou.html" />
+
+          <div class="tm-purchase-form">
+            <div class="form-group">
+              <label for="p-name">Name</label>
+              <input type="text" id="p-name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="p-email">Email</label>
+              <input type="email" id="p-email" name="email" placeholder="you@company.com" required />
+            </div>
+            <div class="form-group form-group--full">
+              <div class="tm-checkboxes-label">Select templates</div>
+              <div class="tm-checkboxes">
+                <label><input type="checkbox" name="templates" value="Real Estate Lead Nurture Sequence — $79" /> Real Estate Lead Nurture Sequence — $79</label>
+                <label><input type="checkbox" name="templates" value="New Client Onboarding Flow — $49" /> New Client Onboarding Flow — $49</label>
+                <label><input type="checkbox" name="templates" value="Review Request Automation — $49" /> Review Request Automation — $49</label>
+                <label><input type="checkbox" name="templates" value="Social Media Repurposing Pipeline — $99" /> Social Media Repurposing Pipeline — $99</label>
+                <label><input type="checkbox" name="templates" value="Invoice + Payment Reminder System — $79" /> Invoice + Payment Reminder System — $79</label>
+                <label><input type="checkbox" name="templates" value="Contractor Proposal Workflow — $99" /> Contractor Proposal Workflow — $99</label>
+                <label><input type="checkbox" name="templates" value="Client Project Tracker — $49" /> Client Project Tracker — $49</label>
+                <label><input type="checkbox" name="templates" value="Content Calendar System — $49" /> Content Calendar System — $49</label>
+                <label><input type="checkbox" name="templates" value="Business Operations Dashboard — $79" /> Business Operations Dashboard — $79</label>
+              </div>
+            </div>
+            <div class="form-group form-group--full">
+              <label for="p-notes">Anything else?</label>
+              <textarea id="p-notes" name="notes" rows="3" placeholder="Questions, special requests, or context about your stack — optional."></textarea>
+            </div>
+            <div class="form-group form-group--full">
+              <button type="submit" class="btn btn--primary">Send My Order</button>
+              <p class="tm-note">You'll receive an invoice by email. Files are delivered as soon as payment clears — usually same day.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM TEMPLATE -->
+  <section class="tm-custom" id="custom">
+    <div class="container">
+      <div class="tm-custom__inner">
+        <div>
+          <p class="tm-section__label">Custom builds</p>
+          <h2 class="tm-section__heading">Can't find what you need?</h2>
+          <p style="color:#6b6456;font-size:1rem;line-height:1.65;margin:0 0 20px;">Not every problem fits a pre-built template. If you have a specific workflow in mind — or a process that's still done manually — I'll build it for you from scratch.</p>
+          <p style="color:#6b6456;font-size:1rem;line-height:1.65;margin:0;">Custom templates start at $149 and are scoped based on complexity. Turnaround is typically 2–5 business days.</p>
+        </div>
+        <form class="tm-custom-form" action="https://formspree.io/f/mrevbgdg" method="POST" id="customForm">
+          <input type="hidden" name="_subject" value="Custom Template Request" />
+          <input type="hidden" name="_next" value="https://ramappsolutions.com/thankyou.html" />
+          <div class="form-group">
+            <label for="c-name">Name</label>
+            <input type="text" id="c-name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label for="c-platform">Platform</label>
+            <select id="c-platform" name="platform" required>
+              <option value="">Choose a platform...</option>
+              <option value="Zapier">Zapier</option>
+              <option value="Make (Integromat)">Make (Integromat)</option>
+              <option value="Notion">Notion</option>
+              <option value="Airtable">Airtable</option>
+              <option value="Not sure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="c-message">What do you need to automate?</label>
+            <textarea id="c-message" name="message" rows="5" placeholder="Describe the process you want to automate. The more detail, the better." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Request a Custom Template</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="40" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f5f0e8" letter-spacing="-1">Ramapp</text>
+            <line x1="0" y1="46" x2="198" y2="46" stroke="#d4af37" stroke-width="1.5"/>
+            <text x="198" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="4" text-anchor="end">Solutions</text>
+          </svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="services.html">Services</a>
+        <a href="process.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>Aurora, IL &middot; <a href="tel:+16304530223" style="color:inherit;text-decoration:none;">(630) 453-0223</a> &middot; ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Pre-check template checkbox when "Get This Template" is clicked
+    document.querySelectorAll('.tm-card__btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        var templateName = this.getAttribute('data-template');
+        if (!templateName) return;
+        // Find matching checkbox
+        document.querySelectorAll('#purchaseForm input[type="checkbox"]').forEach(function(cb) {
+          if (cb.value.indexOf(templateName.replace(/ \(\$\d+\)/, '').trim()) === 0) {
+            cb.checked = true;
+          }
+        });
+      });
+    });
+  </script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
