@@ -42,6 +42,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  padding-top: var(--nav-h);
 }
 
 img { display: block; max-width: 100%; }
@@ -231,7 +232,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding-top: var(--nav-h);
+  padding-top: 0;
 }
 .hero__grid-bg {
   position: absolute;
@@ -1050,7 +1051,7 @@ ul { list-style: none; }
    ========================================================= */
 .page-hero {
   position: relative;
-  padding: calc(var(--nav-h) + 72px) 0 80px;
+  padding: 72px 0 80px;
   overflow: hidden;
   background: linear-gradient(to bottom, var(--bg), var(--bg-1));
   border-bottom: 1px solid var(--border);
