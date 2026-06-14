@@ -17,7 +17,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.min.css" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
@@ -55,37 +55,43 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 48px;
+      gap: 24px;
+      margin-top: 52px;
     }
     .service-card {
-      background: #14120d;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 36px 32px;
+      background: #0d1120;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 40px 32px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      border-color: rgba(245,200,50,0.25);
+      transform: translateY(-2px);
     }
     .service-card__num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: #3d3830;
-      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+      color: #475569;
+      letter-spacing: 0.12em;
       margin-bottom: 20px;
     }
     .service-card__title {
+      font-family: 'Poppins', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
-      color: #f5f0e8;
+      color: #f1f5f9;
       margin: 0 0 12px;
     }
     .service-card__desc {
-      font-size: 0.875rem;
-      color: #6b6456;
-      line-height: 1.7;
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.75;
       margin: 0 0 20px;
     }
     .service-card__price {
-      font-size: 0.8rem;
-      color: #d4af37;
+      font-size: 0.82rem;
+      color: #f5c832;
       font-weight: 600;
     }
     .service-card__link {
@@ -94,133 +100,144 @@
       gap: 6px;
       font-size: 0.82rem;
       font-weight: 600;
-      color: #d4af37;
+      color: #f5c832;
       text-decoration: none;
       margin-top: 16px;
+      transition: gap 0.2s;
     }
-    .service-card__link:hover { opacity: 0.8; }
+    .service-card__link:hover { gap: 10px; }
 
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 48px;
+      gap: 24px;
+      margin-top: 52px;
     }
     .work-card {
-      background: #14120d;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
+      background: #0d1120;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
       padding: 36px 32px;
       display: flex;
       flex-direction: column;
       text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .work-card:hover { border-color: rgba(212,175,55,0.2); }
+    .work-card:hover {
+      border-color: rgba(245,200,50,0.22);
+      transform: translateY(-2px);
+    }
     .work-card__client {
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #3d3830;
+      color: #475569;
       margin-bottom: 16px;
     }
     .work-card__title {
+      font-family: 'Poppins', sans-serif;
       font-size: 1.05rem;
       font-weight: 700;
-      color: #f5f0e8;
+      color: #f1f5f9;
       margin: 0 0 12px;
       line-height: 1.4;
     }
     .work-card__desc {
       font-size: 0.875rem;
-      color: #6b6456;
-      line-height: 1.7;
+      color: #64748b;
+      line-height: 1.75;
       margin: 0 0 24px;
       flex: 1;
     }
     .work-card__result {
       font-size: 0.8rem;
       font-weight: 600;
-      color: #d4af37;
+      color: #f5c832;
       padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
     .pricing-teaser {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
       overflow: hidden;
-      margin-top: 48px;
+      margin-top: 52px;
     }
     .pricing-teaser__tier {
-      background: #14120d;
-      padding: 36px 32px;
+      background: #0d1120;
+      padding: 40px 32px;
+      transition: background 0.2s;
     }
+    .pricing-teaser__tier:hover { background: #111827; }
     .pricing-teaser__label {
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #3d3830;
+      color: #475569;
       margin-bottom: 12px;
     }
     .pricing-teaser__amount {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
-      color: #f5f0e8;
+      color: #f1f5f9;
       letter-spacing: -1px;
       line-height: 1;
       margin-bottom: 8px;
     }
     .pricing-teaser__name {
+      font-family: 'Poppins', sans-serif;
       font-size: 0.875rem;
       font-weight: 600;
-      color: #a89880;
-      margin-bottom: 8px;
+      color: #94a3b8;
+      margin-bottom: 10px;
     }
     .pricing-teaser__desc {
-      font-size: 0.8rem;
-      color: #6b6456;
-      line-height: 1.6;
+      font-size: 0.82rem;
+      color: #64748b;
+      line-height: 1.65;
     }
 
     .hp-section {
-      padding: 96px 0;
+      padding: 104px 0;
     }
     .hp-section + .hp-section {
-      border-top: 1px solid rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
     .hp-section--alt {
-      background: #14120d;
+      background: #0a0e18;
     }
     .hp-section__header {
       margin-bottom: 0;
     }
     .hp-section__eyebrow {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #3d3830;
+      color: #f5c832;
       margin-bottom: 14px;
+      opacity: 0.85;
     }
     .hp-section__title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
       font-weight: 800;
-      color: #f5f0e8;
+      color: #f1f5f9;
       line-height: 1.2;
       margin: 0;
     }
     .hp-section__sub {
-      font-size: 0.95rem;
-      color: #6b6456;
-      line-height: 1.7;
-      margin-top: 14px;
-      max-width: 520px;
+      font-size: 1rem;
+      color: #64748b;
+      line-height: 1.75;
+      margin-top: 16px;
+      max-width: 540px;
     }
 
     @media (max-width: 768px) {
@@ -235,9 +252,9 @@
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">
         <svg class="logo-svg" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
-          <text x="0" y="40" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f5f0e8" letter-spacing="-1">Ramapp</text>
-          <line x1="0" y1="46" x2="198" y2="46" stroke="#d4af37" stroke-width="1.5"/>
-          <text x="198" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="4" text-anchor="end">Solutions</text>
+          <text x="0" y="40" font-family="Poppins,Inter,sans-serif" font-weight="800" font-size="36" fill="#f1f5f9" letter-spacing="-1">Ramapp</text>
+          <line x1="0" y1="46" x2="198" y2="46" stroke="#f5c832" stroke-width="1.5"/>
+          <text x="198" y="60" font-family="Inter,sans-serif" font-weight="400" font-size="10" fill="#64748b" letter-spacing="4" text-anchor="end">Solutions</text>
         </svg>
       </a>
       <ul class="nav__links">
@@ -270,11 +287,11 @@
     <div class="container hero__inner">
 
       <div class="hero__copy">
-        <p style="font-size:0.8rem;font-weight:600;color:#6b6456;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">Nick Ramos · Aurora, IL</p>
+        <p style="font-size:0.75rem;font-weight:600;color:#475569;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:20px;">Nick Ramos · Aurora, IL</p>
         <h1 class="hero__title">
           I build AI tools<br/>
           and automations<br/>
-          <span style="color:#d4af37;">that work while you don't.</span>
+          <span style="color:#f5c832;">that work while you don't.</span>
         </h1>
         <p class="hero__sub">
           Custom software built around your specific workflow — not a template, not a plugin, not a subscription you don't control. You own everything I build.
@@ -336,11 +353,11 @@
           </div>
         </div>
         <div class="dash-card dash-card--float dash-card--float-1">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5c832" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
           <div><div class="float-val">↑ 3.2x</div><div class="float-label">ROI this month</div></div>
         </div>
         <div class="dash-card dash-card--float dash-card--float-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9993a" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div><div class="float-val green">99.9%</div><div class="float-label">Uptime</div></div>
         </div>
       </div>
@@ -415,21 +432,21 @@
 
       <div class="work-grid">
 
-        <a href="work/volleycenter.html" class="work-card reveal">
+        <a href="volleycenter.html" class="work-card reveal">
           <div class="work-card__client">VolleyCenter · Club Management</div>
           <h3 class="work-card__title">All-in-one platform for volleyball clubs</h3>
           <p class="work-card__desc">Replaced 3 separate apps and a pile of spreadsheets with one system. Rosters, scheduling, AI practice plans, player messaging, payment processing, and parent communications — all in one place.</p>
           <div class="work-card__result">3 apps replaced · 10+ modules live · 0 spreadsheets remaining</div>
         </a>
 
-        <a href="work/listingos.html" class="work-card reveal">
+        <a href="listingos.html" class="work-card reveal">
           <div class="work-card__client">ListingOS · Real Estate AI</div>
           <h3 class="work-card__title">AI content engine for real estate agents</h3>
           <p class="work-card__desc">Agents used to spend 2+ hours writing copy per listing. Now they fill one form and get a full marketing suite in under 30 seconds — property description, email, follow-up text, and social captions.</p>
           <div class="work-card__result">2+ hrs saved per listing · Full marketing suite in &lt;30 seconds</div>
         </a>
 
-        <a href="work/trading-bot.html" class="work-card reveal">
+        <a href="trading-bot.html" class="work-card reveal">
           <div class="work-card__client">Trading Bot · Finance Automation</div>
           <h3 class="work-card__title">Autonomous market scanner and trade executor</h3>
           <p class="work-card__desc">Built to eliminate the need to watch the market manually. Scans signals, applies custom strategy logic, and executes trades around the clock — no babysitting, no missed windows.</p>
@@ -452,7 +469,7 @@
       <div class="about__inner">
         <div class="about__photo">
           <img src="assets/nick-ramos.jpg" alt="Nick Ramos — Founder of Ramapp Solutions" />
-          <a href="https://linkedin.com/in/nick-ramos-" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:#d4af37;font-size:0.82rem;font-weight:600;text-decoration:none;letter-spacing:0.02em;border:1px solid rgba(212,175,55,0.25);border-radius:8px;padding:8px 16px;background:rgba(212,175,55,0.04);">
+          <a href="https://linkedin.com/in/nick-ramos-" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:#f5c832;font-size:0.82rem;font-weight:600;text-decoration:none;letter-spacing:0.02em;border:1px solid rgba(245,200,50,0.25);border-radius:10px;padding:8px 16px;background:rgba(245,200,50,0.05);">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             Connect on LinkedIn
           </a>
@@ -555,7 +572,7 @@
 
       <div class="reveal" style="margin-top:28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
         <a href="pricing.html" class="btn btn--ghost">See full pricing →</a>
-        <span style="font-size:0.85rem;color:#6b6456;">The first call is always free. No commitment required.</span>
+        <span style="font-size:0.85rem;color:#64748b;">The first call is always free. No commitment required.</span>
       </div>
     </div>
   </section>
@@ -565,11 +582,11 @@
   ══════════════════════════════════════════ -->
   <section style="padding:0 0 64px;">
     <div class="container">
-      <div class="reveal" style="background:#14120d;border:1px solid rgba(212,175,55,0.15);border-radius:16px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div class="reveal" style="background:#0d1120;border:1px solid rgba(245,200,50,0.15);border-radius:16px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
         <div>
-          <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#d4af37;margin:0 0 8px;">Running a small business?</p>
-          <p style="font-size:1.1rem;font-weight:700;color:#f5f0e8;margin:0 0 6px;">There's a page built specifically for you.</p>
-          <p style="font-size:0.875rem;color:#6b6456;margin:0;max-width:480px;line-height:1.6;">Concrete examples of what AI can do for restaurants, contractors, retailers, clinics, and service businesses — with plain-English explanations and honest pricing.</p>
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#f5c832;margin:0 0 8px;">Running a small business?</p>
+          <p style="font-size:1.1rem;font-weight:700;color:#f1f5f9;margin:0 0 6px;">There's a page built specifically for you.</p>
+          <p style="font-size:0.875rem;color:#64748b;margin:0;max-width:480px;line-height:1.6;">Concrete examples of what AI can do for restaurants, contractors, retailers, clinics, and service businesses — with plain-English explanations and honest pricing.</p>
         </div>
         <a href="small-business.html" class="btn btn--ghost" style="white-space:nowrap;flex-shrink:0;">See what's possible →</a>
       </div>
@@ -582,16 +599,16 @@
   <section class="hp-section hp-section--alt">
     <div class="container" style="max-width:680px;">
       <div class="reveal" style="text-align:center;">
-        <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#f5f0e8;line-height:1.2;margin:0 0 20px;">Ready to build something?</h2>
-        <p style="font-size:1rem;color:#6b6456;line-height:1.7;margin:0 0 36px;">Tell me what you're trying to solve. I'll respond within 24 hours with a clear plan — no sales pitch, no commitment.</p>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#f1f5f9;line-height:1.2;margin:0 0 20px;">Ready to build something?</h2>
+        <p style="font-size:1rem;color:#64748b;line-height:1.7;margin:0 0 36px;">Tell me what you're trying to solve. I'll respond within 24 hours with a clear plan — no sales pitch, no commitment.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
           <a href="contact.html" class="btn btn--primary btn--lg">Start a Project</a>
           <a href="#" class="btn btn--ghost btn--lg btn--calendly" onclick="openCalendly(event)">Book a Free Call</a>
         </div>
-        <p style="font-size:0.8rem;color:#3d3830;margin-top:24px;">
+        <p style="font-size:0.8rem;color:#475569;margin-top:24px;">
           📍 Aurora, IL &nbsp;·&nbsp;
-          <a href="tel:+16304530223" style="color:#3d3830;text-decoration:none;">(630) 453-0223</a> &nbsp;·&nbsp;
-          <a href="mailto:nramos@ramappsolutions.com" style="color:#3d3830;text-decoration:none;">nramos@ramappsolutions.com</a>
+          <a href="tel:+16304530223" style="color:#94a3b8;text-decoration:none;">(630) 453-0223</a> &nbsp;·&nbsp;
+          <a href="mailto:nramos@ramappsolutions.com" style="color:#94a3b8;text-decoration:none;">nramos@ramappsolutions.com</a>
         </p>
       </div>
     </div>
@@ -603,13 +620,13 @@
       <div class="footer__brand">
         <a href="index.html" class="nav__logo">
           <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="40" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f5f0e8" letter-spacing="-1">Ramapp</text>
-            <line x1="0" y1="46" x2="198" y2="46" stroke="#d4af37" stroke-width="1.5"/>
-            <text x="198" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#6b6456" letter-spacing="4" text-anchor="end">Solutions</text>
+            <text x="0" y="40" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f1f5f9" letter-spacing="-1">Ramapp</text>
+            <line x1="0" y1="46" x2="198" y2="46" stroke="#f5c832" stroke-width="1.5"/>
+            <text x="198" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#64748b" letter-spacing="4" text-anchor="end">Solutions</text>
           </svg>
         </a>
         <p>AI tools and automation systems for businesses that move fast.</p>
-        <p style="font-size:0.82rem;color:#6b6456;margin:4px 0 0;">Aurora, IL &nbsp;·&nbsp; <a href="tel:+16304530223" style="color:#6b6456;text-decoration:none;">(630) 453-0223</a></p>
+        <p style="font-size:0.82rem;color:#64748b;margin:4px 0 0;">Aurora, IL &nbsp;·&nbsp; <a href="tel:+16304530223" style="color:#64748b;text-decoration:none;">(630) 453-0223</a></p>
         <div class="footer__social">
           <a href="https://linkedin.com/in/nick-ramos-" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
