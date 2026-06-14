@@ -3,9 +3,10 @@
   "configurations": [
     {
       "name": "ramapp-preview",
-      "runtimeExecutable": "bash",
-      "runtimeArgs": ["/Users/nickramos/ramappsolutions/serve.sh"],
-      "port": 5002
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5056"],
+      "port": 5056,
+      "autoPort": true
     }
   ]
 }
