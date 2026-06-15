@@ -176,6 +176,14 @@ Visual language: Warm, trustworthy, nature-forward. Boutique without being preci
 
 ---
 
+## Corrections & Hard Requirements
+
+1. **Ramapp Solutions nav/logo**: Display the hexagon "R" SVG logo (`/assets/favicon.svg`) as an `<img>` tag alongside the full wordmark "Ramapp Solutions" — never just "ramapp." or abbreviated text.
+2. **No emojis anywhere**: Both sites must be 100% emoji-free. Replace all emoji with SVG icons (Heroicons/Lucide inline SVG) or plain text. This includes nav, hero, trust signals, cards, badges, section labels, and the Trovilo popup.
+3. **Trovilo product images**: Product cards on the homepage must use actual Shopify CDN image URLs fetched via the Admin API — never placeholder emoji, icons, or stock imagery. Fetch top 6 products and embed real `<img src="...">` tags in the section liquid.
+
+---
+
 ## Implementation Order
 
 ### Phase 1 — Design Tokens (both projects, ~1 hour)
