@@ -495,7 +495,7 @@
       gap: 12px;
     }
     .who-list li::before {
-      content: '✓';
+      content: '';
       color: #d4af37;
       font-weight: 700;
       font-size: 0.9rem;
@@ -621,12 +621,9 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">
-        <svg class="logo-svg" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions">
-          <text x="0" y="40" font-family="Inter,sans-serif" font-weight="800" font-size="36" fill="#f1f5f9" letter-spacing="-1">Ramapp</text>
-          <line x1="0" y1="46" x2="198" y2="46" stroke="#d4af37" stroke-width="1.5"/>
-          <text x="198" y="60" font-family="Inter,sans-serif" font-weight="300" font-size="10" fill="#64748b" letter-spacing="4" text-anchor="end">Solutions</text>
-        </svg>
+      <a href="index.html" class="nav__logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <img src="/assets/favicon.svg" alt="Ramapp Solutions logo" width="36" height="36" style="display:block;flex-shrink:0;" />
+        <span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:1.15rem;color:#f1f5f9;letter-spacing:-0.3px;white-space:nowrap;">Ramapp <span style="color:#f5c832;">Solutions</span></span>
       </a>
             <ul class="nav__links">
         <li><a href="services.html"  data-nav="services">Services</a></li>
@@ -708,7 +705,7 @@
                 <div class="review-mock__date">3 weeks ago</div>
               </div>
             </div>
-            <div class="review-mock__stars">★★★★★</div>
+            <div class="review-mock__stars">5.0 / 5</div>
             <p class="review-mock__text">Honestly blown away. Came in for a basic cut and left looking like a completely different person. The staff is so welcoming and professional. I'll definitely be back — already booked my next appointment before I walked out the door!</p>
             <div class="review-mock__no-response">No response from owner yet.</div>
           </div>
@@ -731,13 +728,13 @@
           <div class="step__title">We watch every platform.</div>
           <p class="step__body">Our system monitors your Google Business Profile and Yelp listing around the clock. The moment a new review comes in, we're on it.</p>
         </div>
-        <div class="steps-row__arrow">→</div>
+        <div class="steps-row__arrow"></div>
         <div class="step">
           <span class="step__num">Step 02 — Write</span>
           <div class="step__title">AI drafts the response.</div>
           <p class="step__body">We build a brand voice profile for your business during setup. Every response is personalized to the reviewer, the rating, and the content of the review — in your voice.</p>
         </div>
-        <div class="steps-row__arrow">→</div>
+        <div class="steps-row__arrow"></div>
         <div class="step">
           <span class="step__num">Step 03 — Post</span>
           <div class="step__title">Live within 24 hours.</div>
@@ -760,7 +757,7 @@
         <div class="sample-card reveal">
           <div class="sample-card__review">
             <div class="sample-card__rating">
-              <span class="sample-card__stars">★★★★★</span>
+              <span class="sample-card__stars">5.0 / 5</span>
               <span class="sample-card__rating-label">5-star</span>
             </div>
             <div class="sample-card__reviewer">Marcus T.</div>
@@ -777,7 +774,7 @@
         <div class="sample-card reveal">
           <div class="sample-card__review">
             <div class="sample-card__rating">
-              <span class="sample-card__stars">★★★</span><span class="sample-card__stars sample-card__stars--gray">★★</span>
+              <span class="sample-card__stars">–––</span><span class="sample-card__stars sample-card__stars--gray">––</span>
               <span class="sample-card__rating-label">3-star</span>
             </div>
             <div class="sample-card__reviewer">Priya K.</div>
@@ -794,7 +791,7 @@
         <div class="sample-card reveal">
           <div class="sample-card__review">
             <div class="sample-card__rating">
-              <span class="sample-card__stars">★</span><span class="sample-card__stars sample-card__stars--gray">★★★★</span>
+              <span class="sample-card__stars">–</span><span class="sample-card__stars sample-card__stars--gray">––––</span>
               <span class="sample-card__rating-label">1-star</span>
             </div>
             <div class="sample-card__reviewer">David R.</div>
