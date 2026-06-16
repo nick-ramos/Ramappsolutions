@@ -140,14 +140,6 @@
       sugg: ['See it live', 'Pricing', 'Book a free call']
     },
 
-    // ── LISTINGOS ─────────────────────────
-    {
-      k: ['listingos', 'real estate', 'listing', 'agent', 'property description', 'mls', 'realtor', 'property marketing'],
-      r: `ListingOS is an AI content engine built for real estate agents — fill out one form with listing details and it generates a full marketing suite in under 30 seconds.\n\nOutput from one form:\n— MLS-ready property description\n— Marketing email to your list\n— Follow-up text message\n— Instagram caption\n— Facebook post\n— Twitter/X caption\n\nBefore: agents spent 2+ hours writing all this manually per listing.\nAfter: 30 seconds and it's done.\n\nNick builds custom versions for agents, teams, and brokerages — branded to your business, with your tone of voice.\n\n💵 Custom version: starting at $750\n\nWant to see a demo or get a quote?`,
-      cta: 'contact',
-      sugg: ['Pricing', 'Book a free call', 'What else can you build?']
-    },
-
     // ── TRADING BOT ───────────────────────
     {
       k: ['trading bot', 'trading', 'stocks', 'market scanner', 'alpaca', 'automated trading', 'finance bot', 'investment'],
@@ -215,7 +207,7 @@
     // ── SEE WORK / EXAMPLES ───────────────
     {
       k: ['portfolio', 'examples', 'see your work', 'what have you built', 'case study', 'projects', 'past work'],
-      r: `Here's what Nick has built:\n\n🏐 VolleyCenter\nAll-in-one club management platform — replaced 3 apps and every spreadsheet. Rosters, scheduling, AI practice plans, payments, messaging.\n→ Live: volleycenter.ramappsolutions.com\n\n🏠 ListingOS\nAI content engine for real estate agents. One form → full marketing suite in under 30 seconds. Saves 2+ hours per listing.\n\n📈 Autonomous Trading Bot\n24/7 market scanner and trade executor. Built on Python + Alpaca API. Zero manual intervention since launch.\n→ Live: trader.ramappsolutions.com\n\nFull case studies at ramappsolutions.com/work`,
+      r: `Here's what Nick has built:\n\n🏐 VolleyCenter\nAll-in-one club management platform — replaced 3 apps and every spreadsheet. Rosters, scheduling, AI practice plans, payments, messaging.\n→ Live: volleycenter.ramappsolutions.com\n\n📈 Autonomous Trading Bot\n24/7 market scanner and trade executor. Built on Python + Alpaca API. Zero manual intervention since launch.\n→ Live: trader.ramappsolutions.com\n\nFull case studies at ramappsolutions.com/work`,
       cta: null,
       sugg: ['Pricing', 'How long does it take?', 'Book a free call']
     },
