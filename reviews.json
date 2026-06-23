@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Club 1 Volleyball",
+    "company": "Club Management Platform",
+    "rating": 5,
+    "review": "VolleyCenter completely changed how we manage our club. Scheduling, rosters, player tracking — everything is in one place and actually works. Our coaches stopped chasing spreadsheets and our parents finally know what's going on. Nick built exactly what we needed without overcomplicating it."
+  },
+  {
+    "name": "Marcus T.",
+    "company": "Owner, Residential Remodeling",
+    "rating": 5,
+    "review": "I used to spend two hours writing proposals every time I got a new lead. Nick built something that does it in minutes. I fill out a quick form and get back a polished document I can send the same day. I've already won two jobs just because I responded faster than everyone else bidding."
+  },
+  {
+    "name": "Priya S.",
+    "company": "Owner, Marketing Agency",
+    "rating": 5,
+    "review": "We were dropping leads because nobody was following up fast enough. Nick built a system that responds automatically within a minute — personalized message, booking link, everything. Our appointment rate jumped the first week it went live."
+  }
+]

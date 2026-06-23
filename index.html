@@ -503,36 +503,7 @@
         @media (max-width:900px) { .testimonials__grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width:580px) { .testimonials__grid { grid-template-columns: 1fr; } }
       </style>
-      <div class="testimonials__grid" style="gap:20px;">
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__stars">5.0 / 5</div>
-          <p class="testimonial-card__quote">VolleyCenter completely changed how we manage our club. Scheduling, rosters, player tracking — everything is in one place and actually works. Our coaches stopped chasing spreadsheets and our parents finally know what's going on. Nick built exactly what we needed without overcomplicating it.</p>
-          <div class="testimonial-card__author">
-            <span class="testimonial-card__name">Club 1 Volleyball</span>
-            <span class="testimonial-card__role">Club Management Platform</span>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__stars">5.0 / 5</div>
-          <p class="testimonial-card__quote">I used to spend two hours writing proposals every time I got a new lead. Nick built something that does it in minutes. I fill out a quick form and get back a polished document I can send the same day. I've already won two jobs just because I responded faster than everyone else bidding.</p>
-          <div class="testimonial-card__author">
-            <span class="testimonial-card__name">Marcus T.</span>
-            <span class="testimonial-card__role">Owner, Residential Remodeling</span>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal">
-          <div class="testimonial-card__stars">5.0 / 5</div>
-          <p class="testimonial-card__quote">We were dropping leads because nobody was following up fast enough. Nick built a system that responds automatically within a minute — personalized message, booking link, everything. Our appointment rate jumped the first week it went live.</p>
-          <div class="testimonial-card__author">
-            <span class="testimonial-card__name">Priya S.</span>
-            <span class="testimonial-card__role">Owner, Marketing Agency</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="testimonials__grid" id="testimonialsGrid" style="gap:20px;"></div>
 
       <!-- Leave a Review CTA -->
       <div style="margin-top:48px;background:#0d1120;border:1px solid rgba(245,200,50,0.12);border-radius:16px;padding:40px 44px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" id="leave-review">
@@ -731,6 +702,29 @@
   <script src="js/main.js"></script>
   <script src="js/chatbot.js"></script>
   <script>
+    // Load reviews from reviews.json
+    (function () {
+      const grid = document.getElementById('testimonialsGrid');
+      if (!grid) return;
+      fetch('reviews.json?v=' + Date.now())
+        .then(r => r.json())
+        .then(reviews => {
+          grid.innerHTML = reviews.map(r => `
+            <div class="testimonial-card reveal">
+              <div class="testimonial-card__stars">${r.rating}.0 / 5</div>
+              <p class="testimonial-card__quote">${r.review}</p>
+              <div class="testimonial-card__author">
+                <span class="testimonial-card__name">${r.name}</span>
+                ${r.company ? `<span class="testimonial-card__role">${r.company}</span>` : ''}
+              </div>
+            </div>
+          `).join('');
+        })
+        .catch(() => {
+          grid.innerHTML = '<p style="color:#64748b;font-size:0.9rem;">Reviews unavailable right now.</p>';
+        });
+    })();
+
     // Star rating
     (function () {
       const stars = document.querySelectorAll('#starRating .star');
