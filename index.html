@@ -709,8 +709,8 @@
       fetch('reviews.json?v=' + Date.now())
         .then(r => r.json())
         .then(reviews => {
-          grid.innerHTML = reviews.map(r => `
-            <div class="testimonial-card reveal">
+          grid.innerHTML = reviews.map((r, i) => `
+            <div class="testimonial-card" style="opacity:0;transform:translateY(20px);transition:opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s;">
               <div class="testimonial-card__stars">${r.rating}.0 / 5</div>
               <p class="testimonial-card__quote">${r.review}</p>
               <div class="testimonial-card__author">
@@ -719,6 +719,16 @@
               </div>
             </div>
           `).join('');
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.style.opacity = '1';
+                e.target.style.transform = 'translateY(0)';
+                obs.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          grid.querySelectorAll('.testimonial-card').forEach(el => obs.observe(el));
         })
         .catch(() => {
           grid.innerHTML = '<p style="color:#64748b;font-size:0.9rem;">Reviews unavailable right now.</p>';
