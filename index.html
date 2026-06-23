@@ -798,16 +798,22 @@
       fetch('reviews.json?v=' + Date.now())
         .then(r => r.json())
         .then(reviews => {
-          track.innerHTML = reviews.map(r => `
+          const LIMIT = 160;
+          track.innerHTML = reviews.map((r, i) => {
+            const full = r.review.replace(/\n/g, ' ');
+            const short = full.length > LIMIT ? full.slice(0, LIMIT).trimEnd() + '…' : full;
+            const collapsible = full.length > LIMIT;
+            return `
             <div class="testimonial-card">
               <div class="testimonial-card__stars">${r.rating}.0 / 5</div>
-              <p class="testimonial-card__quote">${r.review}</p>
-              <div class="testimonial-card__author">
+              <p class="testimonial-card__quote" id="rq${i}">${short}</p>
+              ${collapsible ? `<button onclick="(function(b,p,f,s){p.textContent=p.textContent===s?(b.textContent='Show less',f):(b.textContent='Read more',s)})(this,document.getElementById('rq${i}'),'${full.replace(/'/g,"\\'")}','${short.replace(/'/g,"\\'")}');" style="background:none;border:none;color:#f5c832;font-size:0.78rem;font-weight:600;cursor:pointer;padding:4px 0;margin-top:4px;">Read more</button>` : ''}
+              <div class="testimonial-card__author" style="margin-top:auto;padding-top:12px;">
                 <span class="testimonial-card__name">${r.name}</span>
                 ${r.company ? `<span class="testimonial-card__role">${r.company}</span>` : ''}
               </div>
-            </div>
-          `).join('');
+            </div>`;
+          }).join('');
 
           buildDots(reviews.length);
           goTo(0, reviews.length);
