@@ -72,16 +72,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ramappsolutions.com/template-marketplace.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://ramappsolutions.com/review-response.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://ramappsolutions.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
