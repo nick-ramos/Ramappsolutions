@@ -177,7 +177,7 @@ ul { list-style: none; }
 .nav__links li a:hover { color: var(--text); }
 .nav__links .nav__cta {
   background: var(--cyan);
-  color: #0c0b09;
+  color: #0c0b09 !important;
   padding: 8px 20px;
   border-radius: var(--radius-sm);
   font-weight: 700;
