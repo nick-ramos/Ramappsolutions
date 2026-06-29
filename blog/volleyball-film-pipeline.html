@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How I Built an AI That Names &amp; Files a Coach's Game Film — Ramapp Solutions</title>
+  <meta name="description" content="A walkthrough of an AI video pipeline that watches a volleyball coach's game film, names it from what's actually happening, and files it into Google Drive and a tracking sheet — automatically." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <style>
+    /* ── Article layout ── */
+    .article {
+      padding: 80px 0 120px;
+    }
+    .article__inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── Article header ── */
+    .article__header {
+      margin-bottom: 56px;
+    }
+    .article__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .article__label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: #d4af37;
+    }
+    .article__title {
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: #f1f5f9;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .article__meta {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #64748b;
+      flex-wrap: wrap;
+    }
+    .article__meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #334155;
+    }
+    .article__divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.3), transparent);
+      margin-top: 28px;
+    }
+
+    /* ── Article body ── */
+    .article__body {
+      color: #94a3b8;
+      font-size: 1.0rem;
+      line-height: 1.85;
+    }
+    .article__body h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .article__body h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin: 32px 0 12px;
+    }
+    .article__body p {
+      margin-bottom: 20px;
+    }
+    .article__body strong {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .article__body a {
+      color: #d4af37;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+      transition: border-color 0.2s;
+    }
+    .article__body a:hover {
+      border-color: #d4af37;
+    }
+    .article__body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+    .article__body ul li {
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+    .article__body ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #d4af37;
+      font-size: 0.85em;
+    }
+
+    /* ── Code callout box ── */
+    .code-block {
+      background: #0c0b09;
+      border: 1px solid rgba(212,175,55,0.15);
+      border-left: 3px solid #d4af37;
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      margin: 32px 0;
+      overflow-x: auto;
+    }
+    .code-block__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #c9a227;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+      opacity: 0.8;
+    }
+    .code-block pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #d4af37;
+      line-height: 1.7;
+      margin: 0;
+      white-space: pre;
+    }
+    .code-block pre .comment {
+      color: #334155;
+    }
+    .code-block pre .keyword {
+      color: #c9a227;
+    }
+    .code-block pre .string {
+      color: #94e4b0;
+    }
+
+    /* ── Architecture diagram (text-based) ── */
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 36px 0;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .arch-flow__node {
+      background: rgba(212,175,55,0.06);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #d4af37;
+      text-align: center;
+      flex: 1;
+      min-width: 130px;
+    }
+    .arch-flow__node span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: #64748b;
+      margin-top: 4px;
+      font-style: italic;
+    }
+    .arch-flow__arrow {
+      color: #334155;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      padding: 0 2px;
+    }
+
+    /* ── CTA box ── */
+    .article__cta {
+      background: rgba(212,175,55,0.05);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 16px;
+      padding: 40px 44px;
+      margin-top: 72px;
+      text-align: center;
+    }
+    .article__cta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #c9a227;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+    .article__cta h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .article__cta p {
+      color: #64748b;
+      font-size: 0.93rem;
+      margin-bottom: 28px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Back link ── */
+    .article__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #64748b;
+      text-decoration: none;
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+    .article__back:hover { color: #d4af37; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-64ZTD1V2W8");</script>
+</head>
+<body data-page="blog">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions"><g transform="translate(2,9) scale(0.58)"><polygon points="48,14 81.6,33 48,52 14.4,33" fill="#f5c832"/><polygon points="14.4,33 48,52 48,88 14.4,69" fill="#c79f2e"/><polygon points="81.6,33 48,52 48,88 81.6,69" fill="#a4801f"/></g><text x="60" y="40" font-family="'Poppins',Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-0.5">ramapp</text><circle cx="184" cy="34" r="3.6" fill="#f5c832"/><text x="62" y="55" font-family="'Poppins',Inter,sans-serif" font-weight="700" font-size="8.5" letter-spacing="4" fill="#f5c832">SOLUTIONS</text></svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../services.html" data-nav="services">Services</a></li>
+        <li><a href="../work.html" data-nav="work">Work</a></li>
+        <li><a href="../process.html" data-nav="process">How It Works</a></li>
+        <li><a href="../pricing.html" data-nav="pricing">Pricing</a></li>
+        <li><a href="../blog.html" data-nav="blog">Blog</a></li>
+        <li><a href="../contractor-proposals.html" data-nav="contractor">Proposals</a></li>
+        <li></li>
+        <li></li>
+        <li><a href="../contact.html" class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="../services.html">Services</a>
+      <a href="../work.html">Work</a>
+      <a href="../process.html">How It Works</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contractor-proposals.html">Proposals</a>      <a href="../contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE -->
+  <article class="article">
+    <div class="container">
+      <div class="article__inner">
+
+        <a href="../blog.html" class="article__back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Blog
+        </a>
+
+        <!-- HEADER -->
+        <header class="article__header">
+          <div class="article__label">AI + Automation</div>
+          <h1 class="article__title">How I Built an AI That Names &amp; Files a Coach's Game Film for Him</h1>
+          <div class="article__meta">
+            <span>Nick Ramos</span>
+            <span class="article__meta-dot"></span>
+            <span>June 2026</span>
+            <span class="article__meta-dot"></span>
+            <span>7 min read</span>
+          </div>
+          <div class="article__divider"></div>
+        </header>
+
+        <!-- BODY -->
+        <div class="article__body">
+
+          <p>Every small business has <em>that</em> task — the repetitive, time-eating chore that has nothing to do with why you started, but somehow swallows an afternoon every week.</p>
+
+          <p>For a volleyball coach I work with — Kha, who runs an online coaching business — it was video. Players send him film, he records drills and breakdowns, and every single clip had to be hand-renamed, dropped into the right Google Drive folder, linked, and logged into a tracking sheet for his editing team. Eight to ten videos a week, every week. Pure file admin standing between him and actually coaching.</p>
+
+          <p>So I built him a tool that does all of it the moment he drops a video into a folder. Here's how it works.</p>
+
+          <h2>The Manual Loop</h2>
+
+          <p>Kha's old process was five steps, every clip: connect the drive, rename the file, create a dated subfolder in Drive, upload the clip and copy the link, then paste that link and a title into the sheet his editors watch. None of it is hard. All of it is friction — and friction multiplied by ten videos a week is a part-time job you never agreed to.</p>
+
+          <p>The goal wasn't to <em>replace</em> his system. His editors already knew it. The goal was to make the system run itself.</p>
+
+          <h2>The Architecture</h2>
+
+          <p>The tool is a quiet background watcher on his Mac. Each stage has one job and hands off to the next through a clean interface — which means I can swap the AI model or the storage layer without touching anything else.</p>
+
+          <div class="arch-flow">
+            <div class="arch-flow__node">Watch Folder<span>new clip detected</span></div>
+            <div class="arch-flow__arrow">&#x25B6;</div>
+            <div class="arch-flow__node">Understand It<span>AI watches the video</span></div>
+            <div class="arch-flow__arrow">&#x25B6;</div>
+            <div class="arch-flow__node">Name &amp; File<span>subfolder in Drive</span></div>
+            <div class="arch-flow__arrow">&#x25B6;</div>
+            <div class="arch-flow__node">Log the Row<span>into his sheet</span></div>
+          </div>
+
+          <h3>Watching the folder</h3>
+
+          <p>Kha drops a clip into a single inbox folder — that's the only thing he ever touches. The watcher notices the new file, but it waits until the file has finished writing before doing anything (a half-uploaded recording is worse than no recording). It also remembers what it has already processed, so a reconnected drive never doubles up.</p>
+
+          <h3>Understanding the video</h3>
+
+          <p>This is where it earns its keep. Instead of a generic model, I taught it volleyball — positions, skills, shot types, set tempo, even how to read a scoreboard. It watches the actual footage (and listens to Kha's voiceover when he narrates) and returns a clean, structured read of the clip: what skill, what situation, and a short, human title.</p>
+
+          <p>The single most important design decision was <strong>teaching it when to say "I don't know."</strong> On a focused coaching clip where Kha is talking through one player, it can confidently name the position. On a wide game clip with two full teams and no narration, even the best AI genuinely can't tell which player is which — so instead of guessing wrong, it steps back and describes only what it can actually see.</p>
+
+          <div class="code-block">
+            <div class="code-block__label">naming.py — never guess what you can't know</div>
+            <pre><span class="keyword">if</span> scene == <span class="string">"single_focus"</span>:        <span class="comment"># one player, usually narrated</span>
+    title = f<span class="string">"{position} {skill} {situation}"</span>   <span class="comment"># "Outside hitter block, set point"</span>
+<span class="keyword">else</span>:                              <span class="comment"># wide game clip — too ambiguous</span>
+    title = f<span class="string">"{skill} {situation}"</span>            <span class="comment"># "Game point block" — no guessed position</span></pre>
+          </div>
+
+          <p>Accuracy over impressiveness. A confidently wrong label is worse than an honest, general one — and it's the difference between a flashy demo and a tool someone trusts every single day.</p>
+
+          <h3>Filing it into his system — not a new one</h3>
+
+          <p>Here's the part that made the whole thing land: the tool doesn't invent its own folders or its own sheet. It does <em>exactly</em> what Kha did by hand. It creates the same dated subfolder under his existing Drive folder, uploads the clip inside, grabs the folder link, and appends a row to the same tracking sheet his editors already open every day.</p>
+
+          <p>His editors didn't have to learn a thing. From their side, the rows just started appearing on their own.</p>
+
+          <h2>What Makes It Actually Work</h2>
+
+          <p>The flow above is the easy 80%. The last 20% — the part that decides whether a tool gets trusted or quietly abandoned — is in the details:</p>
+
+          <ul>
+            <li><strong>It fits the existing workflow.</strong> No new app for the editors, no migration, no retraining. The tool adapted to the humans, not the other way around.</li>
+            <li><strong>He owns his own data.</strong> It signs in as Kha through Google, so every file lands in <em>his</em> Drive, under his account — not some service we control.</li>
+            <li><strong>Nothing is ever lost.</strong> Originals are kept, every clip is backed up to Drive, and a file the AI can't process is quarantined and flagged — never silently dropped.</li>
+            <li><strong>It runs itself.</strong> It starts in the background every time he opens his laptop. He never launches it. He just drops clips.</li>
+          </ul>
+
+          <h2>The Result</h2>
+
+          <p>A weekly chunk of file admin disappeared. His editors kept the exact workflow they already knew. And Kha got his time back for the work that actually grows the business — coaching and content.</p>
+
+          <p>The hardest part of building this wasn't the AI. It was two things that have nothing to do with models: making the tool <strong>humble enough</strong> to admit what it can't see, and <strong>respectful enough</strong> to slot into a system the humans already trusted. Get those right, and the automation just... disappears into the background. Which is exactly where good automation belongs.</p>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="article__cta">
+          <div class="article__cta-label">Work with us</div>
+          <h3>Got a task that's quietly eating your week?</h3>
+          <p>Whether it's video, data, or any repetitive workflow — I build custom AI automations that run in the background while you focus on what matters.</p>
+          <a href="../contact.html" class="btn btn--primary">Start a Project</a>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg"><g transform="translate(2,9) scale(0.58)"><polygon points="48,14 81.6,33 48,52 14.4,33" fill="#f5c832"/><polygon points="14.4,33 48,52 48,88 14.4,69" fill="#c79f2e"/><polygon points="81.6,33 48,52 48,88 81.6,69" fill="#a4801f"/></g><text x="60" y="40" font-family="'Poppins',Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-0.5">ramapp</text><circle cx="184" cy="34" r="3.6" fill="#f5c832"/><text x="62" y="55" font-family="'Poppins',Inter,sans-serif" font-weight="700" font-size="8.5" letter-spacing="4" fill="#f5c832">SOLUTIONS</text></svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="../services.html">Services</a>
+        <a href="../process.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../blog.html">Blog</a>
+      <a href="../contractor-proposals.html">Proposals</a>        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>Aurora, IL &middot; <a href="tel:+16304530223" style="color:inherit;text-decoration:none;">(630) 453-0223</a> &middot; ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/chatbot.js"></script>
+</body>
+</html>
