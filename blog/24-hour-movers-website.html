@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Built a Website for My Brother's Moving Business — Ramapp Solutions</title>
+  <meta name="description" content="A full walkthrough of building a production website for a small moving company — quote forms, lead notifications, booking calendar, photo gallery, and a custom domain — in a weekend." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=2" />
+  <meta property="og:title" content="I Built a Website for My Brother's Moving Business" />
+  <meta property="og:description" content="A full walkthrough of building a production website for a small moving company — quote forms, lead notifications, booking calendar, photo gallery, and a custom domain." />
+  <meta property="og:url" content="https://ramappsolutions.com/blog/24-hour-movers-website.html" />
+  <meta property="og:type" content="article" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-64ZTD1V2W8');</script>
+  <style>
+    .article { padding: 80px 0 120px; }
+    .article__inner { max-width: 760px; margin: 0 auto; }
+    .article__header { margin-bottom: 56px; }
+    .article__label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: #d4af37;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .article__label::before {
+      content: ''; display: inline-block;
+      width: 24px; height: 2px; background: #d4af37;
+    }
+    .article__title {
+      font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 800;
+      color: #f1f5f9; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .article__meta {
+      display: flex; gap: 20px; align-items: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      color: #64748b; flex-wrap: wrap;
+    }
+    .article__meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #334155; }
+    .article__divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.3), transparent);
+      margin-top: 28px;
+    }
+    .article__body { color: #94a3b8; font-size: 1.0rem; line-height: 1.85; }
+    .article__body h2 {
+      font-size: 1.35rem; font-weight: 700; color: #e2e8f0;
+      margin: 48px 0 16px; letter-spacing: -0.01em;
+    }
+    .article__body h3 {
+      font-size: 1.05rem; font-weight: 600; color: #cbd5e1;
+      margin: 32px 0 12px;
+    }
+    .article__body p { margin: 0 0 20px; }
+    .article__body ul, .article__body ol { margin: 0 0 20px 20px; }
+    .article__body li { margin-bottom: 8px; }
+    .article__body strong { color: #e2e8f0; font-weight: 600; }
+    .article__body a { color: #f5c832; text-decoration: none; }
+    .article__body a:hover { text-decoration: underline; }
+    .article__body code {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85em;
+      background: rgba(255,255,255,0.07); padding: 2px 7px; border-radius: 4px;
+      color: #f5c832;
+    }
+    .article__body pre {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 20px 24px; overflow-x: auto;
+      margin: 0 0 24px; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem; line-height: 1.7; color: #94a3b8;
+    }
+    .callout {
+      background: rgba(245,200,50,0.06); border-left: 3px solid #f5c832;
+      border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 28px 0;
+      color: #94a3b8; font-size: 0.95rem;
+    }
+    .callout strong { color: #f5c832; }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; margin: 28px 0;
+    }
+    @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 20px;
+    }
+    .feature-card__icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .feature-card__title { font-size: 0.9rem; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+    .feature-card__desc { font-size: 0.85rem; color: #64748b; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      color: #f5c832; text-decoration: none; margin-bottom: 48px;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .site-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,200,50,0.1); border: 1px solid rgba(245,200,50,0.25);
+      color: #f5c832; padding: 10px 20px; border-radius: 8px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .site-link:hover { background: rgba(245,200,50,0.18); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="article">
+      <div class="container">
+        <div class="article__inner">
+
+          <a href="../blog.html" class="back-link">&#8592; Back to Blog</a>
+
+          <div class="article__header">
+            <div class="article__label">Small Business &bull; Web Dev</div>
+            <h1 class="article__title">I Built a Website for My Brother's Moving Business</h1>
+            <div class="article__meta">
+              <span>Nick Ramos</span>
+              <div class="article__meta-dot"></div>
+              <span>June 2026</span>
+              <div class="article__meta-dot"></div>
+              <span>7 min read</span>
+            </div>
+            <div class="article__divider"></div>
+          </div>
+
+          <div class="article__body">
+
+            <p>My brother runs <strong>24-Hour Movers</strong> — a two-man moving operation out of the Chicago suburbs. He had a flyer, a phone number, and 26 five-star Google reviews. No website. Leads were word-of-mouth only.</p>
+
+            <p>He asked me to build something. I told him I'd have it live in a weekend. This is how I built it, what I ran into, and what I'd do differently.</p>
+
+            <h2>The Brief</h2>
+
+            <p>A moving company website has one job: convert a visitor into a booked lead. Everything else is secondary. So the requirements were tight:</p>
+
+            <ul>
+              <li>A quote request form that actually notifies the owner</li>
+              <li>Pricing that's honest and upfront (no "call for pricing" nonsense)</li>
+              <li>Google reviews visible without making people leave the page</li>
+              <li>A booking calendar so the owner can show availability and avoid double-bookings</li>
+              <li>A photo gallery the owner can update himself without touching code</li>
+              <li>A real domain, not a <code>netlify.app</code> URL</li>
+            </ul>
+
+            <div class="callout">
+              <strong>Constraint:</strong> No CMS, no React, no build step. Static HTML, CSS, and vanilla JS only. This site needs to be maintainable by someone who isn't a developer.
+            </div>
+
+            <h2>The Stack</h2>
+
+            <p>The whole thing runs on <strong>Netlify</strong> — static hosting plus serverless functions for anything that needs a backend. Here's what each piece does:</p>
+
+            <ul>
+              <li><strong>Netlify Functions</strong> — Node.js for the quote form handler, gallery CRUD, booking calendar API, and PIN-gated owner tools</li>
+              <li><strong>Netlify Blobs</strong> — key-value blob store for gallery photos and the booking index. No database needed.</li>
+              <li><strong>Resend</strong> — transactional email for lead notifications. The owner gets a formatted HTML email every time someone submits a quote, with a one-click "Accept & Add to Schedule" button.</li>
+              <li><strong>Cloudflare</strong> — DNS, and eventually the domain itself (<code>24hourmoversllc.com</code>)</li>
+            </ul>
+
+            <h2>What I Built</h2>
+
+            <div class="feature-grid">
+              <div class="feature-card">
+                <div class="feature-card__icon">📋</div>
+                <div class="feature-card__title">Quote Form + Lead Notification</div>
+                <div class="feature-card__desc">Full address fields, service type, preferred date picker. Owner gets an HTML email with all details and a one-click accept button.</div>
+              </div>
+              <div class="feature-card">
+                <div class="feature-card__icon">📅</div>
+                <div class="feature-card__title">Capacity-Aware Booking Calendar</div>
+                <div class="feature-card__desc">Owner approves or rejects jobs. Accepted jobs block those dates for customers. Full-day jobs block everything; timed jobs show busy windows.</div>
+              </div>
+              <div class="feature-card">
+                <div class="feature-card__icon">📸</div>
+                <div class="feature-card__title">Self-Serve Photo Gallery</div>
+                <div class="feature-card__desc">Owner visits a PIN-protected upload page, picks photos from his phone, and they appear on the public gallery. Images resize in-browser before upload.</div>
+              </div>
+              <div class="feature-card">
+                <div class="feature-card__icon">⭐</div>
+                <div class="feature-card__title">Google Reviews Section</div>
+                <div class="feature-card__desc">All 26 five-star reviews displayed on the homepage, collapsed by default so the page doesn't feel heavy.</div>
+              </div>
+            </div>
+
+            <h2>The Lead Notification Saga</h2>
+
+            <p>This took longer than the entire rest of the site combined. The path went something like:</p>
+
+            <ol>
+              <li><strong>Netlify Forms</strong> — silent spam filtering ate real submissions. Akismet flagged them.</li>
+              <li><strong>AT&T email-to-SMS gateway</strong> — never delivered. Carrier filtering.</li>
+              <li><strong>Twilio SMS</strong> — blocked by A2P 10DLC compliance. You need a registered campaign to send business SMS in the US, and that takes weeks.</li>
+              <li><strong>Resend email</strong> — finally worked, but DKIM verification failed on Squarespace DNS. Migrated to Cloudflare to fix it.</li>
+            </ol>
+
+            <p>The final setup: quote form submits to a Netlify Function, which sends a formatted HTML email via Resend from <code>leads@24hourmoversllc.com</code>, BCC'd to me, with reply-to set to the owner's Gmail. Clean, reliable, and free under Resend's limits.</p>
+
+            <div class="callout">
+              <strong>Lesson:</strong> For a small business that just needs lead notifications, email is more reliable than SMS. Carriers aggressively filter application-to-person SMS from unregistered numbers. Start with email.
+            </div>
+
+            <h2>The Gallery — Netlify Blobs</h2>
+
+            <p>The owner needed to upload photos himself. I didn't want to introduce a CMS, an S3 bucket, or any third-party service he'd need an account for. The answer was <strong>Netlify Blobs</strong> — a blob store built into the Netlify platform.</p>
+
+            <p>The flow:</p>
+            <ol>
+              <li>Owner visits <code>/gallery-admin.html?key=SECRET</code></li>
+              <li>Picks photos from camera roll — they resize in the browser via canvas (max 1600px, 0.82 quality JPEG) before upload</li>
+              <li>A Netlify Function stores the image blob and prepends an entry to a JSON index</li>
+              <li>The public gallery page fetches that index and renders a grid with a lightbox</li>
+            </ol>
+
+            <p>One gotcha: Netlify Blobs needs the site ID and API token injected explicitly on manual CLI deploys. The automatic context injection only works inside Netlify's own build runners.</p>
+
+            <h2>The Booking Calendar</h2>
+
+            <p>The owner gets 90% of his business from referrals and repeat customers. He needed a way to block dates so customers couldn't book something on top of a confirmed move.</p>
+
+            <p>The model I built:</p>
+            <ul>
+              <li><strong>Request → Approve</strong>: customers request, owner accepts. No auto-booking.</li>
+              <li><strong>One crew at a time</strong>: only one job per day, with the option to select start/end times or block the full day.</li>
+              <li><strong>Owner-only schedule page</strong>: protected by a PIN login. The schedule URL in lead notification emails embeds the job data in a single URL-encoded param to avoid email link mangling (quoted-printable encoding breaks multi-param URLs).</li>
+            </ul>
+
+            <h2>The Domain Situation</h2>
+
+            <p>Getting <code>24hourmoversllc.com</code> on Netlify was unexpectedly painful. Cloudflare Registrar blocked the registration with no explanation. Namecheap worked fine.</p>
+
+            <p>Then Netlify said "another project is already using this domain" — a ghost site ID that didn't exist in my account. Netlify support resolved it after I added a <code>verified-for-netlify</code> TXT record to prove domain ownership.</p>
+
+            <p>While waiting on support (a few hours), I set up a Cloudflare Page Rule to redirect the domain to the live <code>netlify.app</code> URL as a bridge. Worked perfectly.</p>
+
+            <h2>The Result</h2>
+
+            <p>The site is live at <a href="https://www.24hourmoversllc.com" target="_blank" rel="noopener">24hourmoversllc.com</a>. It's fast, mobile-first, and my brother can manage his own photos and schedule without touching code or calling me.</p>
+
+            <p>Total cost to run: <strong>$0/month</strong>. Netlify free tier, Resend free tier, Cloudflare free tier. Domain registration is ~$14/year.</p>
+
+            <p>If you're an agency or freelancer building sites for small businesses, this stack is worth knowing. It punches well above its weight.</p>
+
+            <div class="callout">
+              <strong>Want something like this for your business?</strong> I build these for small businesses through Ramapp Solutions. Fast turnaround, no monthly fees, you own everything.
+            </div>
+
+            <p style="margin-top:32px;">
+              <a href="https://www.24hourmoversllc.com" target="_blank" rel="noopener" class="site-link">
+                View the live site &#8594;
+              </a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../js/main.min.js"></script>
+</body>
+</html>
