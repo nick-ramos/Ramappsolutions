@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VBU Feedback Platform — AI Film Pipeline + Player Feedback — Ramapp Solutions</title>
+  <meta name="description" content="Case study: two connected builds for a volleyball coach — an AI pipeline that files his game film automatically, and a web app that turns his feedback into a coaching library and private, per-player feedback links." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=2" />
+  <meta property="og:title" content="VBU Feedback Platform — AI Film Pipeline + Player Feedback" />
+  <meta property="og:description" content="Two connected builds for a volleyball coach: an AI film pipeline and a player-feedback web app with a real privacy model." />
+  <meta property="og:url" content="https://ramappsolutions.com/work/vbu-feedback-platform.html" />
+  <meta property="og:type" content="article" />
+  <style>
+    .icobox{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.28);display:flex;align-items:center;justify-content:center;color:#d4af37;margin-bottom:14px}
+    .icobox svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .grouptag{font-family:'JetBrains Mono',monospace;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:#d4af37;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.22);padding:6px 13px;border-radius:7px}
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-64ZTD1V2W8");</script>
+</head>
+<body data-page="work">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions"><g transform="translate(2,9) scale(0.58)"><polygon points="48,14 81.6,33 48,52 14.4,33" fill="#f5c832"/><polygon points="14.4,33 48,52 48,88 14.4,69" fill="#c79f2e"/><polygon points="81.6,33 48,52 48,88 81.6,69" fill="#a4801f"/></g><text x="60" y="40" font-family="'Poppins',Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-0.5">ramapp</text><circle cx="184" cy="34" r="3.6" fill="#f5c832"/><text x="62" y="55" font-family="'Poppins',Inter,sans-serif" font-weight="700" font-size="8.5" letter-spacing="4" fill="#f5c832">SOLUTIONS</text></svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../services.html" data-nav="services">Services</a></li>
+        <li><a href="../process.html"  data-nav="process">How It Works</a></li>
+        <li><a href="../work.html"     data-nav="work">Work</a></li>
+        <li><a href="../pricing.html"  data-nav="pricing">Pricing</a></li>
+        <li><a href="../blog.html"     data-nav="blog">Blog</a></li>
+        <li><a href="../contractor-proposals.html" data-nav="contractor">Proposals</a></li>
+        <li></li>
+        <li></li>
+        <li><a href="../contact.html"  class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="../services.html">Services</a>
+      <a href="../process.html">How It Works</a>
+      <a href="../work.html">Work</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contractor-proposals.html">Proposals</a>      <a href="../contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- BACK LINK -->
+  <div style="padding: 100px 0 0;">
+    <div class="container">
+      <a href="../work.html" style="display:inline-flex;align-items:center;gap:8px;color:#6b6456;text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#6b6456'">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to My Work
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="padding: 48px 0 72px; position: relative; overflow: hidden;">
+    <div class="hero__glow hero__glow--1" style="top: -100px; right: 10%;"></div>
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px;">
+        <span style="padding:5px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px;font-size:0.78rem;color:#6b6456;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">AI &amp; Automation</span>
+        <span style="padding:5px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px;font-size:0.78rem;color:#6b6456;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Full-Stack Web App</span>
+        <span style="padding:5px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px;font-size:0.78rem;color:#6b6456;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Privacy / Security</span>
+      </div>
+
+      <h1 style="font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; color: #f5f0e8; line-height: 1.1; letter-spacing: -0.03em; max-width: 820px; margin-bottom: 24px;">
+        VBU Feedback Platform —<br>From Raw Film to Player Feedback
+      </h1>
+
+      <p style="font-size: 1.15rem; color: #a89880; max-width: 660px; line-height: 1.75; margin-bottom: 32px;">
+        Two connected builds for one volleyball coach: an AI pipeline that watches and files his game film automatically, and a full web app that turns his feedback into a searchable coaching library <em>and</em> private, per-player feedback links.
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <a href="https://vbu-feedback-library.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:8px;color:#d4af37;font-weight:600;font-size:0.9rem;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(212,175,55,0.18)'" onmouseout="this.style.background='rgba(212,175,55,0.1)'">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7 1c0 0-3 2-3 6s3 6 3 6M7 1c0 0 3 2 3 6s-3 6-3 6M1 7h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          View Live
+        </a>
+        <a href="../assets/ramapp-vbu-case-study.pdf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#a89880;font-weight:600;font-size:0.9rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#a89880'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6M9 15l3 3 3-3"/></svg>
+          Download Case Study (PDF)
+        </a>
+        <a href="../blog/vbu-feedback-platform.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#a89880;font-weight:600;font-size:0.9rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#a89880'">
+          Read the Story
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW STATS -->
+  <section style="padding: 0 0 72px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 860px;">
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:14px;padding:28px;text-align:center;">
+          <p style="font-size:2rem;font-weight:800;color:#d4af37;margin-bottom:6px;font-family:'JetBrains Mono',monospace;">2</p>
+          <p style="color:#6b6456;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">Connected Projects</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:14px;padding:28px;text-align:center;">
+          <p style="font-size:2rem;font-weight:800;color:#d4af37;margin-bottom:6px;font-family:'JetBrains Mono',monospace;">AI</p>
+          <p style="color:#6b6456;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">Drafts &amp; Understands</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:14px;padding:28px;text-align:center;">
+          <p style="font-size:2rem;font-weight:800;color:#d4af37;margin-bottom:6px;font-family:'JetBrains Mono',monospace;">100%</p>
+          <p style="color:#6b6456;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">His Data &amp; Brand</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:14px;padding:28px;text-align:center;">
+          <p style="font-size:2rem;font-weight:800;color:#d4af37;margin-bottom:6px;font-family:'JetBrains Mono',monospace;">Live</p>
+          <p style="color:#6b6456;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin:0;">In Production</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+        <div style="width:3px;height:32px;background:#d4af37;border-radius:2px;"></div>
+        <h2 style="font-size:1.5rem;font-weight:800;color:#f5f0e8;margin:0;">The Problem</h2>
+      </div>
+      <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:16px;padding:40px 44px;line-height:1.8;color:#a89880;">
+        <p style="margin-bottom:16px;">A one-person coaching business was fighting two problems at once. First, pure busywork: 8&ndash;10 game clips a week, each hand-renamed, dropped into the right Google Drive folder, linked, and logged into a tracking sheet for his editors. Second, and bigger — years of genuinely valuable player feedback were trapped inside individual videos, with no way to share it.</p>
+        <ul style="margin:0 0 16px 20px;list-style:disc;">
+          <li style="margin-bottom:10px;">Hours a week lost to file admin instead of coaching</li>
+          <li style="margin-bottom:10px;">No way for the coaches he's training to study his method</li>
+          <li style="margin-bottom:10px;">No way to deliver a player their own feedback without hunting down files</li>
+          <li style="margin-bottom:10px;">And a real privacy line: player feedback can't be shared like public content</li>
+        </ul>
+        <p style="margin:0;">The coaching was there. The systems to deliver it weren't. So we built both.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SOLUTION -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+        <div style="width:3px;height:32px;background:#d4af37;border-radius:2px;"></div>
+        <h2 style="font-size:1.5rem;font-weight:800;color:#f5f0e8;margin:0;">The Solution — Two Connected Projects</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-left:3px solid #d4af37;border-radius:14px;padding:30px 28px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#d4af37;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Project 01 · Automation</div>
+          <h3 style="font-size:1.15rem;font-weight:800;color:#f5f0e8;margin-bottom:10px;">The Video Pipeline</h3>
+          <p style="color:#a89880;font-size:0.9rem;line-height:1.7;margin:0;">A quiet background tool on the coach's Mac. He drops one raw clip into a folder; an AI trained on volleyball watches it, names it cleanly, files it into the right Drive folder, and logs it into his editors' tracking sheet — automatically. His editors never had to learn a thing; the rows just started appearing.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-left:3px solid #d4af37;border-radius:14px;padding:30px 28px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#d4af37;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Project 02 · Web App</div>
+          <h3 style="font-size:1.15rem;font-weight:800;color:#f5f0e8;margin-bottom:10px;">The Feedback Platform</h3>
+          <p style="color:#a89880;font-size:0.9rem;line-height:1.7;margin:0;">A full custom web app. The coach uploads a feedback clip and a correction demo; AI drafts the breakdown; he reviews and saves. It becomes a searchable library entry for the coaches he's developing — and, when tagged to a player, private feedback on that player's own link. Same clips, two audiences, one product.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI HIGHLIGHT -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="background:linear-gradient(135deg,rgba(212,175,55,0.08) 0%,rgba(212,175,55,0.03) 100%);border:1px solid rgba(212,175,55,0.25);border-radius:20px;padding:48px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,0.06) 0%,transparent 70%);"></div>
+        <div style="display:flex;align-items:flex-start;gap:20px;">
+          <div style="flex-shrink:0;width:52px;height:52px;border-radius:12px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;color:#d4af37;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 00-3 3 3 3 0 00-3 3 3 3 0 00-1 5.8V17a3 3 0 006 0M12 2a3 3 0 013 3 3 3 0 013 3 3 3 0 011 5.8V17a3 3 0 01-6 0M12 2v18"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;color:#d4af37;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">AI Feature Highlight</p>
+            <h3 style="font-size:1.3rem;font-weight:800;color:#f5f0e8;margin-bottom:14px;">An AI that drafts the coaching — and knows when to stay quiet</h3>
+            <p style="color:#a89880;line-height:1.8;margin:0 0 14px;">The same volleyball-trained engine powers both builds. In the pipeline it watches game film to name each clip; in the app it listens to the coach's feedback and drafts the whole breakdown — a title, the skill, the mistake, what correct looks like, and a drill to fix it. He reviews, tweaks, and saves. What used to live only in his head becomes a structured, searchable entry in seconds.</p>
+            <p style="color:#a89880;line-height:1.8;margin:0;">The key design choice was teaching it <strong style="color:#f5f0e8;">when to say "I don't know."</strong> On a focused, narrated clip it names the position confidently; on a wide game clip where even a person couldn't tell, it steps back and describes only what it can actually see. A confidently wrong label is worse than an honest, general one — and it's the difference between a demo and a tool someone trusts every day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section style="padding: 0 0 40px;">
+    <div class="container" style="max-width: 980px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
+        <div style="width:3px;height:32px;background:#d4af37;border-radius:2px;"></div>
+        <h2 style="font-size:1.5rem;font-weight:800;color:#f5f0e8;margin:0;">Capabilities</h2>
+      </div>
+
+      <!-- Project 01 -->
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <span class="grouptag">Project 01</span><span style="color:#f5f0e8;font-weight:700;">Video Automation</span>
+        <span style="flex:1;height:1px;background:rgba(212,175,55,0.1);"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:44px;">
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7zM1 5h15v14H1z"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Volleyball-trained understanding</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Watches the actual footage and listens to the coach's voiceover to read the skill, situation, and a clean title.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Honest naming</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Names only what it can actually see — on an ambiguous game clip it steps back instead of guessing wrong.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Auto-files to Drive</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Creates the dated subfolder, uploads the clip, and grabs the link — exactly the coach's manual steps, done for him.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Logs to the editors' sheet</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Appends the tracking row his editors already watch, and runs quietly in the background — he never launches it.</p>
+        </div>
+      </div>
+
+      <!-- Project 02 -->
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <span class="grouptag">Project 02</span><span style="color:#f5f0e8;font-weight:700;">Feedback Platform</span>
+        <span style="flex:1;height:1px;background:rgba(212,175,55,0.1);"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M4 21h16"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">AI-drafted breakdowns</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Drafts each entry's skill, mistake, correction, and fix from the coach's voiceover — human-reviewed before saving.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Searchable coach library</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Browse and filter every breakdown by skill; open one to watch both videos alongside the written analysis.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Private, revocable player links</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Each player gets an unguessable no-login link showing only their own feedback — and it can be revoked and reissued in one click.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Anonymized library</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Player feedback teaches coaches while structurally hiding whose it is — privacy enforced at the database level.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Own-your-data storage</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Videos live in the coach's own Google Drive; the app stores only the links — no storage bill, no lock-in.</p>
+        </div>
+        <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-radius:12px;padding:24px;">
+          <div class="icobox"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3 style="font-size:0.95rem;font-weight:700;color:#f5f0e8;margin-bottom:6px;">Real auth, roles &amp; custom brand</h3>
+          <p style="color:#a89880;font-size:0.88rem;line-height:1.65;margin:0;">Admin vs. view-only coach access with row-level security, and a bespoke "film room" look in the coach's own colors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+        <div style="width:3px;height:32px;background:#d4af37;border-radius:2px;"></div>
+        <h2 style="font-size:1.5rem;font-weight:800;color:#f5f0e8;margin:0;">The Hard Part Was Privacy</h2>
+      </div>
+      <div style="background:#14120d;border:1px solid rgba(212,175,55,0.12);border-left:3px solid #d4af37;border-radius:16px;padding:36px 40px;line-height:1.8;color:#a89880;">
+        <p style="margin-bottom:16px;">Every piece of player feedback had to do two contradictory things at once: a player must see <strong style="color:#f5f0e8;">only their own</strong>, yet the same clip should teach coaches <strong style="color:#f5f0e8;">without ever revealing whose it is</strong>. Get that wrong and you've either broken a young player's privacy or made the library useless.</p>
+        <p style="margin:0;">So the privacy model is the foundation, not a coat of paint. Player identity is enforced at the database level — coaches read an anonymized layer that structurally cannot expose who a breakdown belongs to — and it's backed by a suite of automated tests that try to break it on every change. Before launch, the whole thing went through an independent security &amp; code review, verified against the live database.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section style="padding: 0 0 72px;">
+    <div class="container" style="max-width: 860px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+        <div style="width:3px;height:32px;background:#d4af37;border-radius:2px;"></div>
+        <h2 style="font-size:1.5rem;font-weight:800;color:#f5f0e8;margin:0;">Tech Stack</h2>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">React + TypeScript</span>
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">Supabase</span>
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">Netlify + Functions</span>
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">Google Gemini</span>
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">Google Drive</span>
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">Python</span>
+        <span style="padding:8px 20px;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:8px;color:#d4af37;font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:500;">Row-Level Security</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 0 0 100px;">
+    <div class="container">
+      <div style="max-width:700px;margin:0 auto;background:#14120d;border:1px solid rgba(212,175,55,0.2);border-radius:20px;padding:56px 48px;text-align:center;">
+        <h2 style="font-size:1.8rem;font-weight:800;color:#f5f0e8;margin-bottom:16px;">Have a task, or an idea that could be a product?</h2>
+        <p style="color:#a89880;font-size:1rem;line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;">From a single automation to a full custom web app, I build tools that make small businesses run like big ones — and that you actually own.</p>
+        <a href="../contact.html" style="display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:#d4af37;color:#0c0b09;font-weight:700;font-size:1rem;border-radius:8px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#e8c84a'" onmouseout="this.style.background='#d4af37'">
+          Start a Project
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg"><g transform="translate(2,9) scale(0.58)"><polygon points="48,14 81.6,33 48,52 14.4,33" fill="#f5c832"/><polygon points="14.4,33 48,52 48,88 14.4,69" fill="#c79f2e"/><polygon points="81.6,33 48,52 48,88 81.6,69" fill="#a4801f"/></g><text x="60" y="40" font-family="'Poppins',Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-0.5">ramapp</text><circle cx="184" cy="34" r="3.6" fill="#f5c832"/><text x="62" y="55" font-family="'Poppins',Inter,sans-serif" font-weight="700" font-size="8.5" letter-spacing="4" fill="#f5c832">SOLUTIONS</text></svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="../services.html">Services</a>
+        <a href="../process.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>Aurora, IL &middot; <a href="tel:+16304530223" style="color:inherit;text-decoration:none;">(630) 453-0223</a> &middot; ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/chatbot.js"></script>
+</body>
+</html>
