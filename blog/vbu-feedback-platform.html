@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Private Feedback Platform for a Coach — and His Players — Ramapp Solutions</title>
+  <meta name="description" content="How I turned a volleyball coach's AI video pipeline into a full product: a coaching feedback library, an AI that drafts each breakdown, and private player-specific feedback links with a real privacy model." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <meta property="og:title" content="A Private Feedback Platform for a Coach — and His Players" />
+  <meta property="og:description" content="Turning an AI video pipeline into a full product: a coaching feedback library, AI-drafted breakdowns, and private player-specific feedback links with a real privacy model." />
+  <meta property="og:url" content="https://ramappsolutions.com/blog/vbu-feedback-platform.html" />
+  <meta property="og:type" content="article" />
+  <style>
+    /* ── Article layout ── */
+    .article { padding: 80px 0 120px; }
+    .article__inner { max-width: 760px; margin: 0 auto; }
+    .article__header { margin-bottom: 56px; }
+    .article__label {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #d4af37;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .article__label::before { content: ''; display: inline-block; width: 24px; height: 2px; background: #d4af37; }
+    .article__title {
+      font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 800; color: #f1f5f9;
+      line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .article__meta {
+      display: flex; gap: 20px; align-items: center; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem; color: #64748b; flex-wrap: wrap;
+    }
+    .article__meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #334155; }
+    .article__divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.3), transparent); margin-top: 28px;
+    }
+    .article__body { color: #94a3b8; font-size: 1.0rem; line-height: 1.85; }
+    .article__body h2 { font-size: 1.4rem; font-weight: 700; color: #f1f5f9; margin: 48px 0 16px; letter-spacing: -0.01em; }
+    .article__body h3 { font-size: 1.1rem; font-weight: 600; color: #cbd5e1; margin: 32px 0 12px; }
+    .article__body p { margin-bottom: 20px; }
+    .article__body strong { color: #e2e8f0; font-weight: 600; }
+    .article__body em { color: #cbd5e1; font-style: italic; }
+    .article__body a { color: #d4af37; text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.3); transition: border-color 0.2s; }
+    .article__body a:hover { border-color: #d4af37; }
+    .article__body ul { list-style: none; padding: 0; margin: 0 0 20px; }
+    .article__body ul li { padding: 5px 0 5px 20px; position: relative; }
+    .article__body ul li::before { content: '→'; position: absolute; left: 0; color: #d4af37; font-size: 0.85em; }
+
+    /* ── Pull quote / callout ── */
+    .callout {
+      background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.15);
+      border-left: 3px solid #d4af37; border-radius: 0 10px 10px 0;
+      padding: 22px 28px; margin: 32px 0; color: #cbd5e1; font-size: 1.05rem; line-height: 1.7;
+    }
+    .callout strong { color: #f1f5f9; }
+
+    /* ── Architecture flow ── */
+    .arch-flow { display: flex; align-items: center; margin: 36px 0; flex-wrap: wrap; gap: 4px; }
+    .arch-flow__node {
+      background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: 8px;
+      padding: 12px 18px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      color: #d4af37; text-align: center; flex: 1; min-width: 120px;
+    }
+    .arch-flow__node span { display: block; font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #64748b; margin-top: 4px; font-style: italic; }
+    .arch-flow__arrow { color: #334155; font-size: 1.1rem; flex-shrink: 0; padding: 0 2px; }
+
+    /* ── Two-audience cards ── */
+    .aud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    @media (max-width: 600px) { .aud-grid { grid-template-columns: 1fr; } }
+    .aud-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(148,163,184,0.14); border-radius: 12px; padding: 22px; }
+    .aud-card h4 { font-size: 1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 8px; }
+    .aud-card p { font-size: 0.88rem; color: #94a3b8; line-height: 1.6; margin: 0; }
+    .aud-card .pill { display: inline-block; margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: #d4af37; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); padding: 5px 10px; border-radius: 6px; }
+
+    /* ── CTA + back link ── */
+    .article__cta { background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.2); border-radius: 16px; padding: 40px 44px; margin-top: 72px; text-align: center; }
+    .article__cta-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #c9a227; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+    .article__cta h3 { font-size: 1.45rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; line-height: 1.3; }
+    .article__cta p { color: #64748b; font-size: 0.93rem; margin-bottom: 28px; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .article__back { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #64748b; text-decoration: none; margin-bottom: 48px; transition: color 0.2s; }
+    .article__back:hover { color: #d4af37; }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-64ZTD1V2W8");</script>
+</head>
+<body data-page="blog">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <svg class="logo-svg" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg" aria-label="Ramapp Solutions"><g transform="translate(2,9) scale(0.58)"><polygon points="48,14 81.6,33 48,52 14.4,33" fill="#f5c832"/><polygon points="14.4,33 48,52 48,88 14.4,69" fill="#c79f2e"/><polygon points="81.6,33 48,52 48,88 81.6,69" fill="#a4801f"/></g><text x="60" y="40" font-family="'Poppins',Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-0.5">ramapp</text><circle cx="184" cy="34" r="3.6" fill="#f5c832"/><text x="62" y="55" font-family="'Poppins',Inter,sans-serif" font-weight="700" font-size="8.5" letter-spacing="4" fill="#f5c832">SOLUTIONS</text></svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../services.html" data-nav="services">Services</a></li>
+        <li><a href="../work.html" data-nav="work">Work</a></li>
+        <li><a href="../process.html" data-nav="process">How It Works</a></li>
+        <li><a href="../pricing.html" data-nav="pricing">Pricing</a></li>
+        <li><a href="../blog.html" data-nav="blog">Blog</a></li>
+        <li><a href="../contractor-proposals.html" data-nav="contractor">Proposals</a></li>
+        <li></li>
+        <li></li>
+        <li><a href="../contact.html" class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="../services.html">Services</a>
+      <a href="../work.html">Work</a>
+      <a href="../process.html">How It Works</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../contractor-proposals.html">Proposals</a>      <a href="../contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE -->
+  <article class="article">
+    <div class="container">
+      <div class="article__inner">
+
+        <a href="../blog.html" class="article__back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Blog
+        </a>
+
+        <!-- HEADER -->
+        <header class="article__header">
+          <div class="article__label">Full-Stack · AI · Privacy</div>
+          <h1 class="article__title">A Private Feedback Platform for a Coach — and His Players</h1>
+          <div class="article__meta">
+            <span>Nick Ramos</span>
+            <span class="article__meta-dot"></span>
+            <span>July 2026</span>
+            <span class="article__meta-dot"></span>
+            <span>8 min read</span>
+          </div>
+          <div class="article__divider"></div>
+        </header>
+
+        <!-- BODY -->
+        <div class="article__body">
+
+          <p>A few months back I built a volleyball coach an AI tool that <a href="volleyball-film-pipeline.html">watches his game film and files it for his editors automatically</a>. That solved his content problem. But it surfaced a bigger one: he had years of coaching feedback locked inside individual videos, with no way to <em>share</em> it — not with the coaches he's training, and not with the players it was meant for.</p>
+
+          <p>So we built the other half of the system: a full web app that turns his feedback into two things at once — a <strong>training library</strong> for future coaches, and <strong>private feedback</strong> for individual players. Same clips, two audiences, one product.</p>
+
+          <div class="aud-grid">
+            <div class="aud-card">
+              <h4>Coaches</h4>
+              <p>Browse a searchable library of real breakdowns — filter by skill, watch the feedback and the correction, and study exactly how he coaches.</p>
+              <span class="pill">Learn the method</span>
+            </div>
+            <div class="aud-card">
+              <h4>Players</h4>
+              <p>Open a private link and see only their own feedback — their clips, their mistakes, their fixes — no account, no login, nothing to install.</p>
+              <span class="pill">Their feedback only</span>
+            </div>
+          </div>
+
+          <h2>The upload, done in three clicks</h2>
+
+          <p>The heart of it is how fast he can turn a coaching moment into a saved, shareable breakdown. He uploads two short clips — his spoken feedback, and a demo of the correct technique — and the app does the tedious part.</p>
+
+          <div class="arch-flow">
+            <div class="arch-flow__node">Two Clips<span>feedback + correction</span></div>
+            <div class="arch-flow__arrow">&#x25B6;</div>
+            <div class="arch-flow__node">AI Drafts It<span>skill · mistake · fix</span></div>
+            <div class="arch-flow__arrow">&#x25B6;</div>
+            <div class="arch-flow__node">He Reviews<span>edit anything</span></div>
+            <div class="arch-flow__arrow">&#x25B6;</div>
+            <div class="arch-flow__node">Save<span>library + player</span></div>
+          </div>
+
+          <p>The AI — the same volleyball-trained engine from the video pipeline — listens to his feedback and drafts the whole breakdown: a title, the skill, what the player did wrong, what right looks like, and a drill to fix it. He reads it, tweaks the wording, and saves. What used to live only in his head now becomes a structured, searchable entry in seconds.</p>
+
+          <div class="callout">
+            The AI never has the last word. It writes a <strong>first draft</strong>; the coach approves every entry before it's saved. Fast when it's right, effortless to correct when it's not — the human stays in charge.
+          </div>
+
+          <h2>The hard part wasn't the AI. It was privacy.</h2>
+
+          <p>Here's the tension that made this a real engineering problem: every piece of player feedback needs to do two contradictory things at once. A player must see <em>only</em> their own feedback. But that same feedback should also feed the coaches' library as a teaching example — <strong>without ever revealing which player it belongs to</strong>.</p>
+
+          <p>Get that wrong and you've either broken a kid's privacy or made the library useless. So the privacy model isn't a feature bolted on top — it's the foundation:</p>
+
+          <ul>
+            <li><strong>Players never log in.</strong> Each gets a unique, unguessable private link. They tap it and land straight on their own feed — the lowest-friction thing possible for a player or parent.</li>
+            <li><strong>Coaches never see who.</strong> The library is served through a separate, anonymized layer that structurally cannot expose a player's identity — the name simply isn't in the data a coach can reach.</li>
+            <li><strong>The coach controls what's shared.</strong> One toggle keeps a sensitive breakdown player-only, off the library entirely.</li>
+            <li><strong>Links can be revoked.</strong> If a link is ever forwarded or a player leaves, one click issues a new link and instantly kills the old one.</li>
+          </ul>
+
+          <p>That last 20% — proving no coach and no anonymous visitor could reach a player's identity through any path — is the part that took the real work. It's enforced at the database level, not just hidden in the interface, and it's covered by a suite of automated tests that try to break it on every change.</p>
+
+          <h2>Built to be his, and to last</h2>
+
+          <p>A few principles ran through the whole build — the same ones that make automation trustworthy instead of impressive:</p>
+
+          <ul>
+            <li><strong>He owns his data.</strong> Videos live in his own Google Drive; the app just links to them. No surprise storage bills, no lock-in.</li>
+            <li><strong>It's genuinely his brand.</strong> A custom "film room" look — his logo, his colors — so it feels like his platform, not a template.</li>
+            <li><strong>It ships and holds up.</strong> Deployed on a live URL, backed by real accounts and security rules, and hardened by an independent code review before it went out.</li>
+            <li><strong>It grows with him.</strong> Coach invites, player rosters, a custom domain — all straightforward next steps on the same foundation.</li>
+          </ul>
+
+          <h2>The result</h2>
+
+          <p>One coach now has a system that spans his entire workflow: film gets understood and filed on its own, feedback becomes a searchable library for the coaches he's building up, and each player gets a private, personal stream of exactly what to work on. Two projects, one connected platform — and a small coaching business that now runs like a much bigger one.</p>
+
+          <p>That's the pattern I keep coming back to: the best software doesn't just automate a task. It quietly makes a small business punch above its weight — and then gets out of the way.</p>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="article__cta">
+          <div class="article__cta-label">Work with us</div>
+          <h3>Have an idea that could be a real product?</h3>
+          <p>From a single automation to a full custom web app, I build tools that make small businesses run like big ones — and that you actually own.</p>
+          <a href="../contact.html" class="btn btn--primary">Start a Project</a>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo">
+          <svg class="logo-svg logo-svg--sm" viewBox="0 0 220 62" xmlns="http://www.w3.org/2000/svg"><g transform="translate(2,9) scale(0.58)"><polygon points="48,14 81.6,33 48,52 14.4,33" fill="#f5c832"/><polygon points="14.4,33 48,52 48,88 14.4,69" fill="#c79f2e"/><polygon points="81.6,33 48,52 48,88 81.6,69" fill="#a4801f"/></g><text x="60" y="40" font-family="'Poppins',Inter,sans-serif" font-weight="800" font-size="32" fill="#f5f0e8" letter-spacing="-0.5">ramapp</text><circle cx="184" cy="34" r="3.6" fill="#f5c832"/><text x="62" y="55" font-family="'Poppins',Inter,sans-serif" font-weight="700" font-size="8.5" letter-spacing="4" fill="#f5c832">SOLUTIONS</text></svg>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="../services.html">Services</a>
+        <a href="../process.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../blog.html">Blog</a>
+      <a href="../contractor-proposals.html">Proposals</a>        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>Aurora, IL &middot; <a href="tel:+16304530223" style="color:inherit;text-decoration:none;">(630) 453-0223</a> &middot; ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/chatbot.js"></script>
+</body>
+</html>
