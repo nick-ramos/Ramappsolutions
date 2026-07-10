@@ -243,6 +243,20 @@
     @media (max-width: 768px) {
       .services-grid, .work-grid, .pricing-teaser { grid-template-columns: 1fr; }
     }
+
+    /* Work projects carousel */
+    .wc{ position:relative; margin-top:52px; }
+    .wc__vp{ overflow:hidden; }
+    .wc__track{ display:flex; gap:24px; align-items:stretch; transition:transform .55s cubic-bezier(.2,.7,.2,1); will-change:transform; }
+    .wc__track > *{ flex:0 0 calc((100% - 48px)/3); min-width:0; }
+    @media (max-width:1023px){ .wc__track > *{ flex:0 0 calc((100% - 24px)/2); } }
+    @media (max-width:639px){ .wc__track > *{ flex:0 0 100%; } }
+    .wc__controls{ display:flex; align-items:center; justify-content:center; gap:18px; margin-top:32px; }
+    .wc__btn{ width:44px; height:44px; border-radius:50%; background:#0d1120; border:1px solid rgba(245,200,50,0.25); color:#f5c832; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .2s, transform .2s; flex:none; }
+    .wc__btn:hover{ background:rgba(245,200,50,0.14); transform:scale(1.06); }
+    .wc__dots{ display:flex; align-items:center; gap:8px; }
+    .wc__dot{ width:8px; height:8px; padding:0; border:none; border-radius:50%; background:rgba(245,200,50,0.22); cursor:pointer; transition:all .25s; }
+    .wc__dot.is-active{ background:#f5c832; width:24px; border-radius:4px; }
   </style>
 </head>
 <body data-page="home">
@@ -428,29 +442,45 @@
         <p class="hp-section__sub">Real projects, real results. Every case study below is live and in use by actual clients.</p>
       </div>
 
-      <div class="work-grid">
+      <div class="wc" id="workCarouselHome">
+        <div class="wc__vp">
+          <div class="wc__track">
 
-        <a href="volleycenter.html" class="work-card reveal">
-          <div class="work-card__client">VolleyCenter · Club Management</div>
-          <h3 class="work-card__title">All-in-one platform for volleyball clubs</h3>
-          <p class="work-card__desc">Replaced 3 separate apps and a pile of spreadsheets with one system. Rosters, scheduling, AI practice plans, player messaging, payment processing, and parent communications — all in one place.</p>
-          <div class="work-card__result">3 apps replaced · 10+ modules live · 0 spreadsheets remaining</div>
-        </a>
+            <a href="work/vbu-feedback-platform.html" class="work-card">
+              <div class="work-card__client">VBU Feedback Platform · AI + Full-Stack</div>
+              <h3 class="work-card__title">From raw film to private player feedback</h3>
+              <p class="work-card__desc">Two connected builds for a volleyball coach — an AI pipeline that files his game film automatically, and a web app that turns his feedback into a searchable coaching library and private, per-player feedback links.</p>
+              <div class="work-card__result">2 connected projects · AI-drafted breakdowns · Anonymized, revocable player links</div>
+            </a>
 
-        <a href="work/trading-bot.html" class="work-card reveal">
-          <div class="work-card__client">Trading Bot · Finance Automation</div>
-          <h3 class="work-card__title">Autonomous market scanner and trade executor</h3>
-          <p class="work-card__desc">Built to eliminate the need to watch the market manually. Scans signals, applies custom strategy logic, and executes trades around the clock — no babysitting, no missed windows.</p>
-          <div class="work-card__result">Runs 24/7 · 100% automated · Zero manual intervention since launch</div>
-        </a>
+            <a href="volleycenter.html" class="work-card">
+              <div class="work-card__client">VolleyCenter · Club Management</div>
+              <h3 class="work-card__title">All-in-one platform for volleyball clubs</h3>
+              <p class="work-card__desc">Replaced 3 separate apps and a pile of spreadsheets with one system. Rosters, scheduling, AI practice plans, player messaging, payment processing, and parent communications — all in one place.</p>
+              <div class="work-card__result">3 apps replaced · 10+ modules live · 0 spreadsheets remaining</div>
+            </a>
 
-        <a href="https://24-hour-movers.netlify.app" target="_blank" rel="noopener" class="work-card reveal">
-          <div class="work-card__client">24-Hour Movers · Small Business</div>
-          <h3 class="work-card__title">Small Business Website Design</h3>
-          <p class="work-card__desc">A local &amp; long-distance moving company had only a paper flyer. Built them a bold, mobile-first marketing site — services, transparent pricing, and a quote form — all in their brand colors.</p>
-          <div class="work-card__result">4-page site · Click-to-call &amp; quote form · Live and ready to share</div>
-        </a>
+            <a href="work/trading-bot.html" class="work-card">
+              <div class="work-card__client">Trading Bot · Finance Automation</div>
+              <h3 class="work-card__title">Autonomous market scanner and trade executor</h3>
+              <p class="work-card__desc">Built to eliminate the need to watch the market manually. Scans signals, applies custom strategy logic, and executes trades around the clock — no babysitting, no missed windows.</p>
+              <div class="work-card__result">Runs 24/7 · 100% automated · Zero manual intervention since launch</div>
+            </a>
 
+            <a href="https://24-hour-movers.netlify.app" target="_blank" rel="noopener" class="work-card">
+              <div class="work-card__client">24-Hour Movers · Small Business</div>
+              <h3 class="work-card__title">Small Business Website Design</h3>
+              <p class="work-card__desc">A local &amp; long-distance moving company had only a paper flyer. Built them a bold, mobile-first marketing site — services, transparent pricing, and a quote form — all in their brand colors.</p>
+              <div class="work-card__result">4-page site · Click-to-call &amp; quote form · Live and ready to share</div>
+            </a>
+
+          </div>
+        </div>
+        <div class="wc__controls">
+          <button class="wc__btn wc__btn--prev" type="button" aria-label="Previous projects"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <div class="wc__dots"></div>
+          <button class="wc__btn wc__btn--next" type="button" aria-label="Next projects"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
       </div>
 
       <div class="reveal" style="margin-top:32px;">
@@ -896,6 +926,28 @@
         }
       });
     })();
+  </script>
+  <script>
+  (function(){
+    var wc = document.getElementById('workCarouselHome'); if(!wc) return;
+    var track = wc.querySelector('.wc__track');
+    var slides = Array.prototype.slice.call(track.children);
+    var dotsWrap = wc.querySelector('.wc__dots');
+    var prev = wc.querySelector('.wc__btn--prev'), next = wc.querySelector('.wc__btn--next');
+    var index = 0, timer = null;
+    function perView(){ var w = window.innerWidth; return w < 640 ? 1 : (w < 1024 ? 2 : 3); }
+    function maxIndex(){ return Math.max(0, slides.length - perView()); }
+    function step(){ var cw = slides[0].getBoundingClientRect().width; var g = parseFloat(getComputedStyle(track).gap) || 24; return cw + g; }
+    function go(i){ var m = maxIndex(); index = i < 0 ? m : (i > m ? 0 : i); track.style.transform = 'translateX(' + (-index * step()) + 'px)'; renderDots(); }
+    function renderDots(){ dotsWrap.innerHTML = ''; for (var i = 0; i <= maxIndex(); i++){ (function(i){ var d = document.createElement('button'); d.type = 'button'; d.className = 'wc__dot' + (i === index ? ' is-active' : ''); d.setAttribute('aria-label', 'Go to slide ' + (i + 1)); d.onclick = function(){ go(i); restart(); }; dotsWrap.appendChild(d); })(i); } }
+    function restart(){ clearInterval(timer); timer = setInterval(function(){ go(index + 1); }, 4500); }
+    prev.onclick = function(){ go(index - 1); restart(); };
+    next.onclick = function(){ go(index + 1); restart(); };
+    wc.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    wc.addEventListener('mouseleave', restart);
+    var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ if (index > maxIndex()) index = maxIndex(); go(index); }, 150); });
+    go(0); restart();
+  })();
   </script>
 </body>
 </html>
