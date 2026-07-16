@@ -76,6 +76,14 @@
   to     = "/blog.html"
   status = 200
 
+# ---------- Internal tooling: kept in the repo, never served ----------
+# tools/ holds local generators (e.g. the client thank-you card maker), not site
+# content. Return 404 so nothing under it is publicly reachable.
+[[redirects]]
+  from   = "/tools/*"
+  to     = "/404.html"
+  status = 404
+
 # ---------- Custom 404 ----------
 [[redirects]]
   from   = "/*"

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#f5c832;--gold-dk:#e0a913;--text:#f1f5f9;--muted:#94a3b8;--border:rgba(255,255,255,.07);
+    --font:'Poppins',sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1080px;overflow:hidden;background:#05070c;font-family:var(--font);color:var(--text)}
+  .stage{width:1080px;height:1080px}
+  .scale{width:640px;height:640px;transform:scale(1.6875);transform-origin:top left}
+
+  .card{width:640px;height:640px;overflow:hidden;display:flex}
+  .wm{font-family:var(--font);font-weight:800;line-height:1;letter-spacing:-.5px;white-space:nowrap}
+  .wm .d{color:var(--gold-dk)}
+  .wm small{display:block;font-size:.42em;font-weight:700;letter-spacing:.34em;margin-top:4px}
+
+  /* LEFT — gold gratitude panel */
+  .left{width:46%;background:linear-gradient(155deg,#f7cf3d 0%,#e3ab12 100%);color:#0a0d14;
+    padding:44px 34px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+  .left::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 100% 0,rgba(255,255,255,.28),transparent 55%);pointer-events:none}
+  .left .lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(10,13,20,.62);font-weight:500}
+  .left h2{font-size:2.05rem;font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-top:14px}
+  .left .wm{font-size:1.15rem;color:#0a0d14}
+  .left .wm .d{color:#0a0d14}
+  .left .wm small{color:rgba(10,13,20,.7)}
+
+  /* RIGHT — dark client panel */
+  .right{width:54%;background:radial-gradient(120% 90% at 50% -10%,#131c30,#080b12 62%);
+    padding:40px 34px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .right .lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:24px}
+  .logobox{background:#000;border-radius:18px;padding:16px 22px;margin-bottom:18px;
+    border:1px solid rgba(245,200,50,.24);box-shadow:0 14px 34px rgba(0,0,0,.55)}
+  .right .logo{width:150px;height:auto;display:block}
+  .right .cname{font-size:1.18rem;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+  .right .rule{width:44px;height:3px;background:var(--gold);border-radius:3px;margin:16px 0 18px;opacity:.9}
+  .socials{display:flex;flex-direction:column;gap:11px;align-items:flex-start}
+  .socials a,.socials div{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+  .socials .site{color:var(--gold);font-weight:500}
+  .socials svg{width:16px;height:16px;flex:none;color:var(--gold)}
+</style>
+</head>
+<body>
+  <div class="stage"><div class="scale">
+    <div class="card">
+      <div class="left">
+        <div class="lbl">Ramapp Solutions</div>
+        <h2>{{HEADLINE}}</h2>
+        <div class="wm">ramapp<span class="d">.</span><small>SOLUTIONS</small></div>
+      </div>
+      <div class="right">
+        <div class="lbl">{{LABEL}}</div>
+        <div class="logobox"><img class="logo" src="{{LOGO_SRC}}" alt="{{CLIENT_NAME}}"></div>
+        <div class="cname">{{CLIENT_NAME}}</div>
+        <div class="rule"></div>
+        <div class="socials">{{SOCIALS}}</div>
+      </div>
+    </div>
+  </div></div>
+</body>
+</html>
