@@ -5,6 +5,10 @@
 # ---------- Build Settings ----------
 [build]
   publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
 
 # ---------- Security & Performance Headers ----------
 [[headers]]
@@ -69,6 +73,11 @@
 [[redirects]]
   from   = "/contact"
   to     = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from   = "/portal"
+  to     = "/portal.html"
   status = 200
 
 [[redirects]]

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Portal — Ramapp Solutions</title>
+  <meta name="description" content="Ramapp Solutions client portal. Manage your subscription, view invoices, and update payment details." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2" />
+
+  <style>
+    .portal-wrap {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    .portal-card {
+      width: 100%;
+      max-width: 460px;
+      background: #0d1120;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 48px 44px;
+    }
+
+    .portal-card__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .portal-card__logo svg {
+      flex-shrink: 0;
+    }
+
+    .portal-card__logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: -0.01em;
+    }
+
+    .portal-card__logo-text span {
+      color: var(--cyan);
+    }
+
+    .portal-card__eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin: 0 0 12px;
+    }
+
+    .portal-card__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin: 0 0 8px;
+      line-height: 1.25;
+    }
+
+    .portal-card__sub {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.65;
+      margin: 0 0 32px;
+    }
+
+    .portal-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .portal-field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.02em;
+    }
+
+    .portal-field input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      outline: none;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .portal-field input:focus {
+      border-color: rgba(245,200,50,0.4);
+    }
+
+    .portal-field input::placeholder {
+      color: #475569;
+    }
+
+    .portal-btn {
+      width: 100%;
+      background: var(--cyan);
+      color: #0c0b09;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .portal-btn:hover:not(:disabled) {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .portal-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .portal-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(12,11,9,0.3);
+      border-top-color: #0c0b09;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .portal-msg {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .portal-msg--error {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.25);
+      color: #fca5a5;
+    }
+
+    .portal-msg--info {
+      background: rgba(245,200,50,0.08);
+      border: 1px solid rgba(245,200,50,0.2);
+      color: #fde68a;
+    }
+
+    .portal-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 32px 0;
+    }
+
+    .portal-footer {
+      font-size: 0.8rem;
+      color: #475569;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .portal-footer a {
+      color: #64748b;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .portal-footer a:hover {
+      color: #94a3b8;
+    }
+
+    .portal-what {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 32px;
+    }
+
+    .portal-what__title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #475569;
+      margin: 0 0 12px;
+    }
+
+    .portal-what__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .portal-what__list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .portal-what__list li svg {
+      flex-shrink: 0;
+      color: var(--cyan);
+    }
+
+    @media (max-width: 520px) {
+      .portal-card {
+        padding: 36px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Ramapp Solutions home">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="28" height="28" rx="8" fill="#F5C832"/>
+          <path d="M7 8h8a5 5 0 0 1 0 10h-3l5 4" stroke="#0C0B09" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="nav__logo-text">Ramapp<span>Solutions</span></span>
+      </a>
+      <button class="nav__burger" id="burger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html" class="btn btn--sm nav__cta">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="portal-wrap">
+    <div class="portal-card">
+
+      <div class="portal-card__logo">
+        <svg width="32" height="32" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="8" fill="#F5C832"/>
+          <path d="M7 8h8a5 5 0 0 1 0 10h-3l5 4" stroke="#0C0B09" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="portal-card__logo-text">Ramapp<span>Solutions</span></span>
+      </div>
+
+      <p class="portal-card__eyebrow">Client Portal</p>
+      <h1 class="portal-card__title">Access your account</h1>
+      <p class="portal-card__sub">Enter the email address on your account and we'll open your billing portal — view invoices, update your payment method, or manage your subscription.</p>
+
+      <div class="portal-what">
+        <p class="portal-what__title">What you can do here</p>
+        <ul class="portal-what__list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            View and download invoices
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Update your payment method
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            See upcoming charges
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Manage your retainer plan
+          </li>
+        </ul>
+      </div>
+
+      <form id="portalForm" novalidate>
+        <div class="portal-field">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@company.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <button type="submit" class="portal-btn" id="submitBtn">
+          <span id="btnText">Open my account</span>
+          <span class="portal-spinner" id="spinner"></span>
+        </button>
+
+        <div class="portal-msg portal-msg--error" id="errorMsg" role="alert"></div>
+        <div class="portal-msg portal-msg--info" id="infoMsg" role="status"></div>
+      </form>
+
+      <div class="portal-divider"></div>
+
+      <p class="portal-footer">
+        Not a client yet? <a href="contact.html">Start a conversation</a> or <a href="pricing.html">see retainer options</a>.<br>
+        Questions about your account? <a href="mailto:nick@ramappsolutions.com">nick@ramappsolutions.com</a>
+      </p>
+
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    const form = document.getElementById('portalForm');
+    const emailInput = document.getElementById('email');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const spinner = document.getElementById('spinner');
+    const errorMsg = document.getElementById('errorMsg');
+    const infoMsg = document.getElementById('infoMsg');
+
+    function setLoading(on) {
+      submitBtn.disabled = on;
+      btnText.textContent = on ? 'Opening portal…' : 'Open my account';
+      spinner.style.display = on ? 'block' : 'none';
+    }
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.style.display = 'block';
+      infoMsg.style.display = 'none';
+    }
+
+    function showInfo(msg) {
+      infoMsg.textContent = msg;
+      infoMsg.style.display = 'block';
+      errorMsg.style.display = 'none';
+    }
+
+    function clearMessages() {
+      errorMsg.style.display = 'none';
+      infoMsg.style.display = 'none';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearMessages();
+
+      const email = emailInput.value.trim();
+      if (!email) {
+        showError('Please enter your email address.');
+        emailInput.focus();
+        return;
+      }
+
+      setLoading(true);
+      showInfo('Looking up your account…');
+
+      try {
+        const res = await fetch('/.netlify/functions/client-portal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          showError(data.error || 'Something went wrong. Please try again or email nick@ramappsolutions.com.');
+          return;
+        }
+
+        showInfo('Redirecting to your secure billing portal…');
+        window.location.href = data.url;
+      } catch {
+        showError('Unable to connect. Please check your connection and try again.');
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>
