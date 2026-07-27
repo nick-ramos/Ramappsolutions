@@ -341,70 +341,70 @@
   <script src="js/main.js"></script>
   <script>
     (function () {
-    const portalFormEl = document.getElementById('portalForm');
-    const emailInput = document.getElementById('email');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const spinner = document.getElementById('spinner');
-    const errorMsg = document.getElementById('errorMsg');
-    const infoMsg = document.getElementById('infoMsg');
+      var portalFormEl = document.getElementById('portalForm');
+      var emailInput  = document.getElementById('email');
+      var submitBtn   = document.getElementById('submitBtn');
+      var btnText     = document.getElementById('btnText');
+      var spinner     = document.getElementById('spinner');
+      var errorMsg    = document.getElementById('errorMsg');
+      var infoMsg     = document.getElementById('infoMsg');
 
-    function setLoading(on) {
-      submitBtn.disabled = on;
-      btnText.textContent = on ? 'Opening portal…' : 'Open my account';
-      spinner.style.display = on ? 'block' : 'none';
-    }
-
-    function showError(msg) {
-      errorMsg.textContent = msg;
-      errorMsg.style.display = 'block';
-      infoMsg.style.display = 'none';
-    }
-
-    function clearMessages() {
-      errorMsg.style.display = 'none';
-      infoMsg.style.display = 'none';
-    }
-
-    portalFormEl.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      clearMessages();
-      console.log('Portal form submitted');
-
-      const email = emailInput.value.trim();
-      if (!email) {
-        showError('Please enter your email address.');
-        emailInput.focus();
-        return;
+      function setLoading(on) {
+        submitBtn.disabled = on;
+        btnText.textContent = on ? 'Looking up account…' : 'Open my account';
+        spinner.style.display = on ? 'block' : 'none';
       }
 
-      setLoading(true);
-      showInfo('Looking up your account…');
+      function showError(msg) {
+        errorMsg.textContent = msg;
+        errorMsg.style.display = 'block';
+        infoMsg.style.display = 'none';
+        setLoading(false);
+      }
 
-      try {
-        const res = await fetch('/.netlify/functions/client-portal', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
+      function showSuccess(url) {
+        infoMsg.innerHTML = 'Account found! <a href="' + url + '" style="color:#f5c832;font-weight:700;text-decoration:underline;">Click here if not redirected automatically</a>';
+        infoMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+        setLoading(false);
+        window.location.href = url;
+      }
 
-        const data = await res.json();
+      portalFormEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorMsg.style.display = 'none';
+        infoMsg.style.display = 'none';
 
-        if (!res.ok) {
-          showError(data.error || 'Something went wrong. Please try again or email nramos@ramappsolutions.com.');
+        var email = emailInput.value.trim();
+        if (!email) {
+          showError('Please enter your email address.');
+          emailInput.focus();
           return;
         }
 
-        infoMsg.innerHTML = 'Account found! <a href="' + data.url + '" style="color:#f5c832;font-weight:700;text-decoration:underline;">Click here if you are not redirected</a>';
-        infoMsg.style.display = 'block';
-        errorMsg.style.display = 'none';
-        window.location.href = data.url;
-      } catch {
-        showError('Unable to connect. Please check your connection and try again.');
-      } finally {
-        setLoading(false);
-      }
-    });
+        setLoading(true);
+
+        fetch('/.netlify/functions/client-portal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { ok: res.ok, data: data };
+            });
+          })
+          .then(function (result) {
+            if (!result.ok) {
+              showError(result.data.error || 'Something went wrong. Email nramos@ramappsolutions.com.');
+            } else {
+              showSuccess(result.data.url);
+            }
+          })
+          .catch(function (err) {
+            showError('Unable to connect. Check your internet and try again.');
+          });
+      });
     })();
   </script>
 </body>
