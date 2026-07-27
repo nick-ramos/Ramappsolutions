@@ -395,10 +395,10 @@
           return;
         }
 
-        infoMsg.innerHTML = 'Account found! <a href="' + data.url + '" style="color:#f5c832;font-weight:700;text-decoration:underline;">Click here to open your billing portal</a>';
+        infoMsg.innerHTML = 'Account found! <a href="' + data.url + '" style="color:#f5c832;font-weight:700;text-decoration:underline;">Click here if you are not redirected</a>';
         infoMsg.style.display = 'block';
         errorMsg.style.display = 'none';
-        window.open(data.url, '_blank');
+        window.location.href = data.url;
       } catch {
         showError('Unable to connect. Please check your connection and try again.');
       } finally {
