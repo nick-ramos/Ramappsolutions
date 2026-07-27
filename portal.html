@@ -340,7 +340,8 @@
 
   <script src="js/main.js"></script>
   <script>
-    const form = document.getElementById('portalForm');
+    (function () {
+    const portalFormEl = document.getElementById('portalForm');
     const emailInput = document.getElementById('email');
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
@@ -360,18 +361,12 @@
       infoMsg.style.display = 'none';
     }
 
-    function showInfo(msg) {
-      infoMsg.textContent = msg;
-      infoMsg.style.display = 'block';
-      errorMsg.style.display = 'none';
-    }
-
     function clearMessages() {
       errorMsg.style.display = 'none';
       infoMsg.style.display = 'none';
     }
 
-    form.addEventListener('submit', async (e) => {
+    portalFormEl.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearMessages();
       console.log('Portal form submitted');
@@ -410,6 +405,7 @@
         setLoading(false);
       }
     });
+    })();
   </script>
 </body>
 </html>
