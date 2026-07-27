@@ -374,6 +374,7 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearMessages();
+      console.log('Portal form submitted');
 
       const email = emailInput.value.trim();
       if (!email) {
@@ -399,8 +400,10 @@
           return;
         }
 
-        showInfo('Redirecting to your secure billing portal…');
-        window.location.href = data.url;
+        infoMsg.innerHTML = 'Account found! <a href="' + data.url + '" style="color:#f5c832;font-weight:700;text-decoration:underline;">Click here to open your billing portal</a>';
+        infoMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+        window.open(data.url, '_blank');
       } catch {
         showError('Unable to connect. Please check your connection and try again.');
       } finally {
