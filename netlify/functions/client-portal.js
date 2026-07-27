@@ -20,7 +20,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 503,
       headers: { ...cors, "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Payment portal not configured. Contact nick@ramappsolutions.com." }),
+      body: JSON.stringify({ error: "Payment portal not configured. Contact nramos@ramappsolutions.com." }),
     };
   }
 
@@ -48,7 +48,7 @@ exports.handler = async (event) => {
       statusCode: 404,
       headers: { ...cors, "Content-Type": "application/json" },
       body: JSON.stringify({
-        error: "No account found for that email. If you believe this is a mistake, email nick@ramappsolutions.com.",
+        error: "No account found for that email. If you believe this is a mistake, email nramos@ramappsolutions.com.",
       }),
     };
   }
