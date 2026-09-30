@@ -1036,7 +1036,7 @@ ul { list-style: none; }
   transition: color 0.2s, border-color 0.2s;
 }
 .footer__social a:hover { color: var(--cyan); border-color: var(--border-hi); }
-.footer__links { display: flex; gap: 28px; }
+.footer__links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
 .footer__links a {
   font-size: 0.875rem;
   color: var(--text-dim);
