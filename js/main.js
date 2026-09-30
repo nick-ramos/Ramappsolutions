@@ -101,8 +101,7 @@ if (form) {
     }
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    const original = btn.textContent;
-    btn.textContent = 'Sending…';
+        btn.textContent = 'Sending…';
     btn.disabled = true;
 
     try {
@@ -113,16 +112,24 @@ if (form) {
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        btn.textContent = '✓ Message Sent!';
-        btn.style.background = 'var(--green)';
-        btn.style.color = '#080c14';
+        if (window.rampTrack) {
+          window.rampTrack('generate_lead', {
+            form: 'contact',
+            service: data.get('service') || '',
+            budget: data.get('budget') || '',
+            timeline: data.get('timeline') || ''
+          });
+        }
         form.reset();
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.style.background = '';
-          btn.style.color = '';
-          btn.disabled = false;
-        }, 4000);
+        const done = document.createElement('div');
+        done.className = 'contact-form';
+        done.setAttribute('role', 'status');
+        done.innerHTML =
+          '<h3 style="font-size:1.4rem;font-weight:800;color:#f1f5f9;margin:0 0 12px;">Got it — thanks!</h3>' +
+          '<p style="color:#94a3b8;line-height:1.7;margin:0 0 20px;">I read every message personally and reply within 24 hours. Don\'t want to wait? Grab a time on my calendar and we can talk this week.</p>' +
+          '<a href="https://calendly.com/nramos-ramappsolutions/30min" target="_blank" rel="noopener" class="btn btn--primary">Book a Free Call</a>';
+        form.style.display = 'none';
+        form.after(done);
       } else {
         throw new Error('Send failed');
       }
@@ -165,7 +172,10 @@ document.querySelectorAll('.btn--calendly').forEach(btn => {
   window.addEventListener('scroll', () => {
     const scrolled   = window.scrollY > 400;
     const nearFooter = footer && window.scrollY + window.innerHeight >= footer.offsetTop - 60;
-    btn.classList.toggle('visible', scrolled && !nearFooter);
+    const show = scrolled && !nearFooter;
+    btn.classList.toggle('visible', show);
+    // chatbot.js keys off this class to lift its button above the CTA
+    document.body.classList.toggle('has-floating-cta', show);
   }, { passive: true });
 
   btn.querySelector('button').addEventListener('click', openCalendly);
@@ -204,4 +214,35 @@ document.querySelectorAll('.btn--calendly').forEach(btn => {
   }, { threshold: 0.5 });
 
   els.forEach(el => obs.observe(el));
+})();
+
+// ---------- ANALYTICS EVENTS ----------
+// GA4 is loaded per page; guard so pages without it (portal, privacy) never throw.
+(function initTracking() {
+  const track = (name, params) => {
+    if (typeof gtag === 'function') gtag('event', name, params || {});
+  };
+  window.rampTrack = track;
+
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('a, button');
+    if (!el) return;
+    const href = el.getAttribute('href') || '';
+    const label = (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
+    const page = location.pathname;
+
+    if (el.closest('.founding')) return track('founding_claim_click', { page });
+    if (el.classList.contains('btn--calendly') || el.closest('.floating-cta') || href.includes('calendly.com')) {
+      return track('book_call_click', { label, page });
+    }
+    if (href.startsWith('tel:')) return track('phone_click', { page });
+    if (href.startsWith('mailto:')) return track('email_click', { page });
+    if (/contact\.html/.test(href)) return track('cta_contact_click', { label, page });
+  });
+
+  // form_start fires once, on first interaction, so drop-off between start and submit is measurable
+  const contact = document.getElementById('contactForm');
+  if (contact) {
+    contact.addEventListener('focusin', () => track('form_start', { form: 'contact' }), { once: true });
+  }
 })();
