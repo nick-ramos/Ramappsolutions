@@ -196,6 +196,8 @@
 
       <!-- shared card style vars -->
       <style>
+        .ns-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch; }
+        @media (max-width:900px) { .ns-grid { grid-template-columns:1fr; } }
         .ns-card {
           background: #0d1120;
           border: 1px solid rgba(255,255,255,0.06);
@@ -303,7 +305,7 @@
         }
       </style>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;">
+      <div class="ns-grid">
 
         <!-- Automation Audit -->
         <div class="reveal ns-card">
@@ -401,7 +403,7 @@
       </div>
 
       <!-- SaaS Products row -->
-      <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;">
+      <div class="ns-grid" style="margin-top:20px;">
 
         <!-- AI Chatbot SaaS -->
         <div class="reveal ns-card ns-card--featured" style="grid-column:span 1;">
@@ -555,7 +557,53 @@
       </div>
 
       <!-- Plan cards -->
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:48px;">
+      <style>
+        .support-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-bottom:48px; }
+        @media (max-width:1100px) { .support-grid { grid-template-columns:repeat(2,1fr); } }
+        @media (max-width:640px) { .support-grid { grid-template-columns:1fr; } }
+      </style>
+      <div class="support-grid">
+
+        <!-- Starter -->
+        <div class="reveal" style="
+          background:#0d1120;
+          border:1px solid rgba(245,200,50,0.12);
+          border-radius:16px;
+          padding:36px 32px;
+          display:flex; flex-direction:column; gap:20px;
+          position:relative; overflow:hidden;
+        ">
+          <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(245,200,50,0.05) 0%,transparent 70%);pointer-events:none;"></div>
+          <div>
+            <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin-bottom:12px;">Starter Care</div>
+            <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:6px;">
+              <span style="font-size:2.2rem;font-weight:900;color:#f1f5f9;font-family:'JetBrains Mono',monospace;">$49</span>
+              <span style="color:#64748b;font-size:0.9rem;">/month</span>
+            </div>
+            <p style="color:#64748b;font-size:0.85rem;margin:0;line-height:1.6;">The lightest way to keep a small system covered.</p>
+          </div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;flex:1;">
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;color:#94a3b8;">
+              <span style="color:#f5c832;font-weight:700;flex-shrink:0;"></span> Uptime monitoring
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;color:#94a3b8;">
+              <span style="color:#f5c832;font-weight:700;flex-shrink:0;"></span> Bug fixes (up to 1hr/mo)
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;color:#94a3b8;">
+              <span style="color:#f5c832;font-weight:700;flex-shrink:0;"></span> Security updates
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;color:#94a3b8;">
+              <span style="color:#f5c832;font-weight:700;flex-shrink:0;"></span> Email support, 72hr response
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;color:#475569;">
+              <span style="flex-shrink:0;">–</span> Feature changes
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;color:#475569;">
+              <span style="flex-shrink:0;">–</span> Monthly call
+            </li>
+          </ul>
+          <a href="contact.html?plan=starter" class="btn btn--ghost btn--full">Get Started</a>
+        </div>
 
         <!-- Basic -->
         <div class="reveal" style="
