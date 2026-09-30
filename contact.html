@@ -81,7 +81,7 @@
   <section class="page-hero">
     <div class="hero__grid-bg"></div>    <div class="container page-hero__inner">
       <h1 class="page-hero__title">Let's build<br/>something.</h1>
-      <p class="page-hero__sub">Describe your project or challenge. I respond within 24 hours — usually faster.</p>
+      <p class="page-hero__sub">Answer a few quick questions so our first conversation is useful. I respond within 24 hours — usually faster.</p>
     </div>
   </section>
 
@@ -147,31 +147,69 @@
             <input type="email" id="email" name="email" placeholder="you@company.com" required />
           </div>
         </div>
+        <input type="hidden" name="_subject" value="New Project Inquiry — Ramapp Solutions" />
+        <input type="hidden" name="form_type" value="intake" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="company">Business name <span style="color:#64748b;font-weight:400;">(optional)</span></label>
+            <input type="text" id="company" name="company" placeholder="ACME Landscaping" />
+          </div>
+          <div class="form-group">
+            <label for="industry">What kind of business?</label>
+            <select id="industry" name="industry">
+              <option value="">Select one...</option>
+              <option value="home-services">Contractor / home services</option>
+              <option value="restaurant-retail">Restaurant / retail</option>
+              <option value="health-wellness">Clinic / health / wellness</option>
+              <option value="agency-professional">Agency / professional services</option>
+              <option value="club-sports">Club / sports organization</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+        </div>
         <div class="form-group">
           <label for="service">What do you need?</label>
           <select id="service" name="service">
             <option value="">Select a service...</option>
-            <option value="ai-tools">AI-Powered Tools</option>
-            <option value="automation">Automation Systems</option>
-            <option value="consulting">Software Consulting</option>
-            <option value="other">Not sure yet</option>
+            <option value="audit">Automation Audit ($297) — not sure where to start</option>
+            <option value="automation">Automation system (leads, follow-ups, admin)</option>
+            <option value="ai-tools">Custom AI tool or app</option>
+            <option value="review-response">Review response automation</option>
+            <option value="content-pipeline">AI content pipeline</option>
+            <option value="website">Website</option>
+            <option value="other">Something else / not sure yet</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="budget">Budget range</label>
-          <select id="budget" name="budget">
-            <option value="">Select a range...</option>
-            <option value="starter">$350 – $1,250 (Starter)</option>
-            <option value="standard">$1,250 – $3,000 (Standard)</option>
-            <option value="premium">$3,000+ (Premium)</option>
-            <option value="unsure">Not sure yet</option>
-          </select>
+          <label for="message">What's the most time-consuming or frustrating task right now?</label>
+          <textarea id="message" name="message" rows="5" placeholder="Describe the task, how often it happens, and roughly how much time it costs you each week." required></textarea>
         </div>
         <div class="form-group">
-          <label for="message">Tell me about your project</label>
-          <textarea id="message" name="message" rows="5" placeholder="What are you trying to build or automate? What's the pain point?" required></textarea>
+          <label for="tools">Tools you already use <span style="color:#64748b;font-weight:400;">(optional)</span></label>
+          <input type="text" id="tools" name="tools" placeholder="e.g. QuickBooks, Google Sheets, Jobber, HubSpot" />
         </div>
-        <button type="submit" class="btn btn--primary btn--lg btn--full">Send Message</button>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="timeline">When do you want to start?</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select one...</option>
+              <option value="asap">As soon as possible</option>
+              <option value="1-month">Within a month</option>
+              <option value="exploring">Just exploring</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget range</label>
+            <select id="budget" name="budget">
+              <option value="">Select a range...</option>
+              <option value="under-1250">Under $1,250</option>
+              <option value="1250-3000">$1,250 – $3,000</option>
+              <option value="3000-plus">$3,000+</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg btn--full">Send My Project Details</button>
         <p class="form-note">No spam. No pressure. Just a real conversation.</p>
       </form>
 

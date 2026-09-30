@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-site-verification" content="oscdhVxzvK532jjV5OH09dYOMY0ojmSiOdxLUYSU3-M" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review — Ramapp Solutions</title>
+  <meta name="description" content="Worked with Ramapp Solutions? Share how it went in under two minutes." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500family=Inter:wght@300;400;500;600;700;800;900family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.min.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2" />
+
+  <style>
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold) !important;
+      box-shadow: 0 0 0 3px var(--gold-bg) !important;
+      outline: none !important;
+    }
+    input, textarea, select {
+      background: var(--surface) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text) !important;
+      border-radius: var(--radius-sm) !important;
+      padding: 12px 16px !important;
+      font-family: var(--font) !important;
+      font-size: 0.9375rem !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+      width: 100% !important;
+    }
+  </style>
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Contact — Ramapp Solutions" />
+  <meta property="og:description" content="Let's build something together. Reach out and I'll respond within 24 hours." />
+  <meta property="og:image"       content="https://ramappsolutions.com/assets/og-image.png?v=3" />
+  <meta property="og:url"         content="https://ramappsolutions.com/contact.html" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Google Analytics — replace G-64ZTD1V2W8 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZTD1V2W8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-64ZTD1V2W8');
+  </script>
+</head>
+<body data-page="contact">
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <img src="/assets/favicon.svg?v=2" alt="Ramapp Solutions logo" width="36" height="36" style="display:block;flex-shrink:0;" />
+        <span style="font-family:'Poppins',sans-serif;font-weight:800;line-height:1.04;white-space:nowrap;"><span style="display:block;font-size:1.15rem;color:#f1f5f9;letter-spacing:-0.3px;">ramapp<span style="color:#f5c832;">.</span></span><span style="display:block;font-size:0.56rem;font-weight:700;letter-spacing:0.34em;color:#f5c832;margin-top:1px;">SOLUTIONS</span></span>
+      </a>
+            <ul class="nav__links">
+        <li><a href="services.html"  data-nav="services">Services</a></li>
+        <li><a href="work.html"      data-nav="work">Work</a></li>
+        <li><a href="pricing.html"   data-nav="pricing">Pricing</a></li>
+        <li><a href="index.html#about" data-nav="about">About</a></li>
+        <li><a href="blog.html"      data-nav="blog">Blog</a></li>
+        <li><a href="contact.html"   class="nav__cta" data-nav="contact">Get Started</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+        <div class="nav__mobile" id="mobileMenu">
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#about">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="hero__grid-bg"></div>    <div class="container page-hero__inner">
+      <h1 class="page-hero__title">How did it go?</h1>
+      <p class="page-hero__sub">If I built something for you, I'd love to hear how it's working out. It takes less than two minutes.</p>
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="contact contact--page">
+    <div class="container" style="max-width:640px;">
+      <form action="https://formspree.io/f/mrevbgdg" method="POST" id="reviewForm" class="contact-form" style="display:flex;flex-direction:column;gap:16px;">
+        <input type="hidden" name="_subject" value="New Client Review — Ramapp Solutions" />
+        <input type="hidden" name="form_type" value="review" />
+
+        <div>
+          <label style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:8px;">Rating</label>
+          <div style="display:flex;gap:6px;" id="starRating" role="radiogroup" aria-label="Rating">
+            <input type="hidden" name="rating" id="ratingValue" value="5" />
+            <span data-val="1" style="font-size:1.75rem;cursor:pointer;color:#f5c832;" class="star">&#9733;</span>
+            <span data-val="2" style="font-size:1.75rem;cursor:pointer;color:#f5c832;" class="star">&#9733;</span>
+            <span data-val="3" style="font-size:1.75rem;cursor:pointer;color:#f5c832;" class="star">&#9733;</span>
+            <span data-val="4" style="font-size:1.75rem;cursor:pointer;color:#f5c832;" class="star">&#9733;</span>
+            <span data-val="5" style="font-size:1.75rem;cursor:pointer;color:#f5c832;" class="star">&#9733;</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rname">Name</label>
+            <input type="text" id="rname" name="name" required placeholder="Jane Smith" />
+          </div>
+          <div class="form-group">
+            <label for="rcompany">Company / Role</label>
+            <input type="text" id="rcompany" name="company" placeholder="Owner, ACME Co." />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rreview">Your review</label>
+          <textarea id="rreview" name="review" required rows="5" placeholder="What did we build together, and how has it helped your business?"></textarea>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;">
+          <input type="checkbox" name="permission" id="reviewPermission" value="yes" checked style="accent-color:#f5c832;width:16px !important;height:16px;cursor:pointer;padding:0 !important;" />
+          <label for="reviewPermission" style="font-size:0.85rem;color:#64748b;cursor:pointer;margin:0;">You can share this review on the site</label>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--full">Submit Review</button>
+        <div id="reviewSuccess" style="display:none;font-size:0.9rem;color:#4ade80;font-weight:600;text-align:center;">Thanks — your review was submitted!</div>
+        <p class="form-note">No account needed.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+          <img src="/assets/favicon.svg?v=2" alt="Ramapp Solutions logo" width="28" height="28" style="display:block;flex-shrink:0;" />
+          <span style="font-family:'Poppins',sans-serif;font-weight:800;line-height:1.04;white-space:nowrap;"><span style="display:block;font-size:1rem;color:#f1f5f9;letter-spacing:-0.3px;">ramapp<span style="color:#f5c832;">.</span></span><span style="display:block;font-size:0.5rem;font-weight:700;letter-spacing:0.32em;color:#f5c832;margin-top:1px;">SOLUTIONS</span></span>
+        </a>
+        <p>AI-powered consulting for businesses that move fast.</p>
+      </div>
+      <div class="footer__links">
+        <a href="services.html">Services</a>
+        <a href="work.html">Work</a>
+        <a href="process.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contractor-proposals.html">Proposals</a>        <a href="contact.html">Contact</a>
+        <a href="small-business.html">For Small Businesses</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="portal.html">Client Portal</a>
+      </div>
+      <div class="footer__copy">
+        <p>&copy; 2026 Ramapp Solutions. All rights reserved.</p>
+        <p>Aurora, IL &middot; <a href="tel:+16304530223" style="color:inherit;text-decoration:none;">(630) 453-0223</a> &middot; ramappsolutions.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    (function () {
+      var stars = document.querySelectorAll('#starRating .star');
+      var ratingInput = document.getElementById('ratingValue');
+      var current = 5;
+      function paint(val) {
+        stars.forEach(function (s) { s.style.color = parseInt(s.dataset.val, 10) <= val ? '#f5c832' : '#2d3748'; });
+      }
+      stars.forEach(function (star) {
+        star.addEventListener('mouseenter', function () { paint(parseInt(star.dataset.val, 10)); });
+        star.addEventListener('mouseleave', function () { paint(current); });
+        star.addEventListener('click', function () {
+          current = parseInt(star.dataset.val, 10);
+          ratingInput.value = current;
+          paint(current);
+        });
+      });
+      paint(current);
+
+      var form = document.getElementById('reviewForm');
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var success = document.getElementById('reviewSuccess');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+          if (res.ok) {
+            form.reset();
+            ratingInput.value = 5; current = 5; paint(5);
+            success.style.display = 'block';
+            btn.style.display = 'none';
+          } else {
+            btn.textContent = 'Try again';
+            btn.disabled = false;
+          }
+        } catch (err) {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
