@@ -316,6 +316,7 @@
       /* Floating Book a Call sits at bottom:28px too — move chat btn up to avoid overlap */
       .floating-cta.visible ~ #rmp-chat-btn,
       body.has-floating-cta #rmp-chat-btn { bottom: 88px; }
+      body.has-floating-cta #rmp-chat-bubble { bottom: 154px; }
 
       #rmp-chat-bubble {
         position: fixed;
