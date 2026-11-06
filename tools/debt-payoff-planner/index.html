@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Enter your debts and available cash. The planner ranks what to pay off, how much, and why, ordered by credit score impact.">
+<title>Debt Payoff Planner</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: one column, summary band first, then the fillable debt table, then the ranked plan and the reasoning. */
+  :root {
+    --bg: #f6f3ec;
+    --surface: #ffffff;
+    --surface-2: #efebe1;
+    --fg: #1b1a16;
+    --muted: #6d6656;
+    --line: #e1dbcd;
+    --accent: #1f6b4e;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(31,107,78,0.10);
+    --gold: #a77f1f;
+    --good: #1f6b4e;
+    --warn: #b06a10;
+    --bad: #b03a2a;
+    --good-soft: rgba(31,107,78,0.12);
+    --warn-soft: rgba(176,106,16,0.12);
+    --bad-soft: rgba(176,58,42,0.12);
+    --display: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    --body: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c0b09; --surface: #141310; --surface-2: #1b1915; --fg: #f5f0e8; --muted: #a89880;
+      --line: rgba(255,255,255,0.09); --accent: #d4af37; --accent-ink: #15120a; --accent-soft: rgba(212,175,55,0.14);
+      --gold: #d4af37; --good: #6fc59a; --warn: #e3a64c; --bad: #e37f72;
+      --good-soft: rgba(111,197,154,0.14); --warn-soft: rgba(227,166,76,0.14); --bad-soft: rgba(227,127,114,0.14);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c0b09; --surface: #141310; --surface-2: #1b1915; --fg: #f5f0e8; --muted: #a89880;
+    --line: rgba(255,255,255,0.09); --accent: #d4af37; --accent-ink: #15120a; --accent-soft: rgba(212,175,55,0.14);
+    --gold: #d4af37; --good: #6fc59a; --warn: #e3a64c; --bad: #e37f72;
+    --good-soft: rgba(111,197,154,0.14); --warn-soft: rgba(227,166,76,0.14); --bad-soft: rgba(227,127,114,0.14);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5;
+    padding-block: 28px 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 28px; }
+  h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; line-height: 1.2; }
+  h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 700; }
+  h2 { font-size: 18px; font-weight: 600; }
+  p { margin: 0; }
+  .lede { color: var(--muted); max-width: 62ch; }
+  .eyebrow { font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  header { display: grid; gap: 8px; }
+
+  /* Cash input */
+  .cash {
+    display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: end;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px;
+  }
+  .cash .field { flex: 1 1 220px; }
+  .cash .opt { flex: 2 1 320px; display: grid; gap: 8px; }
+  label.lbl { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .money-in { position: relative; }
+  .money-in::before { content: "$"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: var(--mono); }
+  .money-in input { padding-left: 26px; }
+  input, select {
+    width: 100%; font: inherit; color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius-sm); padding: 9px 11px; min-width: 0;
+  }
+  input.num, .money-in input { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  input::placeholder { color: var(--muted); opacity: 0.7; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); }
+  .check input { width: 16px; height: 16px; margin-top: 2px; flex: none; accent-color: var(--accent); }
+
+  /* Summary tiles */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+  .tile .v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 22px; font-weight: 500; }
+  .tile .s { font-size: 12px; color: var(--muted); }
+  .tile.hero { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .tile.hero .eyebrow, .tile.hero .s { color: var(--accent-ink); opacity: 0.85; }
+
+  /* Debt table */
+  section { display: grid; gap: 12px; }
+  .sec-head { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; justify-content: space-between; }
+  .sec-head .hint { font-size: 13px; color: var(--muted); }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  td select { min-width: 140px; }
+  th, td { text-align: left; padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  th { font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  th .opt { font-weight: 400; letter-spacing: 0; text-transform: none; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.right, th.right { text-align: right; }
+  td .util { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  td .util b { font-weight: 600; }
+  .util.good b { color: var(--good); } .util.warn b { color: var(--warn); } .util.bad b { color: var(--bad); }
+  .x { background: none; border: 1px solid transparent; color: var(--muted); border-radius: 6px; width: 30px; height: 30px; cursor: pointer; font-size: 18px; line-height: 1; }
+  .x:hover { border-color: var(--line); color: var(--bad); }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; }
+  button.btn {
+    font: inherit; font-weight: 600; font-size: 14px; cursor: pointer; border-radius: var(--radius-sm);
+    padding: 9px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+  }
+  button.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button.btn:hover { filter: brightness(1.05); }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; font-size: 13px; color: var(--muted); }
+
+  /* Plan */
+  .plan { display: grid; gap: 10px; }
+  .step {
+    display: grid; grid-template-columns: 44px 1fr auto; gap: 6px 14px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px;
+  }
+  .step .n { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--accent); line-height: 1.1; }
+  .step .n small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .step .what { display: grid; gap: 4px; min-width: 0; }
+  .step .what strong { font-family: var(--display); font-weight: 600; font-size: 15px; }
+  .step .why { font-size: 13.5px; color: var(--muted); max-width: 70ch; }
+  .step .amt { text-align: right; display: grid; gap: 2px; }
+  .step .amt .v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 20px; font-weight: 500; }
+  .step .amt .s { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .step.hold { border-style: dashed; }
+  .step.hold .n { color: var(--muted); }
+  .pill { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+  .pill.good { background: var(--good-soft); color: var(--good); }
+  .pill.warn { background: var(--warn-soft); color: var(--warn); }
+  .pill.bad { background: var(--bad-soft); color: var(--bad); }
+  .empty { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); padding: 24px; color: var(--muted); text-align: center; }
+
+  /* Score panel */
+  .score { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .score > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 10px; align-content: start; }
+  .gauge { display: grid; gap: 6px; }
+  .gauge .row { display: flex; justify-content: space-between; font-size: 13px; }
+  .bar { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; position: relative; }
+  .bar span { display: block; height: 100%; border-radius: 999px; background: var(--accent); transition: width .4s ease; }
+  .bar.before span { background: var(--muted); }
+  .bar.after span.good { background: var(--good); } .bar.after span.warn { background: var(--warn); } .bar.after span.bad { background: var(--bad); }
+  .bar i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--fg); opacity: 0.35; }
+  ul.tips { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 13.5px; color: var(--muted); }
+  ul.tips li strong { color: var(--fg); font-weight: 600; }
+  .note { font-size: 12.5px; color: var(--muted); max-width: 72ch; }
+
+  @media (max-width: 640px) {
+    .score { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 36px 1fr; }
+    .step .amt { grid-column: 2; text-align: left; }
+    .step .amt .s { white-space: normal; }
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Credit score first, interest second</p>
+    <h1>Debt Payoff Planner</h1>
+    <p class="lede">Enter each debt below and the cash you are about to receive. The plan ranks what to pay, how much, and why, ordered by what moves a FICO score the most.</p>
+  </header>
+
+  <div class="cash">
+    <div class="field">
+      <label class="lbl" for="cash">Cash available to put toward debt</label>
+      <div class="money-in"><input id="cash" type="number" inputmode="decimal" min="0" step="100" value="25000"></div>
+    </div>
+    <div class="opt">
+      <label class="check"><input type="checkbox" id="optLow"> <span>Also put leftover cash toward loans under <span id="thrLabel">7</span>% APR. Off by default: prepaying cheap installment debt barely moves a score, so the plan holds that money as a cushion instead.</span></label>
+      <label class="check"><input type="checkbox" id="optAzeo"> <span>Leave one small balance (about 1% of its limit) on one card. Some scoring models give a few extra points for "all cards at zero except one" versus every card at zero.</span></label>
+    </div>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <section>
+    <div class="sec-head">
+      <h2>Your debts</h2>
+      <span class="hint">Type, Balance and APR are required. Credit limit is optional but lets the plan measure utilization, the biggest score lever.</span>
+    </div>
+    <div class="tablewrap">
+      <table id="debts">
+        <thead>
+          <tr>
+            <th>Type of Debt</th>
+            <th>Label <span class="opt">(optional)</span></th>
+            <th class="right">Balance</th>
+            <th class="right">APR %</th>
+            <th class="right">Credit limit <span class="opt">(cards)</span></th>
+            <th class="right">Interest / mo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="foot">
+      <div class="toolbar">
+        <button class="btn primary" id="add">+ Add debt</button>
+        <button class="btn" id="example">Load example</button>
+        <button class="btn" id="clear">Clear all</button>
+      </div>
+      <span id="saved">Saved in this browser only.</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Pay in this order</h2>
+      <span class="hint" id="planHint"></span>
+    </div>
+    <div class="plan" id="plan"></div>
+  </section>
+
+  <section>
+    <h2>What this does to your score</h2>
+    <div class="score">
+      <div>
+        <p class="eyebrow">Revolving utilization</p>
+        <div class="gauge" id="gauge"></div>
+        <p class="note" id="scoreNote"></p>
+      </div>
+      <div>
+        <p class="eyebrow">After you pay</p>
+        <ul class="tips">
+          <li><strong>Do not close the paid-off cards.</strong> Their open limits keep your utilization low and their age keeps your history long.</li>
+          <li><strong>Pay before the statement closes.</strong> Bureaus see the statement balance, not the due-date balance. A paid card that still reports a high statement balance looks maxed out.</li>
+          <li><strong>Expect the update in 30 to 45 days.</strong> Utilization has no memory. Once a low balance reports, the score responds that cycle.</li>
+          <li><strong>Hold off on new credit for 6 months.</strong> A new inquiry and a new account would blunt the gain you just bought.</li>
+          <li><strong>Keep installment loans paying on time.</strong> Payment history is 35% of the score. One late payment costs more than any payoff earns.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Weighting follows FICO's published model: payment history 35%, amounts owed 30%, length of history 15%, credit mix 10%, new credit 10%. Score bands are estimates, not a promise. Interest figures use simple annual interest on the current balance.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  const TYPES = ['Credit Card', 'Car', 'Student Loan', 'Loan'];
+  const LOW_APR = 7;           // below this, prepaying an installment loan is held back by default
+  const UTIL_GOOD = 0.09;      // utilization targets used for tiering
+  const UTIL_OK = 0.29;
+  const KEY = 'debt-payoff-planner-v1';
+
+  const EXAMPLE = [
+    { type: 'Credit Card', label: 'Visa (example)',     balance: 8400,  apr: 27.9, limit: 10000 },
+    { type: 'Credit Card', label: 'Store card (example)', balance: 3200, apr: 22.4, limit: 4000 },
+    { type: 'Loan',        label: 'Personal loan (example)', balance: 6000, apr: 11.5, limit: '' },
+    { type: 'Car',         label: 'Auto loan (example)', balance: 14500, apr: 6.9,  limit: '' },
+    { type: 'Student Loan',label: 'Federal (example)',   balance: 21000, apr: 5.5,  limit: '' },
+  ];
+
+  let state = load() || { cash: 25000, optLow: false, optAzeo: false, debts: EXAMPLE.map(d => ({ ...d })) };
+
+  const $ = (s) => document.querySelector(s);
+  const rowsEl = $('#rows'), planEl = $('#plan'), tilesEl = $('#tiles'), gaugeEl = $('#gauge');
+  const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+  const fmt2 = (n) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const pct = (x) => Math.round(x * 100) + '%';
+  const num = (v) => { const n = parseFloat(v); return isFinite(n) && n > 0 ? n : 0; };
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function load() {
+    try { const s = JSON.parse(localStorage.getItem(KEY)); return s && Array.isArray(s.debts) ? s : null; } catch (e) { return null; }
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ } }
+
+  function utilClass(u) { return u == null ? '' : u <= UTIL_GOOD ? 'good' : u <= UTIL_OK ? 'warn' : 'bad'; }
+  function name(d, i) { return d.label && d.label.trim() ? d.label.trim() : d.type + ' #' + (i + 1); }
+
+  // ---------- Rows ----------
+  function renderRows() {
+    rowsEl.innerHTML = '';
+    state.debts.forEach((d, i) => {
+      const tr = document.createElement('tr');
+      const isCard = d.type === 'Credit Card';
+      const bal = num(d.balance), apr = num(d.apr), lim = num(d.limit);
+      const util = isCard && lim > 0 ? bal / lim : null;
+      tr.innerHTML = `
+        <td><select id="type-${i}" data-i="${i}" data-k="type" aria-label="Type of debt">${TYPES.map(t => `<option ${t === d.type ? 'selected' : ''}>${t}</option>`).join('')}</select></td>
+        <td><input id="label-${i}" data-i="${i}" data-k="label" type="text" placeholder="e.g. Chase Visa" value="${esc(d.label || '')}" aria-label="Label"></td>
+        <td class="right"><div class="money-in"><input id="bal-${i}" data-i="${i}" data-k="balance" class="num" type="number" inputmode="decimal" min="0" step="1" placeholder="0" value="${esc(d.balance ?? '')}" aria-label="Balance"></div></td>
+        <td class="right"><input id="apr-${i}" data-i="${i}" data-k="apr" class="num" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="0.0" value="${esc(d.apr ?? '')}" aria-label="APR percent"></td>
+        <td class="right">
+          <div class="money-in"><input id="lim-${i}" data-i="${i}" data-k="limit" class="num" type="number" inputmode="decimal" min="0" step="1" placeholder="${isCard ? 'limit' : 'n/a'}" value="${esc(isCard ? (d.limit ?? '') : '')}" ${isCard ? '' : 'disabled'} aria-label="Credit limit"></div>
+          ${util != null ? `<div class="util ${utilClass(util)}">utilization <b>${pct(util)}</b></div>` : ''}
+        </td>
+        <td class="right num" style="color:var(--muted)">${bal && apr ? fmt2(bal * apr / 100 / 12) : '—'}</td>
+        <td><button class="x" data-del="${i}" title="Remove" aria-label="Remove debt">×</button></td>`;
+      rowsEl.appendChild(tr);
+    });
+  }
+
+  rowsEl.addEventListener('input', (e) => {
+    const t = e.target, i = +t.dataset.i, k = t.dataset.k;
+    if (!k) return;
+    state.debts[i][k] = t.value;
+    if (k === 'type') { if (t.value !== 'Credit Card') state.debts[i].limit = ''; renderRows(); }
+    else if (k === 'balance' || k === 'limit' || k === 'apr') {
+      // refresh only the derived cells so the focused input keeps its caret
+      const d = state.debts[i], bal = num(d.balance), apr = num(d.apr), lim = num(d.limit);
+      const tr = t.closest('tr');
+      const util = d.type === 'Credit Card' && lim > 0 ? bal / lim : null;
+      let u = tr.querySelector('.util');
+      if (util != null) { if (!u) { u = document.createElement('div'); tr.children[4].appendChild(u); } u.className = 'util ' + utilClass(util); u.innerHTML = 'utilization <b>' + pct(util) + '</b>'; }
+      else if (u) u.remove();
+      tr.children[5].textContent = bal && apr ? fmt2(bal * apr / 100 / 12) : '—';
+    }
+    save(); renderPlan();
+  });
+  rowsEl.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-del]'); if (!b) return;
+    state.debts.splice(+b.dataset.del, 1); save(); renderRows(); renderPlan();
+  });
+  $('#add').addEventListener('click', () => {
+    state.debts.push({ type: 'Credit Card', label: '', balance: '', apr: '', limit: '' });
+    save(); renderRows(); renderPlan();
+    const last = rowsEl.querySelector('tr:last-child input[data-k="balance"]'); if (last) last.focus();
+  });
+  $('#example').addEventListener('click', () => { state.debts = EXAMPLE.map(d => ({ ...d })); save(); renderRows(); renderPlan(); });
+  $('#clear').addEventListener('click', () => { state.debts = [{ type: 'Credit Card', label: '', balance: '', apr: '', limit: '' }]; save(); renderRows(); renderPlan(); });
+  $('#cash').addEventListener('input', (e) => { state.cash = e.target.value; save(); renderPlan(); });
+  $('#optLow').addEventListener('change', (e) => { state.optLow = e.target.checked; save(); renderPlan(); });
+  $('#optAzeo').addEventListener('change', (e) => { state.optAzeo = e.target.checked; save(); renderPlan(); });
+
+  // ---------- Planning engine ----------
+  function plan(debts, cash, opts) {
+    const items = debts.map((d, i) => ({
+      i, type: d.type, name: name(d, i), balance: num(d.balance), apr: num(d.apr),
+      limit: d.type === 'Credit Card' ? num(d.limit) : 0, pay: 0, reasons: [],
+    })).filter(x => x.balance > 0);
+    const cards = items.filter(x => x.type === 'Credit Card');
+    const loans = items.filter(x => x.type !== 'Credit Card');
+    let left = cash;
+    const steps = [];
+
+    const give = (x, amt, tier, why) => {
+      amt = Math.min(amt, x.balance - x.pay, left);
+      if (amt <= 0.5) return 0;
+      x.pay += amt; left -= amt;
+      steps.push({ x, amt, tier, why });
+      return amt;
+    };
+    const utilOf = (x) => x.limit > 0 ? (x.balance - x.pay) / x.limit : null;
+
+    // Tier 1: every card with a known limit down to 29% or less, worst utilization first.
+    cards.filter(x => x.limit > 0).sort((a, b) => utilOf(b) - utilOf(a)).forEach(x => {
+      const u = utilOf(x); if (u <= UTIL_OK) return;
+      const target = x.limit * UTIL_OK;
+      give(x, (x.balance - x.pay) - target, 1, `This card reports at ${pct(u)} of its limit. Above 30% is where FICO starts taking real points off. Getting it under 30% is the cheapest score gain on the list.`);
+    });
+    // Tier 2: known-limit cards down to 9% or less.
+    cards.filter(x => x.limit > 0).sort((a, b) => utilOf(b) - utilOf(a)).forEach(x => {
+      const u = utilOf(x); if (u <= UTIL_GOOD) return;
+      const target = x.limit * UTIL_GOOD;
+      give(x, (x.balance - x.pay) - target, 2, `Under 10% per card is where the "amounts owed" factor (30% of your score) pays out fully. ${pct(u)} to under 10% on this card.`);
+    });
+    // Tier 3: finish the cards, highest APR first. One card may be left with a small balance if the user chose that.
+    const azeoCard = opts.azeo ? [...cards].sort((a, b) => a.apr - b.apr)[0] : null;
+    [...cards].sort((a, b) => b.apr - a.apr || a.balance - b.balance).forEach(x => {
+      let remaining = x.balance - x.pay;
+      if (x === azeoCard && x.limit > 0) remaining -= Math.min(x.limit * 0.01, remaining);
+      if (remaining <= 0) return;
+      const why = x.limit > 0
+        ? `Zero on a card is the strongest utilization signal there is, and at ${x.apr}% APR this balance costs ${fmt2(x.balance * x.apr / 100 / 12)} a month to carry.`
+        : `No credit limit entered, so its utilization is unknown. Revolving balances drive 30% of a FICO score, which makes paying any card off a safer bet than any loan. At ${x.apr}% APR it also costs ${fmt2(x.balance * x.apr / 100 / 12)} a month.`;
+      give(x, remaining, 3, why);
+    });
+    // Tier 4: installment loans at or above the low-APR line, highest APR first.
+    [...loans].filter(x => x.apr >= LOW_APR).sort((a, b) => b.apr - a.apr).forEach(x => {
+      give(x, x.balance - x.pay, 4, `Installment balances count very little toward utilization, so this is about money, not score. At ${x.apr}% APR every ${fmt(1000)} paid here saves about ${fmt(1000 * x.apr / 100)} a year in interest. Keep the account open and current until it is paid in full.`);
+    });
+    // Tier 5: cheap loans only if the user opted in.
+    if (opts.low) [...loans].filter(x => x.apr < LOW_APR).sort((a, b) => b.apr - a.apr).forEach(x => {
+      give(x, x.balance - x.pay, 5, `At ${x.apr}% APR this is cheap debt and prepaying it does almost nothing for your score. You chose to pay it down anyway, so it goes last.`);
+    });
+
+    const held = loans.filter(x => x.apr < LOW_APR && x.balance - x.pay > 0.5 && !opts.low);
+    return { items, cards, loans, steps, left, held };
+  }
+
+  function renderPlan() {
+    const cash = num(state.cash);
+    const r = plan(state.debts, cash, { low: !!state.optLow, azeo: !!state.optAzeo });
+    $('#optLow').checked = !!state.optLow; $('#optAzeo').checked = !!state.optAzeo;
+
+    const totalDebt = r.items.reduce((s, x) => s + x.balance, 0);
+    const allocated = cash - r.left;
+    const interestSaved = r.items.reduce((s, x) => s + x.pay * x.apr / 100, 0);
+    const monthlyNow = r.items.reduce((s, x) => s + x.balance * x.apr / 100 / 12, 0);
+    const monthlyAfter = r.items.reduce((s, x) => s + (x.balance - x.pay) * x.apr / 100 / 12, 0);
+
+    // Utilization, aggregate across cards with limits
+    const known = r.cards.filter(x => x.limit > 0);
+    const limSum = known.reduce((s, x) => s + x.limit, 0);
+    const uBefore = limSum ? known.reduce((s, x) => s + x.balance, 0) / limSum : null;
+    const uAfter = limSum ? known.reduce((s, x) => s + x.balance - x.pay, 0) / limSum : null;
+
+    tilesEl.innerHTML = `
+      <div class="tile hero"><span class="eyebrow">Put toward debt</span><span class="v">${fmt(allocated)}</span><span class="s">of ${fmt(cash)} available</span></div>
+      <div class="tile"><span class="eyebrow">Total debt</span><span class="v">${fmt(totalDebt)}</span><span class="s">${r.items.length} account${r.items.length === 1 ? '' : 's'} · ${fmt(totalDebt - allocated)} after</span></div>
+      <div class="tile"><span class="eyebrow">Interest saved</span><span class="v">${fmt(interestSaved)}<span style="font-size:13px">/yr</span></span><span class="s">${fmt2(monthlyNow)} → ${fmt2(monthlyAfter)} per month</span></div>
+      <div class="tile"><span class="eyebrow">Card utilization</span><span class="v">${uBefore == null ? '—' : pct(uBefore) + ' → ' + pct(uAfter)}</span><span class="s">${uBefore == null ? 'add credit limits to measure' : 'across cards with a limit'}</span></div>
+      <div class="tile"><span class="eyebrow">Keep as cushion</span><span class="v">${fmt(r.left)}</span><span class="s">${r.left > 0 ? 'not needed for score' : 'all cash deployed'}</span></div>`;
+
+    // Steps, grouped per account in order of first appearance
+    const grouped = [];
+    r.steps.forEach(s => {
+      const g = grouped.find(g => g.x === s.x);
+      if (g) { g.amt += s.amt; g.whys.push(s.why); g.tier = Math.min(g.tier, s.tier); }
+      else grouped.push({ x: s.x, amt: s.amt, tier: s.tier, whys: [s.why] });
+    });
+    const tierPill = { 1: ['bad', 'Score: high impact'], 2: ['warn', 'Score: solid gain'], 3: ['good', 'Score: locks it in'], 4: ['', 'Money, not score'], 5: ['', 'Optional'] };
+
+    if (!r.items.length) {
+      planEl.innerHTML = `<div class="empty">Add at least one debt with a balance and APR to see the plan.</div>`;
+    } else if (!cash) {
+      planEl.innerHTML = `<div class="empty">Enter the cash you have available and the plan will fill in here.</div>`;
+    } else {
+      planEl.innerHTML = grouped.map((g, k) => {
+        const x = g.x, after = x.balance - x.pay, paidOff = after < 0.5;
+        const [cls, text] = tierPill[g.tier];
+        if (paidOff && x.type === 'Credit Card' && x.limit > 0 && g.whys.length > 1) {
+          g.whys = [`This card reports at ${pct(x.balance / x.limit)} of its limit, and revolving utilization is the single fastest lever on a FICO score (amounts owed is 30% of it). Taking it to zero clears the 30% and 10% thresholds in one move, and at ${x.apr}% APR it stops ${fmt2(x.balance * x.apr / 100 / 12)} a month in interest.`];
+        }
+        const utilLine = x.limit > 0 ? ` · utilization ${pct(x.balance / x.limit)} → ${pct(after / x.limit)}` : '';
+        return `<div class="step">
+          <div class="n">${k + 1}<small>step</small></div>
+          <div class="what">
+            <div><strong>${esc(x.name)}</strong> <span class="pill">${esc(x.type)}</span> <span class="pill ${cls}">${text}</span></div>
+            <p class="why">${g.whys.map(esc).join(' ')}</p>
+          </div>
+          <div class="amt"><span class="v">${fmt(g.amt)}</span><span class="s">${paidOff ? 'paid in full' : fmt(after) + ' left'}${esc(utilLine)}</span></div>
+        </div>`;
+      }).join('') + r.held.map(x => `<div class="step hold">
+          <div class="n">—<small>hold</small></div>
+          <div class="what">
+            <div><strong>${esc(x.name)}</strong> <span class="pill">${esc(x.type)}</span> <span class="pill">Leave as is</span></div>
+            <p class="why">At ${x.apr}% APR this is cheap debt. Paying it down early would move your score by roughly nothing, because installment balances barely count toward utilization. Keep paying it monthly and on time. Tick the option above if you would rather clear it anyway.</p>
+          </div>
+          <div class="amt"><span class="v">$0</span><span class="s">${fmt(x.balance)} stays</span></div>
+        </div>`).join('') + (r.left > 0 ? `<div class="step hold">
+          <div class="n">—<small>keep</small></div>
+          <div class="what">
+            <div><strong>Cash cushion</strong> <span class="pill good">Protects the gain</span></div>
+            <p class="why">Nothing left on the list is worth more than having this in the bank. An emergency fund is what keeps the cards at zero next time something breaks, and a card creeping back up would undo the score gain you just paid for.</p>
+          </div>
+          <div class="amt"><span class="v">${fmt(r.left)}</span><span class="s">stays in savings</span></div>
+        </div>` : '');
+    }
+
+    const unpaidCards = r.cards.filter(x => x.balance - x.pay > 0.5 && !(state.optAzeo && x.balance - x.pay <= x.limit * 0.01 + 0.5));
+    $('#planHint').textContent = r.items.length
+      ? (unpaidCards.length ? `${fmt(cash)} does not clear every card. Steps are ordered to cut utilization fastest.` : r.cards.length ? `All credit cards cleared. Remaining cash goes to the costliest loans.` : `No credit cards entered. With no revolving balances, the plan is ordered by interest cost.`)
+      : '';
+
+    // Gauge
+    const band = (u) => u == null ? ['', '—'] : u <= UTIL_GOOD ? ['good', 'excellent, under 10%'] : u <= UTIL_OK ? ['warn', 'good, under 30%'] : u <= 0.49 ? ['warn', 'fair, 30 to 49%'] : u <= 0.74 ? ['bad', 'hurting, 50 to 74%'] : ['bad', 'severe, 75%+'];
+    if (uBefore == null) {
+      gaugeEl.innerHTML = `<p class="note">Add a credit limit to each card to see utilization before and after. Utilization is the share of your available revolving credit you are using, and it is the fastest-moving part of a score.</p>`;
+      $('#scoreNote').textContent = r.cards.length ? 'Paying cards to zero still helps even without the number: a zero balance is the best possible utilization.' : 'With no credit cards entered there is no utilization to improve. Paying installment loans early will not raise your score much; on-time payments are what matter there.';
+    } else {
+      const [cb, ct] = band(uBefore), [ca, ta] = band(uAfter);
+      gaugeEl.innerHTML = `
+        <div class="row"><span>Before</span><span class="num">${pct(uBefore)} · ${ct}</span></div>
+        <div class="bar before"><span style="width:${Math.min(100, uBefore * 100)}%"></span><i style="left:9%"></i><i style="left:29%"></i></div>
+        <div class="row"><span>After this plan</span><span class="num">${pct(uAfter)} · ${ta}</span></div>
+        <div class="bar after"><span class="${ca}" style="width:${Math.min(100, uAfter * 100)}%"></span><i style="left:9%"></i><i style="left:29%"></i></div>`;
+      const jump = uBefore > 0.74 && uAfter <= UTIL_GOOD ? 'Going from maxed out to near zero is the largest single-month gain most people ever see. Gains of 50 to 100+ points are common in that case, depending on the rest of the file.'
+        : uBefore > UTIL_OK && uAfter <= UTIL_GOOD ? 'Dropping from over 30% to under 10% typically lifts a score by a noticeable margin, often 20 to 60 points, once the new balances report.'
+        : uBefore > UTIL_GOOD && uAfter <= UTIL_GOOD ? 'You were already in decent shape. Getting under 10% squeezes out the last of the utilization points.'
+        : uAfter > UTIL_OK ? 'Utilization is still above 30% after this plan. The score will improve, but the biggest gains are still ahead. Adding more cash to cards or asking for a limit increase on an existing card would finish the job.'
+        : 'Little utilization change here, so expect a modest effect. The savings in interest are still real.';
+      $('#scoreNote').textContent = jump + ' Tick marks show the 9% and 29% lines.';
+    }
+  }
+
+  $('#thrLabel').textContent = LOW_APR;
+  $('#cash').value = state.cash;
+  renderRows(); renderPlan();
+})();
+</script>
+</body>
+</html>
