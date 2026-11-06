@@ -215,9 +215,11 @@
         <button class="btn primary" id="add">+ Add debt</button>
         <button class="btn" id="example">Load example</button>
         <button class="btn" id="clear">Clear all</button>
+        <button class="btn" id="copy">Copy my debts</button>
       </div>
-      <span id="saved">Saved in this browser only.</span>
+      <span id="saved">Saved in this browser only. Use Copy my debts to paste them into a chat.</span>
     </div>
+    <textarea id="copyBox" hidden rows="6" readonly aria-label="Debt summary to copy" style="width:100%;font-family:var(--mono);font-size:12.5px;padding:10px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);color:var(--fg)"></textarea>
   </section>
 
   <section>
@@ -336,6 +338,20 @@
   });
   $('#example').addEventListener('click', () => { state.debts = EXAMPLE.map(d => ({ ...d })); save(); renderRows(); renderPlan(); });
   $('#clear').addEventListener('click', () => { state.debts = [{ type: 'Credit Card', label: '', balance: '', apr: '', limit: '' }]; save(); renderRows(); renderPlan(); });
+  $('#copy').addEventListener('click', (e) => {
+    const lines = ['Cash available: ' + fmt(num(state.cash))];
+    state.debts.forEach((d, i) => {
+      if (!num(d.balance)) return;
+      let l = `${i + 1}. ${d.type} - ${name(d, i)} - balance ${fmt(num(d.balance))} - APR ${num(d.apr)}%`;
+      if (d.type === 'Credit Card' && num(d.limit)) l += ` - limit ${fmt(num(d.limit))}`;
+      lines.push(l);
+    });
+    const text = lines.join('\n');
+    const btn = e.currentTarget, box = $('#copyBox');
+    const done = () => { btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = 'Copy my debts'; }, 1800); };
+    const fallback = () => { box.value = text; box.hidden = false; box.focus(); box.select(); };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (err) { fallback(); }
+  });
   $('#cash').addEventListener('input', (e) => { state.cash = e.target.value; save(); renderPlan(); });
   $('#optLow').addEventListener('change', (e) => { state.optLow = e.target.checked; save(); renderPlan(); });
   $('#optAzeo').addEventListener('change', (e) => { state.optAzeo = e.target.checked; save(); renderPlan(); });
