@@ -259,6 +259,7 @@
   const LOW_APR = 7;           // below this, prepaying an installment loan is held back by default
   const UTIL_GOOD = 0.09;      // utilization targets used for tiering
   const UTIL_OK = 0.29;
+  const UTIL_FAIR = 0.49;      // when cash is short, get every card under half its limit before pushing any under 30%
   const KEY = 'debt-payoff-planner-v1';
 
   const EXAMPLE = [
@@ -376,6 +377,12 @@
     };
     const utilOf = (x) => x.limit > 0 ? (x.balance - x.pay) / x.limit : null;
 
+    // Tier 0: every card with a known limit down to 49% or less, worst utilization first. Only bites when cash is short.
+    cards.filter(x => x.limit > 0).sort((a, b) => utilOf(b) - utilOf(a)).forEach(x => {
+      const u = utilOf(x); if (u <= UTIL_FAIR) return;
+      const target = x.limit * UTIL_FAIR;
+      give(x, (x.balance - x.pay) - target, 1, `This card reports at ${pct(u)} of its limit${u > 1 ? ', over the limit' : ''}. With the cash short, every card gets under half its limit first, because one card at 90% costs more points than several at 45%.`);
+    });
     // Tier 1: every card with a known limit down to 29% or less, worst utilization first.
     cards.filter(x => x.limit > 0).sort((a, b) => utilOf(b) - utilOf(a)).forEach(x => {
       const u = utilOf(x); if (u <= UTIL_OK) return;
